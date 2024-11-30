@@ -1,0 +1,8 @@
+# Copyright (c) 2024 Matt Gilbert
+# SPDX-License-Identifier: MIT
+
+config SHIELD_TIROUGE01_LEFT
+    def_bool $(shields_list_contains,tirouge01_left)
+
+config SHIELD_TIROUGE01_RIGHT
+    def_bool $(shields_list_contains,tirouge01_right)

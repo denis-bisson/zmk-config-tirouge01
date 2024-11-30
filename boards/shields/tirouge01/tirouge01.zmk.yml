@@ -1,0 +1,16 @@
+file_format: "1"
+id: tirouge01
+name: TiRouge01
+type: shield
+url: https://github.com/denis-bisson/zmk-config-tirouge01.git
+requires:
+  - pro_micro
+exposes:
+  - i2c_oled
+features:
+  - keys
+  - display
+  - studio
+siblings:
+  - tirouge01_left
+  - tirouge01_right

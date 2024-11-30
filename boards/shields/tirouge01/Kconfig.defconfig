@@ -1,0 +1,16 @@
+if SHIELD_TIROUGE01_LEFT
+
+config ZMK_KEYBOARD_NAME
+    default "TiRouge01"
+
+config ZMK_SPLIT_ROLE_CENTRAL
+    default y
+
+endif
+
+if SHIELD_TIROUGE01_LEFT || SHIELD_TIROUGE01_RIGHT
+
+config ZMK_SPLIT
+    default y
+
+endif

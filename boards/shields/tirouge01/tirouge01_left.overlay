@@ -4,7 +4,7 @@
  * SPDX-License-Identifier: MIT
  */
 
-#include "splitkb_tirouge01.dtsi"
+#include "tirouge01.dtsi"
 
 &kscan0 {
 	col-gpios

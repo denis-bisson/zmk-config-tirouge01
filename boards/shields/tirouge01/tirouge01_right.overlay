@@ -4,15 +4,7 @@
  * SPDX-License-Identifier: MIT
  */
 
-#include "splitkb_tirouge01.dtsi"
-
-
-
-
-
-&default_transform {
-    col-offset = <6>;
-};
+#include "tirouge01.dtsi"
 
 &kscan0 {
         col-gpios
@@ -23,4 +15,8 @@
             , <&pro_micro 16 (GPIO_PULL_DOWN | GPIO_ACTIVE_HIGH)>
             , <&pro_micro 10 (GPIO_PULL_DOWN | GPIO_ACTIVE_HIGH)>
             ;
+};
+
+&default_transform {
+    col-offset = <6>;
 };
