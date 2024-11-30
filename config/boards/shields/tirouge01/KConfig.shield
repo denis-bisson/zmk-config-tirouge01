@@ -1,0 +1,5 @@
+config SPLITKB_TIROUGE01_LEFT
+    def_bool $(shields_list_contains, splitkb_tirouge01_left)
+
+config SPLITKB_TIROUGE01_RIGHT
+    def_bool $(shields_list_contains, splitkb_tirouge01_right)

@@ -1,0 +1,19 @@
+# Copyright (c) 2022 The ZMK Contributors
+# SPDX-License-Identifier: MIT
+
+if SPLITKB_TIROUGE01_LEFT
+
+config ZMK_KEYBOARD_NAME
+    default "Ti-Rouge 01"
+
+config ZMK_SPLIT_ROLE_CENTRAL
+    default y
+
+endif # SPLITKB_TIROUGE01_LEFT
+
+if SPLITKB_TIROUGE01_LEFT || SPLITKB_TIROUGE01_RIGHT
+
+config ZMK_SPLIT
+    default y
+
+endif # SPLITKB_TIROUGE01_LEFT || SPLITKB_TIROUGE01_RIGHT
