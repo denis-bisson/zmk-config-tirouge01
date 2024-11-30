@@ -20,7 +20,7 @@
 ---
 include:
     - board: nice_nano_v2
-     shield: splitkb_tirouge01_left
+      shield: splitkb_tirouge01_left
     - board: nice_nano_v2
-     shield: splitkb_tirouge01_right
+      shield: splitkb_tirouge01_right
   
