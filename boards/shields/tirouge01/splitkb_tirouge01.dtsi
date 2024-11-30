@@ -6,7 +6,15 @@
 
 #include <dt-bindings/zmk/matrix_transform.h>
 
+#include <layouts/kata0510/lily58.dtsi>
+
 / {
+
+    chosen {
+        zephyr,display = &oled;
+        zmk,physical-layout = &kata0510_lily58_layout;
+    };
+
     default_transform: keymap_transform_0 {
         compatible = "zmk,matrix-transform";
         columns = <14>;
@@ -23,5 +31,53 @@ RC(2,0) RC(2,1) RC(2,2) RC(2,3) RC(2,4) RC(2,5)                 RC(2,6) RC(2,7) 
 RC(3,0) RC(3,1) RC(3,2) RC(3,3) RC(3,4) RC(3,5) RC(4,1) RC(4,10) RC(3,6) RC(3,7) RC(3,8) RC(3,9) RC(3,10) RC(3,11)
                         RC(4,2) RC(4,3) RC(4,4) RC(4,5) RC(4,6) RC(4,7) RC(4,8) RC(4,9)
         >;
+    };
+
+    left_encoder: left_encoder {
+        compatible = "alps,ec11";
+        steps = <80>;
+        status = "disabled";
+
+        a-gpios = <&pro_micro 5 GPIO_PULL_UP>;
+        b-gpios = <&pro_micro 4 GPIO_PULL_UP>;
+    };
+
+    right_encoder: right_encoder {
+        compatible = "alps,ec11";
+        steps = <80>;
+        status = "disabled";
+
+        a-gpios = <&pro_micro 18 GPIO_PULL_UP>;
+        b-gpios = <&pro_micro 19 GPIO_PULL_UP>;
+    };
+
+    sensors: sensors {
+        compatible = "zmk,keymap-sensors";
+        sensors = <&left_encoder &right_encoder>;
+        triggers-per-rotation = <20>;
+    };
+};
+
+&kata0510_lily58_layout {
+    transform = <&default_transform>;
+};
+
+&pro_micro_i2c {
+    status = "okay";
+
+    oled: ssd1306@3c {
+        compatible = "solomon,ssd1306fb";
+        reg = <0x3c>;
+        width = <128>;
+        height = <32>;
+        segment-offset = <0>;
+        page-offset = <0>;
+        display-offset = <0>;
+        multiplex-ratio = <31>;
+        segment-remap;
+        com-invdir;
+        com-sequential;
+        inversion-on;
+        prechargep = <0x22>;
     };
 };
