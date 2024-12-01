@@ -47,7 +47,7 @@ nice_view_spi: &spi0 {
 
     kscan0: kscan0 {
         compatible = "zmk,kscan-gpio-matrix";
-        diode-direction = "col2row";
+        diode-direction = "row2col";
         wakeup-source;
         row-gpios
             = <&pro_micro 21 GPIO_ACTIVE_HIGH>
