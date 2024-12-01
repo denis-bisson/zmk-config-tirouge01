@@ -24,7 +24,7 @@
         apolftpr: apostrophe_left_parenthesis {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
-            bindings = <&kp APOSTROPHE>, <&kp LKP_LEFT_PARENTHESISEFT>;
+            bindings = <&kp APOSTROPHE>, <&kp KP_LEFT_PARENTHESIS>;
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
     };
