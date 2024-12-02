@@ -27,8 +27,7 @@
             compatible = "zmk,combos";
             combo_bebe {
                 timeout-ms = <100>;
-                key-positions = <1 52>;
-                layers = <0 27>;
+                key-positions = <1 27>;
                 bindings = <&kp CA_EACU>;
             };
         };
