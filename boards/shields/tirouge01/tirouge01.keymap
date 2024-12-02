@@ -8,6 +8,8 @@
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
 
+#define CA_SINGLE_QUOTE (LS(ZMK_HID_USAGE(HID_USAGE_KEY, HID_USAGE_KEY_KEYBOARD_COMMA_AND_LESS_THAN)))
+
 &soft_off {
     hold-time-ms = <2000>; // Only turn off if the key is held for 2 seconds or longer.
 };
@@ -24,7 +26,7 @@
         apolftpr: apostrophe_left_parenthesis {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
-            bindings = <&kp LSHFT COMMA>, <&kp LEFT_PARENTHESIS>;
+            bindings = <&kp CA_SINGLE_QUOTE>, <&kp LEFT_PARENTHESIS>;
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
 
