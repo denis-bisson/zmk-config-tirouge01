@@ -27,6 +27,14 @@
             bindings = <&kp APOSTROPHE>, <&kp LEFT_PARENTHESIS>;
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
+
+        comasemi: comma_semicolon {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&kp COMMA>, <&kp SEMICOLON>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
+
     };
 
     keymap {
@@ -37,8 +45,8 @@
             bindings = <
 &kp ESC    &kp N1     &kp N2    &kp N3    &kp N4  &kp N5        &kp N6     &kp N7    &kp N8    &kp N9    &kp N0     &kp GRAVE
 &kp TAB    &kp B      &kp Y     &kp O     &kp U   &apolftpr     &kp Y      &kp U     &kp I     &kp O     &kp P      &kp MINUS
-&kp LCTRL  &kp C      &kp I     &kp E     &kp A   &kp G         &kp H      &kp J     &kp K     &kp L     &kp SEMI   &kp SQT
-&kp LSHFT  &kp G      &kp X     &kp J     &kp K   &kp B         &kp LBKT   &kp RBKT  &kp N     &kp M     &kp COMMA  &kp DOT
+&kp LCTRL  &kp C      &kp I     &kp E     &kp A   &comasemi     &kp H      &kp J     &kp K     &kp L     &kp SEMI   &kp SQT
+&kp LSHFT  &kp G      &kp X     &kp J     &kp K   &kp MINUS     &kp LBKT   &kp RBKT  &kp N     &kp M     &kp COMMA  &kp DOT
 &kp N1     &kp N2     &kp N3    &kp N4    &kp N5  &kp BSPC      &kp SPACE  &kp N5    &kp N4    &kp N3    &kp N2     &kp N1
 &kp LSHFT  &kp LCTRL  &kp LGUI  &kp LALT  &mo 1   &mo 2         &mo 2      &mo 1     &kp RALT  &kp RGUI  &kp RCTRL  &kp RSHFT
             >;
