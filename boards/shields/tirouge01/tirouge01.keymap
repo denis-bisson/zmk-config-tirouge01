@@ -9,7 +9,11 @@
 #include <dt-bindings/zmk/bt.h>
 
 #define CA_SINGLE_QUOTE (LS(ZMK_HID_USAGE(HID_USAGE_KEY, HID_USAGE_KEY_KEYBOARD_COMMA_AND_LESS_THAN))) // '
-#define CA_EACU SLASH // é
+#define CA_EACU (ZMK_HID_USAGE(HID_USAGE_KEY, HID_USAGE_KEY_KEYBOARD_SLASH_AND_QUESTION_MARK)) // é
+#define CA_AGRV (ZMK_HID_USAGE(HID_USAGE_KEY, HID_USAGE_KEY_KEYBOARD_NON_US_HASH_AND_TILDE)) // À
+#define CA_UGRV (ZMK_HID_USAGE(HID_USAGE_KEY, HID_USAGE_KEY_KEYBOARD_NON_US_BACKSLASH_AND_PIPE)) // Ù
+#define CA_EGRV (ZMK_HID_USAGE(HID_USAGE_KEY, HID_USAGE_KEY_KEYBOARD_APOSTROPHE_AND_QUOTE)) // È
+#define CA_CCED (LS(ZMK_HID_USAGE(HID_USAGE_KEY, HID_USAGE_KEY_KEYBOARD_RIGHT_BRACKET_AND_RIGHT_BRACE))) // Ç
 
 &soft_off {
     hold-time-ms = <2000>; // Only turn off if the key is held for 2 seconds or longer.
@@ -55,12 +59,12 @@
         default_layer { // Layer 0
             display-name = "base";
             bindings = <
-&kp ESC     &kp N1     &kp N2    &kp N3    &kp N4  &kp N5        &kp N6     &kp N7    &kp N8    &kp N9    &kp N0     &kp GRAVE
-&kp TAB     &kp B      &kp Y     &kp O     &kp U   &apolftpr     &kp Y      &kp U     &kp I     &kp O     &kp P      &kp MINUS
-&kp LCTRL   &kp C      &kp I     &kp E     &kp A   &comasemi     &kp H      &kp J     &kp K     &kp L     &kp SEMI   &kp SQT
-&kp LSHFT   &kp G      &kp X     &kp J     &kp K   &kp MINUS     &kp LBKT   &kp RBKT  &kp N     &kp M     &kp COMMA  &kp DOT
-&kp CA_EACU &kp N2     &kp N3    &kp N4    &kp N5  &kp BSPC      &kp SPACE  &kp N5    &kp N4    &kp N3    &kp N2     &kp N1
-&kp LSHFT   &kp LCTRL  &kp LGUI  &kp LALT  &mo 1   &mo 2         &mo 2      &mo 1     &kp RALT  &kp RGUI  &kp RCTRL  &kp RSHFT
+&kp ESC     &kp CA_CCED  &kp CA_EGRV  &kp CA_EACU  &kp CA_AGRV  &kp CA_UGRV     &kp N6     &kp N7    &kp N8    &kp N9    &kp N0     &kp GRAVE
+&kp TAB     &kp B        &kp Y        &kp O        &kp U        &apolftpr       &kp Y      &kp U     &kp I     &kp O     &kp P      &kp MINUS
+&kp LCTRL   &kp C        &kp I        &kp E        &kp A        &comasemi       &kp H      &kp J     &kp K     &kp L     &kp SEMI   &kp SQT
+&kp LSHFT   &kp G        &kp X        &kp J        &kp K        &kp MINUS       &kp LBKT   &kp RBKT  &kp N     &kp M     &kp COMMA  &kp DOT
+&kp CA_EACU &kp N2       &kp N3       &kp N4       &kp N5       &kp BSPC        &kp SPACE  &kp N5    &kp N4    &kp N3    &kp N2     &kp N1
+&kp LSHFT   &kp LCTRL    &kp LGUI     &kp LALT     &mo 1        &mo 2           &mo 2      &mo 1     &kp RALT  &kp RGUI  &kp RCTRL  &kp RSHFT
             >;
         };
 
