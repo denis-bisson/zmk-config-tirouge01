@@ -67,6 +67,8 @@
 &kp CA_EACU &kp N2       &kp N3       &kp N4       &kp N5       &kp BSPC        &kp SPACE  &kp N5    &kp N4    &kp N3    &kp N2     &kp N1
 &kp LSHFT   &kp LCTRL    &kp LGUI     &kp LALT     &mo 1        &mo 2           &mo 2      &mo 1     &kp RALT  &kp RGUI  &kp RCTRL  &kp RSHFT
             >;
+            
+            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
         };
 
         lower_layer {

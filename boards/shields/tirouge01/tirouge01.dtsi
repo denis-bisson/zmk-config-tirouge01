@@ -36,6 +36,19 @@ nice_view_spi: &spi0 {
     cs-gpios = <&pro_micro 1 GPIO_ACTIVE_HIGH>;
 };
 
+left_encoder: encoder_left {
+    compatible = "alps,ec11";
+    a-gpios = <&pro_micro 2 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
+    b-gpios = <&pro_micro 20 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
+    steps = <20>;
+};
+
+sensors: sensors {
+    compatible = "zmk,keymap-sensors";
+    sensors = <&left_encoder>;
+    triggers-per-rotation = <20>;
+};
+
 &pro_micro_i2c {
     status = "disabled";
 };

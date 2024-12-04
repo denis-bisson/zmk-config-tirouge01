@@ -16,3 +16,7 @@
 	    , <&pro_micro 10 (GPIO_PULL_DOWN | GPIO_ACTIVE_HIGH)>
 	    ;
 };
+
+&left_encoder {
+    status = "okay";
+};
