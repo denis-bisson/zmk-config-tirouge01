@@ -60,6 +60,7 @@
             label = "Hold-Tap";
             #binding-cells = <2>;
             tapping-term-ms = <200>; // Time in milliseconds to trigger hold behavior
+            flavor = "tap-preferred"; // Use tap-preferred flavor
             bindings = <&kp &kp>;
         };
 
