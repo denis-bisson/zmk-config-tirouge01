@@ -68,7 +68,8 @@
 &kp LSHFT   &kp LCTRL    &kp LGUI     &kp LALT     &mo 1        &mo 2           &mo 2      &mo 1     &kp RALT  &kp RGUI  &kp RCTRL  &kp RSHFT
             >;
 
-            sensor-bindings = <&inc_dec_kp PG_UP PG_DN>;
+//          sensor-bindings = <&inc_dec_kp PG_UP PG_DN>;
+            sensor-bindings = <&inc_dec_kp UP_ARROW DOWN_ARROW>;
         };
 
         lower_layer {
@@ -78,13 +79,14 @@
 // |   `   |  !  |  @  |  #   |  $   |  %   |                   |  ^   |  &    |  *    |  (   |   )   |   ~   |
 // |       |     |     |      |      |      |        |  |       |      |  _    |  +    |  {   |   }   |  "|"  |
 //                     |      |      |      |        |  |       |      |       |       |
+            display-name = "config";
             bindings = <
-&bt BT_CLR  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3 &bt BT_SEL 4     &trans     &trans     &trans    &trans    &trans    &trans
-&kp F1      &kp F2        &kp F3        &kp F4        &kp F5       &kp F6           &kp F7     &kp F8     &kp F9    &kp F10   &kp F11   &kp F12
-&kp GRAVE   &kp EXCL      &kp AT        &kp HASH      &kp DOLLAR   &kp PRCNT        &kp CARET  &kp AMPS   &kp STAR  &kp LPAR  &kp RPAR  &kp TILDE
-&trans      &trans        &trans        &trans        &trans       &trans           &trans     &kp MINUS  &kp PLUS  &kp LBRC  &kp RBRC  &kp PIPE
-&trans      &trans        &trans        &trans        &trans       &trans           &trans     &trans     &trans    &trans    &trans    &trans
-&trans      &trans        &trans        &trans        &trans       &trans           &trans     &trans     &trans    &trans    &trans    &trans
+&bt BT_CLR   &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3 &bt BT_SEL 4     &trans     &trans     &trans    &trans    &trans    &trans
+&kp F1       &kp F2        &kp F3        &kp F4        &kp F5       &kp F6           &kp F7     &kp F8     &kp F9    &kp F10   &kp F11   &kp F12
+&kp GRAVE    &kp EXCL      &kp AT        &kp HASH      &kp DOLLAR   &kp PRCNT        &kp CARET  &kp AMPS   &kp STAR  &kp LPAR  &kp RPAR  &kp TILDE
+&bootloader  &&sys_reset   &trans        &trans        &trans       &trans           &trans     &kp MINUS  &kp PLUS  &kp LBRC  &kp RBRC  &kp PIPE
+&out OUT_TOG &out OUT_USB  &out OUT_BLE  &trans        &trans       &trans           &trans     &trans     &trans    &trans    &trans    &trans
+&trans       &trans        &trans        &trans        &trans       &trans           &trans     &trans     &trans    &trans    &trans    &trans
             >;
         };
 
@@ -95,6 +97,7 @@
 // |   F1  |  F2 |  F3 |  F4  |  F5  |  F6  |                   |      |   <-  |   v   |  ^   |  ->   |       |
 // |   F7  |  F8 |  F9 |  F10 |  F11 |  F12 |        |  |       |  +   |   -   |   =   |  [   |   ]   |   \   |
 //                     |      |      |      |        |  |       |      |       |       |
+            display-name = "numbers";
             bindings = <
 &trans     &trans  &trans  &trans   &trans   &trans      &trans       &trans     &trans     &trans    &trans     &trans
 &kp GRAVE  &kp N1  &kp N2  &kp N3   &kp N4   &kp N5      &kp N6       &kp N7     &kp N8     &kp N9    &kp N0     &trans
