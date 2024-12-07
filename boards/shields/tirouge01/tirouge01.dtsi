@@ -83,8 +83,8 @@ RC(5,2) RC(5,3) RC(5,4) RC(5,5) RC(5,0) RC(5,1)   RC(5,8) RC(5,9) RC(5,10) RC(5,
         compatible = "alps,ec11";
 //        a-gpios = <&pro_micro 4 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
 //        b-gpios = <&pro_micro 20 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
-        a-gpios = <&pro_micro P1.07 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
-        b-gpios = <&pro_micro P1.02 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
+        a-gpios = <&P1.07 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
+        b-gpios = <&P1.02 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
         steps = <30>;
     };
 
