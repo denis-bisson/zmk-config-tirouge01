@@ -70,14 +70,21 @@
         compatible = "zmk,keymap";
 
         default_layer { // Layer 0
+// | SW6  | SW7  | SW1  | SW2  | SW3  | SW4  | SW5  |                    | SW5  | SW4  | SW3  | SW2  | SW1  | SW7  | SW6  |
+// | SW13 | SW14 | SW8  | SW9  | SW10 | SW11 | SW12 |                    | SW12 | SW11 | SW10 | SW9  | SW8  | SW14 | SW13 |
+// | SW20 | SW21 | SW15 | SW16 | SW17 | SW18 | SW19 |                    | SW19 | SW18 | SW17 | SW16 | SW15 | SW21 | SW20 |
+// | SW28 | SW29 | SW23 | SW24 | SW25 | SW26 | SW27 |                    | SW27 | SW26 | SW25 | SW24 | SW23 | SW29 | SW28 |
+//                      | SW31 | SW32 | SW33 | SW34 | SW38 |      | SW38 | SW34 | SW33 | SW32 | SW31 | 
+//                      | SW35 | SW36 | SW37 |                                  | SW37 | SW36 | SW35 |
+
             display-name = "base";
             bindings = <
-&kp ESC     &kp CA_CCED  &kp CA_EGRV  &kp CA_EACU  &kp CA_AGRV  &kp CA_UGRV     &kp N6     &kp N7    &kp N8    &kp N9    &kp N0     &kp GRAVE
-&kp TAB     &kp B        &kp Y        &kp O        &kp U        &apolftpr       &kp Y      &kp U     &kp I     &kp O     &kp P      &kp MINUS
-&kp LCTRL   &kp C        &kp I        &kp E        HCTRL(A)     &comasemi       &kp H      &kp J     &kp K     &kp L     &kp SEMI   &kp SQT
-&kp LSHFT   &kp G        &kp X        &kp J        &kp K        &kp MINUS       &kp LBKT   &kp RBKT  &kp N     &kp M     &kp COMMA  &kp DOT
-&kp CA_EACU &kp N2       &kp N3       &kp N4       &kp N5       &kp BSPC        &kp SPACE  &kp N5    &kp N4    &kp N3    &kp N2     &kp N1
-&kp LSHFT   &kp LCTRL    &kp LGUI     &kp LALT     &mo 1        &mo 2           &mo 2      &mo 1     &kp RALT  &kp RGUI  &kp RCTRL  &kp RSHFT
+&kp N1   &kp N1   &kp N1   &kp N1   &kp N1   &kp N1   &kp N1                       &kp N1   &kp N1   &kp N1   &kp N1   &kp N1    &kp N1   &kp N1
+&kp N1   &kp B    &kp Y    &kp O    &kp U    &kp N1   &kp N1                       &kp N1   &kp N1   &kp L    &kp D    &kp W     &kp V    &kp Z
+&kp N1   &kp C    &kp I    &kp E    &kp A    &kp N1   &kp N1                       &kp N1   &kp N1   &kp H    &kp T    &kp S     &kp N    &kp Q
+&kp N1   &kp G    &kp X    &kp J    &kp K    &kp N1   &kp N1                       &kp N1   &kp N1   &kp R    &kp M    &kp F     &kp P    &kp N1
+                           &kp N1   &kp N1   &kp N1   &kp N1   &kp N1     &kp N1   &kp N1   &kp N1   &kp N1   &kp N1
+                           &kp N1   &kp N1   &kp N1                                         &mo 1    &mo 2    &kp N1    
             >;
 
 //          sensor-bindings = <&inc_dec_kp PG_UP PG_DN>;
@@ -86,38 +93,38 @@
         };
 
         lower_layer {
-// ------------------------------------------------------------------------------------------------------------
-// | BTCLR | BT1 | BT2 |  BT3 |  BT4 |  BT5 |                   |      |       |       |      |       |       |
-// |  F1   |  F2 |  F3 |  F4  |  F5  |  F6  |                   |  F7  |  F8   |  F9   |  F10 |  F11  |  F12  |
-// |   `   |  !  |  @  |  #   |  $   |  %   |                   |  ^   |  &    |  *    |  (   |   )   |   ~   |
-// |       |     |     |      |      |      |        |  |       |      |  _    |  +    |  {   |   }   |  "|"  |
-//                     |      |      |      |        |  |       |      |       |       |
+// | SW6  | SW7  | SW1  | SW2  | SW3  | SW4  | SW5  |                    | SW5  | SW4  | SW3  | SW2  | SW1  | SW7  | SW6  |
+// | SW13 | SW14 | SW8  | SW9  | SW10 | SW11 | SW12 |                    | SW12 | SW11 | SW10 | SW9  | SW8  | SW14 | SW13 |
+// | SW20 | SW21 | SW15 | SW16 | SW17 | SW18 | SW19 |                    | SW19 | SW18 | SW17 | SW16 | SW15 | SW21 | SW20 |
+// | SW28 | SW29 | SW23 | SW24 | SW25 | SW26 | SW27 |                    | SW27 | SW26 | SW25 | SW24 | SW23 | SW29 | SW28 |
+//                      | SW31 | SW32 | SW33 | SW34 | SW38 |      | SW38 | SW34 | SW33 | SW32 | SW31 | 
+//                      | SW35 | SW36 | SW37 |                                  | SW37 | SW36 | SW35 |
             display-name = "config";
             bindings = <
-&bt BT_CLR   &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3 &bt BT_SEL 4     &trans     &trans     &trans    &trans    &trans    &trans
-&kp F1       &kp F2        &kp F3        &kp F4        &kp F5       &kp F6           &kp F7     &kp F8     &kp F9    &kp F10   &kp F11   &kp F12
-&kp GRAVE    &kp EXCL      &kp AT        &kp HASH      &kp DOLLAR   &kp PRCNT        &kp CARET  &kp AMPS   &kp STAR  &kp LPAR  &kp RPAR  &kp TILDE
-&bootloader  &sys_reset    &trans        &trans        &trans       &trans           &trans     &kp MINUS  &kp PLUS  &kp LBRC  &kp RBRC  &kp PIPE
-&out OUT_TOG &out OUT_USB  &out OUT_BLE  &trans        &trans       &trans           &trans     &trans     &trans    &trans    &trans    &trans
-&trans       &trans        &trans        &trans        &trans       &trans           &trans     &trans     &trans    &trans    &trans    &trans
+&kp N1   &kp N1   &kp N1   &kp N1   &kp N1   &kp N1   &kp N1                       &kp N1   &kp N1   &kp N1   &kp N1   &kp N1    &kp N1   &kp N1
+&kp N1   &kp B    &kp Y    &kp O    &kp U    &kp N1   &kp N1                       &kp N1   &kp N1   &kp L    &kp D    &kp W     &kp V    &kp Z
+&kp N1   &kp C    &kp I    &kp E    &kp A    &kp N1   &kp N1                       &kp N1   &kp N1   &kp H    &kp T    &kp S     &kp N    &kp Q
+&kp N1   &kp G    &kp X    &kp J    &kp K    &kp N1   &kp N1                       &kp N1   &kp N1   &kp R    &kp M    &kp F     &kp P    &kp N1
+                           &kp N1   &kp N1   &kp N1   &kp N1   &kp N1     &kp N1   &kp N1   &kp N1   &kp N1   &kp N1
+                           &kp N1   &kp N1   &kp N1                                         &mo 1    &mo 2    &kp N1    
             >;
         };
 
         raise_layer {
-// ------------------------------------------------------------------------------------------------------------
-// |       |     |     |      |      |      |                   |      |       |       |      |       |       |
-// |   `   |  1  |  2  |  3   |  4   |  5   |                   |  6   |   7   |   8   |  9   |   0   |       |
-// |   F1  |  F2 |  F3 |  F4  |  F5  |  F6  |                   |      |   <-  |   v   |  ^   |  ->   |       |
-// |   F7  |  F8 |  F9 |  F10 |  F11 |  F12 |        |  |       |  +   |   -   |   =   |  [   |   ]   |   \   |
-//                     |      |      |      |        |  |       |      |       |       |
+// | SW6  | SW7  | SW1  | SW2  | SW3  | SW4  | SW5  |                    | SW5  | SW4  | SW3  | SW2  | SW1  | SW7  | SW6  |
+// | SW13 | SW14 | SW8  | SW9  | SW10 | SW11 | SW12 |                    | SW12 | SW11 | SW10 | SW9  | SW8  | SW14 | SW13 |
+// | SW20 | SW21 | SW15 | SW16 | SW17 | SW18 | SW19 |                    | SW19 | SW18 | SW17 | SW16 | SW15 | SW21 | SW20 |
+// | SW28 | SW29 | SW23 | SW24 | SW25 | SW26 | SW27 |                    | SW27 | SW26 | SW25 | SW24 | SW23 | SW29 | SW28 |
+//                      | SW31 | SW32 | SW33 | SW34 | SW38 |      | SW38 | SW34 | SW33 | SW32 | SW31 | 
+//                      | SW35 | SW36 | SW37 |                                  | SW37 | SW36 | SW35 |
             display-name = "numbers";
             bindings = <
-&trans     &trans  &trans  &trans   &trans   &trans      &trans       &trans     &trans     &trans    &trans     &trans
-&kp GRAVE  &kp N1  &kp N2  &kp N3   &kp N4   &kp N5      &kp N6       &kp N7     &kp N8     &kp N9    &kp N0     &trans
-&kp F1     &kp F2  &kp F3  &kp F4   &kp F5   &kp F6      &trans       &kp LEFT   &kp DOWN   &kp UP    &kp RIGHT  &trans
-&kp F7     &kp F8  &kp F9  &kp F10  &kp F11  &kp F12     &kp KP_PLUS  &kp MINUS  &kp EQUAL  &kp LBKT  &kp RBKT   &kp BSLH
-&trans     &trans  &trans  &trans   &trans   &trans      &trans       &trans     &trans     &trans    &trans     &trans
-&trans     &trans  &trans  &trans   &trans   &trans      &trans       &trans     &trans     &trans    &trans     &trans
+&kp N1   &kp N1   &kp N1   &kp N1   &kp N1   &kp N1   &kp N1                       &kp N1   &kp N1   &kp N1   &kp N1   &kp N1    &kp N1   &kp N1
+&kp N1   &kp B    &kp Y    &kp O    &kp U    &kp N1   &kp N1                       &kp N1   &kp N1   &kp L    &kp D    &kp W     &kp V    &kp Z
+&kp N1   &kp C    &kp I    &kp E    &kp A    &kp N1   &kp N1                       &kp N1   &kp N1   &kp H    &kp T    &kp S     &kp N    &kp Q
+&kp N1   &kp G    &kp X    &kp J    &kp K    &kp N1   &kp N1                       &kp N1   &kp N1   &kp R    &kp M    &kp F     &kp P    &kp N1
+                           &kp N1   &kp N1   &kp N1   &kp N1   &kp N1     &kp N1   &kp N1   &kp N1   &kp N1   &kp N1
+                           &kp N1   &kp N1   &kp N1                                         &mo 1    &mo 2    &kp N1    
             >;
         };
     };
