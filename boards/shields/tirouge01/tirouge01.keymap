@@ -55,6 +55,27 @@
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
 
+        my_dquoterghtprnt: quote_right_parenthesis {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&kp DOUBLE_QUOTES>, <&kp RIGHT_PARENTHESIS>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
+
+        my_periodcolon: period_colon {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&kp PERIOD>, <&kp COLON>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
+
+        my_questionexclam: question_exclamation {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&kp QUESTION>, <&kp EXCLAMATION>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
+
         hold_tap: my_hold_tap {
             compatible = "zmk,behavior-hold-tap";
             label = "Hold-Tap";
@@ -79,12 +100,12 @@
 
             display-name = "base";
             bindings = <
-&kp ESC  &kp N1   &kp N2   &kp N3   &kp N4   &kp N5             &kp N6                              &kp N7    &kp N8   &kp N9   &kp N0   &kp N1    &kp N1   &kp N1
-&kp N1   &kp B    &kp Y    &kp O    &kp U    &my_apos_leftprnt  &kp N1                              &kp N1    &kp N1   &kp L    &kp D    &kp W     &kp V    &kp Z
-&kp N1   &kp C    &kp I    &kp E    &kp A    &my_commasemi      &kp N1                              &kp N1    &kp N1   &kp H    &kp T    &kp S     &kp N    &kp Q
-&kp N1   &kp G    &kp X    &kp J    &kp K    &kp MINUS          &kp N1                              &kp N1    &kp N1   &kp R    &kp M    &kp F     &kp P    &kp N1
-                           &kp N1   &kp N1   &kp INS            &kp DEL   &kp LSHFT     &kp ENTER   &kp N2    &kp N3   &kp N4   &kp N5
-                           &kp N2   &kp N3   &kp BSPC                                               &kp SPACE &kp N7   &kp N8    
+&kp ESC  &kp N1   &kp N2   &kp N3   &kp N4   &kp N5             &kp N6       &kp N7     &kp N8              &kp N9   &kp N0   &kp N1    &kp N1   &kp N1
+&kp N1   &kp B    &kp Y    &kp O    &kp U    &my_apos_leftprnt  &kp N1       &kp N1     &my_dquoterghtprnt  &kp L    &kp D    &kp W     &kp V    &kp Z
+&kp N1   &kp C    &kp I    &kp E    &kp A    &my_commasemi      &kp N1       &kp N1     &my_periodcolon     &kp H    &kp T    &kp S     &kp N    &kp Q
+&kp N1   &kp G    &kp X    &kp J    &kp K    &kp MINUS          &kp N1       &kp N1     &my_questionexclam  &kp R    &kp M    &kp F     &kp P    &kp N1
+                           &kp N1   &kp N1   &kp INS            &kp DEL      &kp LSHFT  &kp ENTER           &kp N2    &kp N3   &kp N4   &kp N5
+                           &kp N2   &kp N3   &kp BSPC                                   &kp SPACE           &kp N7   &kp N8    
             >;
 
 //          sensor-bindings = <&inc_dec_kp PG_UP PG_DN>;
