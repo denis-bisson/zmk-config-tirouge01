@@ -41,14 +41,14 @@
         };
     
         behaviors {
-        apolftpr: apostrophe_left_parenthesis {
+        my_apos_leftprnt: apostrophe_left_parenthesis {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
             bindings = <&kp CA_SINGLE_QUOTE>, <&kp LEFT_PARENTHESIS>;
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
 
-        comasemi: comma_semicolon {
+        my_commasemi: comma_semicolon {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
             bindings = <&kp COMMA>, <&kp SEMICOLON>;
@@ -79,12 +79,12 @@
 
             display-name = "base";
             bindings = <
-&kp ESC  &kp N1   &kp N2   &kp N3   &kp N4   &kp N5                   &kp N6                              &kp N7    &kp N8   &kp N9   &kp N0   &kp N1    &kp N1   &kp N1
-&kp N1   &kp B    &kp Y    &kp O    &kp U    &kp N1                   &kp N1                              &kp N1    &kp N1   &kp L    &kp D    &kp W     &kp V    &kp Z
-&kp N1   &kp C    &kp I    &kp E    &kp A    &kp COMMA &kp SEMICOLON  &kp N1                              &kp N1    &kp N1   &kp H    &kp T    &kp S     &kp N    &kp Q
-&kp N1   &kp G    &kp X    &kp J    &kp K    &kp N1                   &kp N1                              &kp N1    &kp N1   &kp R    &kp M    &kp F     &kp P    &kp N1
-                           &kp N1   &kp N1   &kp INS                  &kp DEL   &kp LSHFT     &kp ENTER   &kp N2    &kp N3   &kp N4   &kp N5
-                           &kp N2   &kp N3   &kp BSPC                                       &kp SPACE &kp N7   &kp N8    
+&kp ESC  &kp N1   &kp N2   &kp N3   &kp N4   &kp N5             &kp N6                              &kp N7    &kp N8   &kp N9   &kp N0   &kp N1    &kp N1   &kp N1
+&kp N1   &kp B    &kp Y    &kp O    &kp U    &my_apos_leftprnt  &kp N1                              &kp N1    &kp N1   &kp L    &kp D    &kp W     &kp V    &kp Z
+&kp N1   &kp C    &kp I    &kp E    &kp A    &my_commasemi      &kp N1                              &kp N1    &kp N1   &kp H    &kp T    &kp S     &kp N    &kp Q
+&kp N1   &kp G    &kp X    &kp J    &kp K    &kp MINUS          &kp N1                              &kp N1    &kp N1   &kp R    &kp M    &kp F     &kp P    &kp N1
+                           &kp N1   &kp N1   &kp INS            &kp DEL   &kp LSHFT     &kp ENTER   &kp N2    &kp N3   &kp N4   &kp N5
+                           &kp N2   &kp N3   &kp BSPC                                               &kp SPACE &kp N7   &kp N8    
             >;
 
 //          sensor-bindings = <&inc_dec_kp PG_UP PG_DN>;
