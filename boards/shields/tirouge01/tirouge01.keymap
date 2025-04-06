@@ -93,14 +93,20 @@
 
     macros {
         macro_denis_bisson: macro_1 {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
             bindings = <&kp D>, <&kp E>, <&kp N>, <&kp I>, <&kp S>, <&kp SPACE>, <&kp B>, <&kp I>, <&kp S>, <&kp S>, <&kp O>, <&kp N>;
         };
 
         macro_0x: macro_2 {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
             bindings = <&kp 0>, <&kp X>;
         };
 
         macro_emperso: macro_3 {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
             bindings = <&kp D>, <&kp E>, <&kp N>, <&kp I>, <&kp S>;
             // , <&kp PERIOD>,
             //         <&kp B>, <&kp I>, <&kp S>, <&kp S>, <&kp O>, <&kp N>, <&kp AT>,
@@ -109,6 +115,8 @@
         };
 
         macro_emjob: macro_4 {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
             bindings = <&kp D>, <&kp E>, <&kp N>, <&kp I>, <&kp S>;
             // , <&kp PERIOD>,
             //         <&kp B>, <&kp I>, <&kp S>, <&kp S>, <&kp O>, <&kp N>, <&kp AT>,
