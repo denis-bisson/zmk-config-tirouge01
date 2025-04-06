@@ -95,31 +95,35 @@
         macro_denis_bisson: macro_1 {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&kp D>, <&kp E>, <&kp N>, <&kp I>, <&kp S>, <&kp SPACE>, <&kp B>, <&kp I>, <&kp S>, <&kp S>, <&kp O>, <&kp N>;
+            wait-ms = <40>;
+            tap-ms = <40>;
+            bindings = <&kp D &kp E &kp N &kp I &kp S &kp SPACE &kp B &kp I &kp S &kp S &kp O &kp N>;
         };
 
         macro_0x: macro_2 {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&kp 0>, <&kp X>;
+            wait-ms = <40>;
+            tap-ms = <40>;
+            bindings = <&kp 0 &kp X>;
         };
 
         macro_emperso: macro_3 {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&kp D>, <&kp E>, <&kp N>, <&kp I>, <&kp S>, <&kp PERIOD>,
-                       <&kp B>, <&kp I>, <&kp S>, <&kp S>, <&kp O>, <&kp N>, <&kp AT>,
-                       <&kp D>, <&kp E>, <&kp N>, <&kp I>, <&kp S>, <&kp B>, <&kp I>, <&kp S>, <&kp S>, <&kp O>, <&kp N>, <&kp PERIOD>, 
-                       <&kp C>, <&kp O>, <&kp M>;
+            wait-ms = <40>;
+            tap-ms = <40>;
+            bindings = <&kp D &kp E &kp N &kp I &kp S &kp PERIOD &kp B &kp I &kp S &kp S &kp O &kp N &kp AT
+                        &kp D &kp E &kp N &kp I &kp S &kp B &kp I &kp S &kp S &kp O &kp N &kp PERIOD &kp C &kp O &kp M>;
         };
 
         macro_emjob: macro_4 {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&kp D>, <&kp E>, <&kp N>, <&kp I>, <&kp S>, <&kp PERIOD>,
-                       <&kp B>, <&kp I>, <&kp S>, <&kp S>, <&kp O>, <&kp N>, <&kp AT>,
-                       <&kp B>, <&kp L>, <&kp U>, <&kp B>, <&kp E>, <&kp R>, <&kp I>, <&kp PERIOD>, 
-                       <&kp C>, <&kp O>, <&kp M>;
+            wait-ms = <40>;
+            tap-ms = <40>;
+            bindings = <&kp D &kp E &kp N &kp I &kp S &kp PERIOD &kp B &kp I &kp S &kp S &kp O &kp N &kp AT
+                        &kp B &kp L &kp U &kp B &kp E &kp R &kp I &kp PERIOD &kp C &kp O &kp M>;
         };
     };
 
@@ -140,7 +144,7 @@
 &none    &kp B  &kp Y  &kp O  &kp U  &my_apos_leftprnt  &none                           &none      &my_dquoterghtprnt  &kp L  &kp D  &kp W  &kp V   &kp Z
 &none    &kp C  &kp I  &kp E  &kp A  &my_commasemi      &none                           &none      &my_periodcolon     &kp H  &kp T  &kp S  &kp N   &kp Q
 &none    &kp G  &kp X  &kp J  &kp K  &kp MINUS          &none                           &none      &my_questionexclam  &kp R  &kp M  &kp F  &kp P   &none
-                       &none  &none  &none              &none  &kp LSHFT     &kp ENTER  &sl 1      &tog 2              &none  &none
+                       &none  &none  &none              &none  &kp LSHFT     &kp ENTER  &tog 1     &tog 2              &none  &none
                        &none  &none  &kp BSPC                                           &kp SPACE  &none               &none    
             >;
 
@@ -177,7 +181,7 @@
             display-name = "numbers";
             bindings = <
 &trans  &trans  &trans  &trans  &trans  &trans  &trans                     &kp F2        &kp KP_DIVIDE    &kp LS(C)  &kp LS(D)  &kp LS(E)  &kp LS(F)  &trans
-&trans  &trans  &trans  &trans  &trans  &trans  &trans                     &kp KP_EQUAL  &kp KP_MULTIPLY  &kp N8     &kp N9     &kp LS(A)  &kp LS(B)  &kp DOLLAR
+&trans  &trans  &trans  &trans  &trans  &trans  &trans                     &kp EQUAL     &kp KP_MULTIPLY  &kp N8     &kp N9     &kp LS(A)  &kp LS(B)  &kp DOLLAR
 &trans  &trans  &trans  &trans  &trans  &trans  &trans                     &kp KP_DOT    &kp KP_PLUS      &kp N4     &kp N5     &kp N6     &kp N7     &macro_0x
 &trans  &trans  &trans  &trans  &trans  &trans  &trans                     &trans        &kp KP_MINUS     &kp N0     &kp N1     &kp N2     &kp N3     &trans
                         &trans  &trans  &trans  &trans  &trans     &trans  &trans        &trans           &trans     &trans
