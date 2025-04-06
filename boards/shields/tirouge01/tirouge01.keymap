@@ -95,24 +95,21 @@
         macro_denis_bisson: macro_1 {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            wait-ms = <40>;
-            tap-ms = <40>;
+            wait-ms = <10>;
             bindings = <&kp D &kp E &kp N &kp I &kp S &kp SPACE &kp B &kp I &kp S &kp S &kp O &kp N>;
         };
 
         macro_0x: macro_2 {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            wait-ms = <40>;
-            tap-ms = <40>;
-            bindings = <&kp 0 &kp X>;
+            wait-ms = <10>;
+            bindings = <&kp N0 &kp X>;
         };
 
         macro_emperso: macro_3 {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            wait-ms = <40>;
-            tap-ms = <40>;
+            wait-ms = <10>;
             bindings = <&kp D &kp E &kp N &kp I &kp S &kp PERIOD &kp B &kp I &kp S &kp S &kp O &kp N &kp AT
                         &kp D &kp E &kp N &kp I &kp S &kp B &kp I &kp S &kp S &kp O &kp N &kp PERIOD &kp C &kp O &kp M>;
         };
@@ -120,8 +117,7 @@
         macro_emjob: macro_4 {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            wait-ms = <40>;
-            tap-ms = <40>;
+            wait-ms = <10>;
             bindings = <&kp D &kp E &kp N &kp I &kp S &kp PERIOD &kp B &kp I &kp S &kp S &kp O &kp N &kp AT
                         &kp B &kp L &kp U &kp B &kp E &kp R &kp I &kp PERIOD &kp C &kp O &kp M>;
         };
@@ -140,12 +136,12 @@
 
             display-name = "base";
             bindings = <
-&kp ESC  &none  &none  &none  &none  &none              &none                           &none      &none               &none  &none  &none  &none   &none
-&none    &kp B  &kp Y  &kp O  &kp U  &my_apos_leftprnt  &none                           &none      &my_dquoterghtprnt  &kp L  &kp D  &kp W  &kp V   &kp Z
-&none    &kp C  &kp I  &kp E  &kp A  &my_commasemi      &none                           &none      &my_periodcolon     &kp H  &kp T  &kp S  &kp N   &kp Q
-&none    &kp G  &kp X  &kp J  &kp K  &kp MINUS          &none                           &none      &my_questionexclam  &kp R  &kp M  &kp F  &kp P   &none
-                       &none  &none  &none              &none  &kp LSHFT     &kp ENTER  &tog 1     &tog 2              &none  &none
-                       &none  &none  &kp BSPC                                           &kp SPACE  &none               &none    
+&kp ESC  &none  &none  &none      &none     &none              &none                           &none      &none               &none  &none  &none  &none   &none
+&none    &kp B  &kp Y  &kp O      &kp U     &my_apos_leftprnt  &none                           &none      &my_dquoterghtprnt  &kp L  &kp D  &kp W  &kp V   &kp Z
+&none    &kp C  &kp I  &kp E      &kp A     &my_commasemi      &none                           &none      &my_periodcolon     &kp H  &kp T  &kp S  &kp N   &kp Q
+&none    &kp G  &kp X  &kp J      &kp K     &kp MINUS          &none                           &none      &my_questionexclam  &kp R  &kp M  &kp F  &kp P   &none
+                       &kp LALT   &none     &none              &none  &kp LSHFT     &kp ENTER  &tog 1     &tog 2              &none  &none
+                       &kp LCTRL  &kp LWIN  &kp BSPC                                           &kp SPACE  &none               &none    
             >;
 
 //          sensor-bindings = <&inc_dec_kp PG_UP PG_DN>;
@@ -162,8 +158,8 @@
 //                      | SW35 | SW36 | SW37 |                                  | SW37 | SW36 | SW35 |
             display-name = "config";
             bindings = <
-&trans  &trans        &trans  &trans  &trans  &trans  &trans                     &trans  &trans  &trans        &macro_emperso  &trans        &trans  &trans
-&trans  &macro_emjob  &trans  &trans  &trans  &trans  &trans                     &trans  &trans  &trans        &trans          &trans        &trans  &trans
+&trans  &trans        &trans  &trans  &trans  &trans  &trans                     &trans  &trans  &trans        &trans          &trans        &trans  &trans
+&trans  &macro_emjob  &trans  &trans  &trans  &trans  &trans                     &trans  &trans  &trans        &macro_emperso  &trans        &trans  &trans
 &trans  &trans        &trans  &trans  &trans  &trans  &trans                     &trans  &trans  &trans        &trans          &trans        &trans  &trans
 &trans  &trans        &trans  &trans  &trans  &trans  &trans                     &trans  &trans  &bt BT_SEL 0  &bt BT_SEL 1    &bt BT_SEL 2  &trans  &trans
                               &trans  &trans  &trans  &trans  &trans     &trans  &trans  &trans  &trans        &trans
