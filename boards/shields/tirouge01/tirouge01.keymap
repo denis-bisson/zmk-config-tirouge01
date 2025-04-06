@@ -138,7 +138,7 @@
             bindings = <
 &kp ESC  &none  &none  &none  &none  &none              &none                           &none      &none               &none  &none  &none  &none   &none
 &none    &kp B  &kp Y  &kp O  &kp U  &my_apos_leftprnt  &none                           &none      &my_dquoterghtprnt  &kp L  &kp D  &kp W  &kp V   &kp Z
-&none    &kp C  &kp I  &kp E  &kp A  &my_commasemi      &none                           &none      &my_periodcolon     &kp H  &kp T  &kp S  &none   &kp Q
+&none    &kp C  &kp I  &kp E  &kp A  &my_commasemi      &none                           &none      &my_periodcolon     &kp H  &kp T  &kp S  &kp N   &kp Q
 &none    &kp G  &kp X  &kp J  &kp K  &kp MINUS          &none                           &none      &my_questionexclam  &kp R  &kp M  &kp F  &kp P   &none
                        &none  &none  &none              &none  &kp LSHFT     &kp ENTER  &sl 1      &tog 2              &none  &none
                        &none  &none  &kp BSPC                                           &kp SPACE  &none               &none    
