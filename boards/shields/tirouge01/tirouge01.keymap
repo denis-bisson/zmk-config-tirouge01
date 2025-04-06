@@ -92,22 +92,22 @@
     };
 
     macros {
-        macro_denis_bisson: macro {
+        macro_denis_bisson: macro_1 {
             bindings = <&kp D>, <&kp E>, <&kp N>, <&kp I>, <&kp S>, <&kp SPACE>, <&kp B>, <&kp I>, <&kp S>, <&kp S>, <&kp O>, <&kp N>;
         };
 
-        macro_0x: macro {
+        macro_0x: macro_2 {
             bindings = <&kp 0>, <&kp X>;
         };
 
-        macro_emperso: macro {
+        macro_emperso: macro_3 {
             bindings = <&kp D>, <&kp E>, <&kp N>, <&kp I>, <&kp S>, <&kp PERIOD>,
                     <&kp B>, <&kp I>, <&kp S>, <&kp S>, <&kp O>, <&kp N>, <&kp AT>,
                     <&kp D>, <&kp E>, <&kp N>, <&kp I>, <&kp S>, <&kp B>, <&kp I>, <&kp S>, <&kp S>, <&kp O>, <&kp N>, <&kp PERIOD>, 
                     <&kp C>, <&kp O>, <&kp M>;
         };
 
-        macro_emjob: macro {
+        macro_emjob: macro_4 {
             bindings = <&kp D>, <&kp E>, <&kp N>, <&kp I>, <&kp S>, <&kp PERIOD>,
                     <&kp B>, <&kp I>, <&kp S>, <&kp S>, <&kp O>, <&kp N>, <&kp AT>,
                     <&kp B>, <&kp L>, <&kp U>, <&kp B>, <&kp E>, <&kp R>, <&kp I>, <&kp PERIOD>, 
