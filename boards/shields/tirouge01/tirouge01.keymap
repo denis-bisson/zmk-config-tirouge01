@@ -66,8 +66,7 @@
             wait-ms = <10>;
             bindings = <&kp LS(LBKT) &kp LS(E)>;
         };
-    }
-
+    };
     
     behaviors {
         // Tap-dance for 'e', 'ê', 'ë'
