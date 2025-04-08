@@ -46,7 +46,7 @@
             #binding-cells = <0>;
             tapping-term-ms = <200>;
             bindings = <&kp E>,        // 1st tap: 'e'
-                       <&mac_egrave>,
+                       <&mac_ecirconflex>,
                        <&mac_etrema>;
         };
 
@@ -57,7 +57,7 @@
             #binding-cells = <0>;
             tapping-term-ms = <200>;
             bindings = <&kp LS(E)>,    // 1st tap: 'E' (Shift + e)
-                       <&mac_egrave>,
+                       <&mac_lsecirconflex>,
                        <&mac_lsetrema>;
         };
 
@@ -108,7 +108,7 @@
     };
 
     macros {
-        mac_egrave: mac_egrave {
+        mac_ecirconflex: mac_ecirconflex {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             wait-ms = <10>;
@@ -122,7 +122,7 @@
             bindings = <&kp LS(LBKT) &kp E>;
         };
 
-        mac_lsegrave: mac_lsegrave {
+        mac_lsecirconflex: mac_lsecirconflex {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             wait-ms = <10>;
@@ -135,7 +135,7 @@
             wait-ms = <10>;
             bindings = <&kp LS(LBKT) &kp LS(E)>;
         };
-        
+
         macro_denis_bisson: macro_1 {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
