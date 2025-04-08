@@ -8,6 +8,7 @@
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/outputs.h>
+#include <dt-bindings/zmk/unicode.h> // Make sure to include this for UC()
 
 #define CA_SINGLE_QUOTE (LS(ZMK_HID_USAGE(HID_USAGE_KEY, HID_USAGE_KEY_KEYBOARD_COMMA_AND_LESS_THAN))) // '
 
@@ -35,16 +36,46 @@
 //                     | ALT  | GUI  | LOWER|  SPACE |  | ENTER | RAISE| BSPC  | GUI   |
 
 / {
-        combos {
-            compatible = "zmk,combos";
-            combo_bebe {
-                timeout-ms = <100>;
-                key-positions = <1 27>;
-                bindings = <&kp CA_EACU>;
-            };
+    combos {
+        compatible = "zmk,combos";
+        combo_bebe {
+            timeout-ms = <100>;
+            key-positions = <1 27>;
+            bindings = <&kp CA_EACU>;
         };
+    };
     
-        behaviors {
+    behaviors {
+        // Tap-dance for 'e', 'ê', 'ë'
+        td_e_lower: tap_dance_e_lower {
+            compatible = "zmk,behavior-tap-dance";
+            label = "TD_E_LOWER";
+            #binding-cells = ;
+            // Adjust timing (milliseconds) if needed. Default is often 200ms.
+            tapping-term-ms = ;
+            bindings = <&kp E>,        // 1st tap: 'e'
+                       <&kp F>,
+                       <&kp G>;
+                    // <&kp UC(00EA)>, // 2nd tap: 'ê' (Unicode U+00EA)                    
+                    // <&kp UC(00EB)>; // 3rd tap: 'ë' (Unicode U+00EB)
+        };
+
+        // Tap-dance for 'E', 'Ê', 'Ë'
+        td_e_upper: tap_dance_e_upper {
+            compatible = "zmk,behavior-tap-dance";
+            label = "TD_E_UPPER";
+            #binding-cells = ;
+            // Keep tapping term consistent
+            tapping-term-ms = ;
+            // Use LS() for shifted basic key, Unicode for others
+            bindings = <&kp LS(E)>,    // 1st tap: 'E' (Shift + e)
+                       <&kp LS(F)>,
+                       <&kp LS(G)>;
+                    //    <&kp UC(00CA)>, // 2nd tap: 'Ê' (Unicode U+00CA)
+                    //    <&kp UC(00CB)>; // 3rd tap: 'Ë' (Unicode U+00CB)
+        };
+
+
         my_apos_leftprnt: apostrophe_left_parenthesis {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
@@ -88,7 +119,6 @@
             flavor = "tap-preferred"; // Use tap-preferred flavor
             bindings = <&kp &kp>;
         };
-
     };
 
     macros {
@@ -126,7 +156,7 @@
     keymap {
         compatible = "zmk,keymap";
 
-        default_layer { // Layer 0
+        layer_0 { // Layer 0
 // | SW6  | SW7  | SW1  | SW2  | SW3  | SW4  | SW5  |                    | SW5  | SW4  | SW3  | SW2  | SW1  | SW7  | SW6  |
 // | SW13 | SW14 | SW8  | SW9  | SW10 | SW11 | SW12 |                    | SW12 | SW11 | SW10 | SW9  | SW8  | SW14 | SW13 |
 // | SW20 | SW21 | SW15 | SW16 | SW17 | SW18 | SW19 |                    | SW19 | SW18 | SW17 | SW16 | SW15 | SW21 | SW20 |
@@ -136,12 +166,12 @@
 
             display-name = "base";
             bindings = <
-&kp ESC  &none  &none  &none      &none     &none              &none                           &none      &none               &none  &none  &none  &none   &none
-&kp TAB  &kp B  &kp Y  &kp O      &kp U     &my_apos_leftprnt  &none                           &none      &my_dquoterghtprnt  &kp L  &kp D  &kp W  &kp V   &kp Z
-&none    &kp C  &kp I  &kp E      &kp A     &my_commasemi      &none                           &none      &my_periodcolon     &kp H  &kp T  &kp S  &kp N   &kp Q
-&none    &kp G  &kp X  &kp J      &kp K     &kp MINUS          &none                           &none      &my_questionexclam  &kp R  &kp M  &kp F  &kp P   &none
-                       &kp LALT   &none     &none              &none  &kp LSHFT     &kp ENTER  &tog 1     &tog 2              &none  &none
-                       &kp LCTRL  &kp LWIN  &kp BSPC                                           &kp SPACE  &none               &none    
+&kp ESC  &none  &none  &none        &none     &none              &none                       &none      &none               &none  &none  &none  &none   &none
+&kp TAB  &kp B  &kp Y  &kp O        &kp U     &my_apos_leftprnt  &none                       &none      &my_dquoterghtprnt  &kp L  &kp D  &kp W  &kp V   &kp Z
+&none    &kp C  &kp I  &td_e_lower  &kp A     &my_commasemi      &none                       &none      &my_periodcolon     &kp H  &kp T  &kp S  &kp N   &kp Q
+&none    &kp G  &kp X  &kp J        &kp K     &kp MINUS          &none                       &none      &my_questionexclam  &kp R  &kp M  &kp F  &kp P   &none
+                       &kp LALT     &none     &none              &none  &mo 1     &kp ENTER  &tog 2     &tog 3              &none  &none
+                       &kp LCTRL    &kp LWIN  &kp BSPC                                       &kp SPACE  &none               &none    
             >;
 
 //          sensor-bindings = <&inc_dec_kp PG_UP PG_DN>;
@@ -149,7 +179,30 @@
             sensor-bindings = <&inc_dec_kp LEFT_ARROW RIGHT_ARROW>;
         };
 
-        layer_1 { // Layer 1
+        layer_1 { // Layer 0
+// | SW6  | SW7  | SW1  | SW2  | SW3  | SW4  | SW5  |                    | SW5  | SW4  | SW3  | SW2  | SW1  | SW7  | SW6  |
+// | SW13 | SW14 | SW8  | SW9  | SW10 | SW11 | SW12 |                    | SW12 | SW11 | SW10 | SW9  | SW8  | SW14 | SW13 |
+// | SW20 | SW21 | SW15 | SW16 | SW17 | SW18 | SW19 |                    | SW19 | SW18 | SW17 | SW16 | SW15 | SW21 | SW20 |
+// | SW28 | SW29 | SW23 | SW24 | SW25 | SW26 | SW27 |                    | SW27 | SW26 | SW25 | SW24 | SW23 | SW29 | SW28 |
+//                      | SW31 | SW32 | SW33 | SW34 | SW38 |      | SW38 | SW34 | SW33 | SW32 | SW31 | 
+//                      | SW35 | SW36 | SW37 |                                  | SW37 | SW36 | SW35 |
+
+            display-name = "shift";
+            bindings = <
+&kp ESC  &none      &none      &none        &none      &none              &none                           &none      &none               &none      &none      &none      &none       &none
+&kp TAB  &kp LS(B)  &kp LS(Y)  &kp LS(O)    &kp LS(U)  &my_apos_leftprnt  &none                           &none      &my_dquoterghtprnt  &kp LS(L)  &kp LS(D)  &kp LS(W)  &kp LS(V)   &kp LS(Z)
+&none    &kp LS(C)  &kp LS(I)  &td_e_upper  &kp LS(A)  &my_commasemi      &none                           &none      &my_periodcolon     &kp LS(H)  &kp LS(T)  &kp LS(S)  &kp LS(N)   &kp LS(Q)
+&none    &kp LS(G)  &kp LS(X)  &kp LS(J)    &kp LS(K)  &kp MINUS          &none                           &none      &my_questionexclam  &kp LS(R)  &kp LS(M)  &kp LS(F)  &kp LS(P)   &none
+                               &kp LALT     &none      &none              &none  &kp LSHFT     &kp ENTER  &tog 2     &tog 3              &none      &none
+                               &kp LCTRL    &kp LWIN   &kp BSPC                                                      &kp SPACE           &none      &none    
+            >;
+
+//          sensor-bindings = <&inc_dec_kp PG_UP PG_DN>;
+//          sensor-bindings = <&inc_dec_kp UP_ARROW DOWN_ARROW>;
+            sensor-bindings = <&inc_dec_kp LEFT_ARROW RIGHT_ARROW>;
+        };
+
+        layer_2 { // Layer 1
 // | SW6  | SW7  | SW1  | SW2  | SW3  | SW4  | SW5  |                    | SW5  | SW4  | SW3  | SW2  | SW1  | SW7  | SW6  |
 // | SW13 | SW14 | SW8  | SW9  | SW10 | SW11 | SW12 |                    | SW12 | SW11 | SW10 | SW9  | SW8  | SW14 | SW13 |
 // | SW20 | SW21 | SW15 | SW16 | SW17 | SW18 | SW19 |                    | SW19 | SW18 | SW17 | SW16 | SW15 | SW21 | SW20 |
@@ -167,7 +220,7 @@
             >;
         };
 
-        layer_2 { // Layer2
+        layer_3 { // Layer2
 // | SW6  | SW7  | SW1  | SW2  | SW3  | SW4  | SW5  |                    | SW5  | SW4  | SW3  | SW2  | SW1  | SW7  | SW6  |
 // | SW13 | SW14 | SW8  | SW9  | SW10 | SW11 | SW12 |                    | SW12 | SW11 | SW10 | SW9  | SW8  | SW14 | SW13 |
 // | SW20 | SW21 | SW15 | SW16 | SW17 | SW18 | SW19 |                    | SW19 | SW18 | SW17 | SW16 | SW15 | SW21 | SW20 |
@@ -185,7 +238,7 @@
             >;
         };
 
-        layer_template { // Layer3
+        layer_4 { // Layer3
 // | SW6  | SW7  | SW1  | SW2  | SW3  | SW4  | SW5  |                    | SW5  | SW4  | SW3  | SW2  | SW1  | SW7  | SW6  |
 // | SW13 | SW14 | SW8  | SW9  | SW10 | SW11 | SW12 |                    | SW12 | SW11 | SW10 | SW9  | SW8  | SW14 | SW13 |
 // | SW20 | SW21 | SW15 | SW16 | SW17 | SW18 | SW19 |                    | SW19 | SW18 | SW17 | SW16 | SW15 | SW21 | SW20 |
