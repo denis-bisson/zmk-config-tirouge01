@@ -39,7 +39,6 @@
         };
     };
     
-<<<<<<< HEAD
     behaviors {
         // Tap-dance for 'e', 'ê', 'ë'
         td_e_lower: tap_dance_e_lower {
@@ -77,45 +76,35 @@
             bindings = <&kp CA_SINGLE_QUOTE>, <&kp LEFT_PARENTHESIS>;
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
-=======
-        behaviors {
-            my_apos_leftprnt: apostrophe_left_parenthesis {
-                compatible = "zmk,behavior-mod-morph";
-                #binding-cells = <0>;
-                bindings = <&kp CA_SINGLE_QUOTE>, <&kp LEFT_PARENTHESIS>;
-                mods = <(MOD_LSFT|MOD_RSFT)>;
-            };
->>>>>>> 99af3d8759e8a5e6930db20a6c3f8a9f75cf8d0a
 
-            my_commasemi: comma_semicolon {
-                compatible = "zmk,behavior-mod-morph";
-                #binding-cells = <0>;
-                bindings = <&kp COMMA>, <&kp SEMICOLON>;
-                mods = <(MOD_LSFT|MOD_RSFT)>;
-            };
+        my_commasemi: comma_semicolon {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&kp COMMA>, <&kp SEMICOLON>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
 
-            my_dquoterghtprnt: quote_right_parenthesis {
-                compatible = "zmk,behavior-mod-morph";
-                #binding-cells = <0>;
-                bindings = <&kp LS(PERIOD)>, <&kp LS(N9)>;
-                mods = <(MOD_LSFT|MOD_RSFT)>;
-            };
+        my_dquoterghtprnt: quote_right_parenthesis {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&kp LS(PERIOD)>, <&kp LS(N9)>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
 
-            my_periodcolon: period_colon {
-                compatible = "zmk,behavior-mod-morph";
-                #binding-cells = <0>;
-                bindings = <&kp PERIOD>, <&kp LS(SEMICOLON)>;
-                mods = <(MOD_LSFT|MOD_RSFT)>;
-            };
+        my_periodcolon: period_colon {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&kp PERIOD>, <&kp LS(SEMICOLON)>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
 
-            my_questionexclam: question_exclamation {
-                compatible = "zmk,behavior-mod-morph";
-                #binding-cells = <0>;
-                bindings = <&kp LS(N6)>, <&kp LS(N1)>;
-                mods = <(MOD_LSFT|MOD_RSFT)>;
-            };
+        my_questionexclam: question_exclamation {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&kp LS(N6)>, <&kp LS(N1)>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
 
-<<<<<<< HEAD
         hold_tap: my_hold_tap {
             compatible = "zmk,behavior-hold-tap";
             label = "Hold-Tap";
@@ -125,45 +114,6 @@
             bindings = <&kp &kp>;
         };
     };
-=======
-            my_left_home: left_home {
-                compatible = "zmk,behavior-mod-morph";
-                #binding-cells = <0>;
-                bindings = <&kp UP_ARROW>, <&kp HOME>;
-                mods = <(MOD_LSFT)>;
-            };
-
-            my_right_end: right_end {
-                compatible = "zmk,behavior-mod-morph";
-                #binding-cells = <0>;
-                bindings = <&kp RIGHT_ARROW>, <&kp END>;
-                mods = <(MOD_LSFT)>;
-            };
-
-            my_up_pgup: up_pgup {
-                compatible = "zmk,behavior-mod-morph";
-                #binding-cells = <0>;
-                bindings = <&kp UP_ARROW>, <&kp PAGE_UP>;
-                mods = <(MOD_LSFT)>;
-            };
-
-            my_down_pgdn: down_pgdn {
-                compatible = "zmk,behavior-mod-morph";
-                #binding-cells = <0>;
-                bindings = <&kp DOWN_ARROW>, <&kp PAGE_DOWN>;
-                mods = <(MOD_LSFT)>;
-            };
-
-            hold_tap: my_hold_tap {
-                compatible = "zmk,behavior-hold-tap";
-                label = "Hold-Tap";
-                #binding-cells = <2>;
-                tapping-term-ms = <200>; // Time in milliseconds to trigger hold behavior
-                flavor = "tap-preferred"; // Use tap-preferred flavor
-                bindings = <&kp &kp>;
-            };
-        };
->>>>>>> 99af3d8759e8a5e6930db20a6c3f8a9f75cf8d0a
 
     macros {
         macro_denis_bisson: macro_1 {
@@ -210,7 +160,6 @@
 
             display-name = "base";
             bindings = <
-<<<<<<< HEAD
 &kp ESC  &none  &none  &none        &none     &none              &none                       &none      &none               &none  &none  &none  &none   &none
 &kp TAB  &kp B  &kp Y  &kp O        &kp U     &my_apos_leftprnt  &none                       &none      &my_dquoterghtprnt  &kp L  &kp D  &kp W  &kp V   &kp Z
 &none    &kp C  &kp I  &td_e_lower  &kp A     &my_commasemi      &none                       &none      &my_periodcolon     &kp H  &kp T  &kp S  &kp N   &kp Q
@@ -218,15 +167,6 @@
                        &kp LALT     &none     &none              &none  &mo 1     &kp ENTER  &tog 2     &tog 3              &none  &none
                        &kp LCTRL    &kp LWIN  &kp BSPC                                       &kp SPACE  &none               &none    
             >;
-=======
-&kp ESC  &none  &none  &none      &none     &none              &none                           &none      &none               &none  &none  &none  &none   &none
-&kp TAB  &kp B  &kp Y  &kp O      &kp U     &my_apos_leftprnt  &none                           &none      &my_dquoterghtprnt  &kp L  &kp D  &kp W  &kp V   &kp Z
-&none    &kp C  &kp I  &kp E      &kp A     &my_commasemi      &none                           &none      &my_periodcolon     &kp H  &kp T  &kp S  &kp N   &kp Q
-&none    &kp G  &kp X  &kp J      &kp K     &kp MINUS          &none                           &none      &my_questionexclam  &kp R  &kp M  &kp F  &kp P   &none
-                       &kp LALT   &none     &none              &none  &kp LSHFT     &kp ENTER  &tog 1     &tog 2              &my_up_pgup    &my_down_pgdn
-                       &kp LCTRL  &kp LWIN  &kp BSPC                                                      &kp SPACE           &my_left_home  &my_right_end
-                       >;
->>>>>>> 99af3d8759e8a5e6930db20a6c3f8a9f75cf8d0a
 
 //          sensor-bindings = <&inc_dec_kp PG_UP PG_DN>;
 //          sensor-bindings = <&inc_dec_kp UP_ARROW DOWN_ARROW>;
