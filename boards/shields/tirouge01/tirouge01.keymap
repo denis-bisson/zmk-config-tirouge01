@@ -54,7 +54,6 @@
         td_e_upper: tap_dance_e_upper {
             compatible = "zmk,behavior-tap-dance";
             label = "TD_E_UPPER";
-            #binding-cells = ;
             #binding-cells = <0>;
             tapping-term-ms = <200>;
             bindings = <&kp LS(E)>,    // 1st tap: 'E' (Shift + e)
