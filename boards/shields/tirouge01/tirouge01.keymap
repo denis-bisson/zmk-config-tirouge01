@@ -43,14 +43,11 @@
         td_e_lower: tap_dance_e_lower {
             compatible = "zmk,behavior-tap-dance";
             label = "TD_E_LOWER";
-            #binding-cells = ;
-            // Adjust timing (milliseconds) if needed. Default is often 200ms.
-            tapping-term-ms = ;
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
             bindings = <&kp E>,        // 1st tap: 'e'
                        <&kp F>,
                        <&kp G>;
-                    // <&kp UC(00EA)>, // 2nd tap: 'ê' (Unicode U+00EA)                    
-                    // <&kp UC(00EB)>; // 3rd tap: 'ë' (Unicode U+00EB)
         };
 
         // Tap-dance for 'E', 'Ê', 'Ë'
@@ -58,14 +55,11 @@
             compatible = "zmk,behavior-tap-dance";
             label = "TD_E_UPPER";
             #binding-cells = ;
-            // Keep tapping term consistent
-            tapping-term-ms = ;
-            // Use LS() for shifted basic key, Unicode for others
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
             bindings = <&kp LS(E)>,    // 1st tap: 'E' (Shift + e)
                        <&kp LS(F)>,
                        <&kp LS(G)>;
-                    //    <&kp UC(00CA)>, // 2nd tap: 'Ê' (Unicode U+00CA)
-                    //    <&kp UC(00CB)>; // 3rd tap: 'Ë' (Unicode U+00CB)
         };
 
 
