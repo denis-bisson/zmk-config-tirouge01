@@ -38,36 +38,6 @@
         };
     };
 
-    macros {
-        mac_egrave: mac_egrave {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            wait-ms = <10>;
-            bindings = <&kp LBKT &kp E>;
-        };
-
-        mac_etrema: mac_etrema {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            wait-ms = <10>;
-            bindings = <&kp LS(LBKT) &kp E>;
-        };
-
-        mac_lsegrave: mac_lsegrave {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            wait-ms = <10>;
-            bindings = <&kp LBKT &kp LS(E)>;
-        };
-
-        mac_lsetrema: mac_lsetrema {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            wait-ms = <10>;
-            bindings = <&kp LS(LBKT) &kp LS(E)>;
-        };
-    };
-    
     behaviors {
         // Tap-dance for 'e', 'ê', 'ë'
         td_e_lower: tap_dance_e_lower {
@@ -138,6 +108,34 @@
     };
 
     macros {
+        mac_egrave: mac_egrave {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <10>;
+            bindings = <&kp LBKT &kp E>;
+        };
+
+        mac_etrema: mac_etrema {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <10>;
+            bindings = <&kp LS(LBKT) &kp E>;
+        };
+
+        mac_lsegrave: mac_lsegrave {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <10>;
+            bindings = <&kp LBKT &kp LS(E)>;
+        };
+
+        mac_lsetrema: mac_lsetrema {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <10>;
+            bindings = <&kp LS(LBKT) &kp LS(E)>;
+        };
+        
         macro_denis_bisson: macro_1 {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
