@@ -44,7 +44,7 @@
             compatible = "zmk,behavior-tap-dance";
             label = "TD_E_LOWER";
             #binding-cells = <0>;
-            tapping-term-ms = <200>;
+            tapping-term-ms = <100>;
             bindings = <&kp E>,        // 1st tap: 'e'
                        <&mac_ecirconflex>,
                        <&mac_etrema>;
@@ -55,7 +55,7 @@
             compatible = "zmk,behavior-tap-dance";
             label = "TD_E_UPPER";
             #binding-cells = <0>;
-            tapping-term-ms = <200>;
+            tapping-term-ms = <100>;
             bindings = <&kp LS(E)>,    // 1st tap: 'E' (Shift + e)
                        <&mac_lsecirconflex>,
                        <&mac_lsetrema>;
@@ -180,12 +180,12 @@
 
             display-name = "base";
             bindings = <
-&kp ESC  &none  &none  &none        &none     &none              &none                       &none      &none               &none  &none  &none  &none   &none
-&kp TAB  &kp B  &kp Y  &kp O        &kp U     &my_apos_leftprnt  &none                       &none      &my_dquoterghtprnt  &kp L  &kp D  &kp W  &kp V   &kp Z
-&none    &kp C  &kp I  &td_e_lower  &kp A     &my_commasemi      &none                       &none      &my_periodcolon     &kp H  &kp T  &kp S  &kp N   &kp Q
-&none    &kp G  &kp X  &kp J        &kp K     &kp MINUS          &none                       &none      &my_questionexclam  &kp R  &kp M  &kp F  &kp P   &none
-                       &kp LALT     &none     &none              &none  &mo 1     &kp ENTER  &tog 2     &tog 3              &none  &none
-                       &kp LCTRL    &kp LWIN  &kp BSPC                                       &kp SPACE  &none               &none    
+&kp ESC  &none  &none  &none        &none     &none              &none                       &none      &none               &none           &none            &none  &none   &none
+&kp TAB  &kp B  &kp Y  &kp O        &kp U     &my_apos_leftprnt  &none                       &none      &my_dquoterghtprnt  &kp L           &kp D            &kp W  &kp V   &kp Z
+&none    &kp C  &kp I  &td_e_lower  &kp A     &my_commasemi      &none                       &none      &my_periodcolon     &kp H           &kp T            &kp S  &kp N   &kp Q
+&none    &kp G  &kp X  &kp J        &kp K     &kp MINUS          &none                       &none      &my_questionexclam  &kp R           &kp M            &kp F  &kp P   &none
+                       &kp LALT     &none     &kp DELETE         &none  &mo 1     &kp ENTER  &tog 2     &tog 3              &none           &none
+                       &kp LCTRL    &kp LWIN  &kp BSPC                                                  &kp SPACE           &kp LEFT_ARROW  &kp RIGHT_ARROW    
             >;
 
 //          sensor-bindings = <&inc_dec_kp PG_UP PG_DN>;
