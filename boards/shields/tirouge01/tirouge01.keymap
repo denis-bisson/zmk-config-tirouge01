@@ -39,6 +39,33 @@
     };
 
     behaviors {
+        td_test1: td_test1 {
+            compatible = "zmk,behavior-tap-dance";
+            label = "TD_TEST1";
+            #binding-cells = <0>;
+            tapping-term-ms = <150>;
+            bindings = <&kp A>,
+                       <&kp B>,
+                       <&kp C>;
+        };
+        
+        td_test2: td_test2 {
+            compatible = "zmk,behavior-tap-dance";
+            label = "TD_TEST2";
+            #binding-cells = <0>;
+            tapping-term-ms = <150>;
+            bindings = <&kp 1>,
+                       <&kp 2>,
+                       <&kp 3>;
+        };
+        
+        modmorpht1: modmorpht1 {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&td_test1>, <&td_test2>;
+            mods = <MOD_LSFT>;
+        };        
+        
         // Tap-dance for 'e', 'ê', 'ë'
         td_e_lower: tap_dance_e_lower {
             compatible = "zmk,behavior-tap-dance";
@@ -180,12 +207,12 @@
 
             display-name = "base";
             bindings = <
-&kp ESC  &none  &none  &none        &none     &none              &none                       &none      &none               &none           &none            &none  &none   &none
-&kp TAB  &kp B  &kp Y  &kp O        &kp U     &my_apos_leftprnt  &none                       &none      &my_dquoterghtprnt  &kp L           &kp D            &kp W  &kp V   &kp Z
-&none    &kp C  &kp I  &td_e_lower  &kp A     &my_commasemi      &none                       &none      &my_periodcolon     &kp H           &kp T            &kp S  &kp N   &kp Q
-&none    &kp G  &kp X  &kp J        &kp K     &kp MINUS          &none                       &none      &my_questionexclam  &kp R           &kp M            &kp F  &kp P   &none
-                       &kp LALT     &none     &kp DELETE         &none  &mo 1     &kp ENTER  &tog 2     &tog 3              &none           &none
-                       &kp LCTRL    &kp LWIN  &kp BSPC                                                  &kp SPACE           &kp LEFT_ARROW  &kp RIGHT_ARROW    
+&kp ESC      &none  &none  &none        &none     &none              &none                            &none      &none               &none           &none            &none  &none   &none
+&kp TAB      &kp B  &kp Y  &kp O        &kp U     &my_apos_leftprnt  &none                            &none      &my_dquoterghtprnt  &kp L           &kp D            &kp W  &kp V   &kp Z
+&modmorpht1  &kp C  &kp I  &td_e_lower  &kp A     &my_commasemi      &none                            &none      &my_periodcolon     &kp H           &kp T            &kp S  &kp N   &kp Q
+&none        &kp G  &kp X  &kp J        &kp K     &kp MINUS          &none                            &none      &my_questionexclam  &kp R           &kp M            &kp F  &kp P   &none
+                           &kp LALT     &none     &kp DELETE         &none  &kp LSHIFT     &kp ENTER  &tog 2     &tog 3              &none           &none
+                           &kp LCTRL    &kp LWIN  &kp BSPC                                                       &kp SPACE           &kp LEFT_ARROW  &kp RIGHT_ARROW    
             >;
 
 //          sensor-bindings = <&inc_dec_kp PG_UP PG_DN>;
