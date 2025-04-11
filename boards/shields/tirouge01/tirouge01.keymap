@@ -10,6 +10,10 @@
 #include <dt-bindings/zmk/outputs.h>
 
 #define TIMING_PINKY 250
+#define TIMING_RING 250
+#define TIMING_MIDDLE 125
+#define TIMING_INDEX 250
+#define TIMING_THUMB 250
 
 
 #define CA_EGRV (ZMK_HID_USAGE(HID_USAGE_KEY, HID_USAGE_KEY_KEYBOARD_APOSTROPHE_AND_QUOTE)) // è
@@ -48,8 +52,8 @@
             compatible = "zmk,behavior-tap-dance";
             label = "Tap-Dance e";
             #binding-cells = <0>;
-            tapping-term-ms = <120>;
-            bindings = <&kp e>, // 'e'
+            tapping-term-ms = <TIMING_MIDDLE>;
+            bindings = <&kp E>, // 'e'
                        <&kp mac_ecirconflex>, // 'ê'
                        <&kp mac_etrema>; // 'ë'
         };
@@ -59,8 +63,8 @@
             compatible = "zmk,behavior-tap-dance";
             label = "Tap-Dance E";
             #binding-cells = <0>;
-            tapping-term-ms = <120>;
-            bindings = <&kp LS(e)>, // 'E' (Shift + e)
+            tapping-term-ms = <TIMING_MIDDLE>;
+            bindings = <&kp LS(E)>, // 'E' (Shift + e)
                        <&kp mac_capecirconflex>, // 'Ê'
                        <&kp mac_capetrema>; // 'Ë'
         };
