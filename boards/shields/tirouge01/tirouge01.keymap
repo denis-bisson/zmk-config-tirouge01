@@ -48,7 +48,7 @@
             compatible = "zmk,behavior-tap-dance";
             label = "Tap-Dance e";
             #binding-cells = <0>;
-            tapping-term-ms = <TIMING_PINKY>;
+            tapping-term-ms = <120>;
             bindings = <&kp e>, // 'e'
                        <&kp mac_ecirconflex>, // 'ê'
                        <&kp mac_etrema>; // 'ë'
@@ -59,7 +59,7 @@
             compatible = "zmk,behavior-tap-dance";
             label = "Tap-Dance E";
             #binding-cells = <0>;
-            tapping-term-ms = <200>;
+            tapping-term-ms = <120>;
             bindings = <&kp LS(e)>, // 'E' (Shift + e)
                        <&kp mac_capecirconflex>, // 'Ê'
                        <&kp mac_capetrema>; // 'Ë'
