@@ -191,12 +191,12 @@
 
             display-name = "base";
             bindings = <
-&kp ESC    &none  &none  &none        &none     &none              &none                       &none      &none               &none           &none            &none  &none   &none
-&kp TAB    &kp B  &kp Y  &kp O        &kp U     &my_apos_leftprnt  &none                       &none      &my_dquoterghtprnt  &kp L           &kp D            &kp W  &kp V   &kp Z
-&td_test1  &kp C  &kp I  &td_ltre     &kp A     &my_commasemi      &none                       &none      &my_periodcolon     &kp H           &kp T            &kp S  &kp N   &kp Q
-&none      &kp G  &kp X  &kp J        &kp K     &kp MINUS          &none                       &none      &my_questionexclam  &kp R           &kp M            &kp F  &kp P   &none
-                         &kp LALT     &none     &kp DELETE         &none  &mo 1     &kp ENTER  &tog 2     &tog 3              &none           &none
-                         &kp LCTRL    &kp LWIN  &kp BSPC                                                  &kp SPACE           &kp LEFT_ARROW  &kp RIGHT_ARROW    
+&kp ESC  &none  &none  &none        &none     &none              &none                       &none      &none               &none           &none            &none  &none   &none
+&kp TAB  &kp B  &kp Y  &kp O        &kp U     &my_apos_leftprnt  &none                       &none      &my_dquoterghtprnt  &kp L           &kp D            &kp W  &kp V   &kp Z
+&none    &kp C  &kp I  &td_ltre     &kp A     &my_commasemi      &none                       &none      &my_periodcolon     &kp H           &kp T            &kp S  &kp N   &kp Q
+&none    &kp G  &kp X  &kp J        &kp K     &kp MINUS          &none                       &none      &my_questionexclam  &kp R           &kp M            &kp F  &kp P   &none
+                       &kp LALT     &none     &kp DELETE         &none  &mo 1     &kp ENTER  &tog 2     &tog 3              &none           &none
+                       &kp LCTRL    &kp LWIN  &kp BSPC                                                  &kp SPACE           &kp LEFT_ARROW  &kp RIGHT_ARROW    
             >;
 
 //          sensor-bindings = <&inc_dec_kp PG_UP PG_DN>;
@@ -214,12 +214,12 @@
 
             display-name = "shift";
             bindings = <
-&kp ESC    &none      &none      &none        &none      &none              &none                           &none      &none               &none      &none      &none      &none       &none
-&kp TAB    &kp LS(B)  &kp LS(Y)  &kp LS(O)    &kp LS(U)  &my_apos_leftprnt  &none                           &none      &my_dquoterghtprnt  &kp LS(L)  &kp LS(D)  &kp LS(W)  &kp LS(V)   &kp LS(Z)
-&td_test2  &kp LS(C)  &kp LS(I)  &td_ltrcape  &kp LS(A)  &my_commasemi      &none                           &none      &my_periodcolon     &kp LS(H)  &kp LS(T)  &kp LS(S)  &kp LS(N)   &kp LS(Q)
-&none      &kp LS(G)  &kp LS(X)  &kp LS(J)    &kp LS(K)  &kp MINUS          &none                           &none      &my_questionexclam  &kp LS(R)  &kp LS(M)  &kp LS(F)  &kp LS(P)   &none
-                                 &kp LALT     &none      &none              &none  &kp LSHFT     &kp ENTER  &tog 2     &tog 3              &none      &none
-                                 &kp LCTRL    &kp LWIN   &kp BSPC                                                      &kp SPACE           &none      &none    
+&kp ESC  &none      &none      &none        &none      &none              &none                           &none      &none               &none      &none      &none      &none       &none
+&kp TAB  &kp LS(B)  &kp LS(Y)  &kp LS(O)    &kp LS(U)  &my_apos_leftprnt  &none                           &none      &my_dquoterghtprnt  &kp LS(L)  &kp LS(D)  &kp LS(W)  &kp LS(V)   &kp LS(Z)
+&none    &kp LS(C)  &kp LS(I)  &td_ltrcape  &kp LS(A)  &my_commasemi      &none                           &none      &my_periodcolon     &kp LS(H)  &kp LS(T)  &kp LS(S)  &kp LS(N)   &kp LS(Q)
+&none    &kp LS(G)  &kp LS(X)  &kp LS(J)    &kp LS(K)  &kp MINUS          &none                           &none      &my_questionexclam  &kp LS(R)  &kp LS(M)  &kp LS(F)  &kp LS(P)   &none
+                               &kp LALT     &none      &none              &none  &kp LSHFT     &kp ENTER  &tog 2     &tog 3              &none      &none
+                               &kp LCTRL    &kp LWIN   &kp BSPC                                                      &kp SPACE           &none      &none    
             >;
 
 //          sensor-bindings = <&inc_dec_kp PG_UP PG_DN>;
