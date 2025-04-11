@@ -54,8 +54,8 @@
             #binding-cells = <0>;
             tapping-term-ms = <TIMING_MIDDLE>;
             bindings = <&kp E>, // 'e'
-                       <&kp mac_ecirconflex>, // 'ê'
-                       <&kp mac_etrema>; // 'ë'
+                       <&mac_ecirconflex>, // 'ê'
+                       <&mac_etrema>; // 'ë'
         };
         
         // Tap-dance for 'E', 'Ê', 'Ë'
@@ -65,8 +65,8 @@
             #binding-cells = <0>;
             tapping-term-ms = <TIMING_MIDDLE>;
             bindings = <&kp LS(E)>, // 'E' (Shift + e)
-                       <&kp mac_capecirconflex>, // 'Ê'
-                       <&kp mac_capetrema>; // 'Ë'
+                       <&mac_capecirconflex>, // 'Ê'
+                       <&mac_capetrema>; // 'Ë'
         };
         
         my_apos_leftprnt: apostrophe_left_parenthesis {
