@@ -161,7 +161,7 @@
         };
 
         // Letter 'â'
-        mac_ecirconflex: mac_ecirconflex {
+        mac_acirconflex: mac_acirconflex {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             wait-ms = <10>;
@@ -169,7 +169,7 @@
         };
 
         // Letter 'ä'
-        mac_etrema: mac_etrema {
+        mac_atrema: mac_atrema {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             wait-ms = <10>;
@@ -177,7 +177,7 @@
         };
 
         // Letter 'Â'
-        mac_capecirconflex: mac_capecirconflex {
+        mac_capacirconflex: mac_capacirconflex {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             wait-ms = <10>;
@@ -185,7 +185,7 @@
         };
 
         // Letter 'Ä'
-        mac_capetrema: mac_capetrema {
+        mac_capatrema: mac_capatrema {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             wait-ms = <10>;
