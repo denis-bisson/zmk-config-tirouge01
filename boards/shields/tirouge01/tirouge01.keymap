@@ -11,17 +11,21 @@
 
 #define TIMING_PINKY 250
 #define TIMING_RING 250
-#define TIMING_MIDDLE 125
+#define TIMING_MIDDLE 175
 #define TIMING_INDEX 250
 #define TIMING_THUMB 250
 
+// 'é'
+#define CA_EACU (ZMK_HID_USAGE(HID_USAGE_KEY, HID_USAGE_KEY_KEYBOARD_SLASH_AND_QUESTION_MARK))
 
-#define CA_EGRV (ZMK_HID_USAGE(HID_USAGE_KEY, HID_USAGE_KEY_KEYBOARD_APOSTROPHE_AND_QUOTE)) // è
+// 'à'
+#define CA_AGRV (ZMK_HID_USAGE(HID_USAGE_KEY, HID_USAGE_KEY_KEYBOARD_NON_US_HASH_AND_TILDE))
+
+ // 'è'
+#define CA_EGRV (ZMK_HID_USAGE(HID_USAGE_KEY, HID_USAGE_KEY_KEYBOARD_APOSTROPHE_AND_QUOTE))
 
 
 #define CA_SINGLE_QUOTE (LS(ZMK_HID_USAGE(HID_USAGE_KEY, HID_USAGE_KEY_KEYBOARD_COMMA_AND_LESS_THAN))) // '
-#define CA_EACU (ZMK_HID_USAGE(HID_USAGE_KEY, HID_USAGE_KEY_KEYBOARD_SLASH_AND_QUESTION_MARK)) // é
-#define CA_AGRV (ZMK_HID_USAGE(HID_USAGE_KEY, HID_USAGE_KEY_KEYBOARD_NON_US_HASH_AND_TILDE)) // à
 #define CA_UGRV (ZMK_HID_USAGE(HID_USAGE_KEY, HID_USAGE_KEY_KEYBOARD_NON_US_BACKSLASH_AND_PIPE)) // ù
 #define CA_CCED (ZMK_HID_USAGE(HID_USAGE_KEY, HID_USAGE_KEY_KEYBOARD_RIGHT_BRACKET_AND_RIGHT_BRACE)) // ç
 
@@ -37,36 +41,45 @@
 
 
 / {
-    combos {
-        compatible = "zmk,combos";
-        combo_bebe {
-            timeout-ms = <100>;
-            key-positions = <1 27>;
-            bindings = <&kp CA_EACU>;
-        };
-    };
-
     behaviors {
-        // Tap-dance for 'e', 'ê', 'ë'
-        td_ltre: td_ltre {
+        // Tap-dance for 'è', 'ê', 'ë'
+        td_e_accents: td_e_accents {
             compatible = "zmk,behavior-tap-dance";
-            label = "Tap-Dance e";
             #binding-cells = <0>;
-            tapping-term-ms = <TIMING_MIDDLE>;
-            bindings = <&kp E>, // 'e'
+            tapping-term-ms = <TIMING_INDEX>;
+            bindings = <&kp CA_EGRV>, // 'é'
                        <&mac_ecirconflex>, // 'ê'
                        <&mac_etrema>; // 'ë'
         };
         
-        // Tap-dance for 'E', 'Ê', 'Ë'
-        td_ltrcape: td_ltrcape {
+        // Tap-dance for 'È', 'Ê', 'Ë'
+        td_cap_e_accents: td_cap_e_accents {
             compatible = "zmk,behavior-tap-dance";
-            label = "Tap-Dance E";
             #binding-cells = <0>;
-            tapping-term-ms = <TIMING_MIDDLE>;
-            bindings = <&kp LS(E)>, // 'E' (Shift + e)
+            tapping-term-ms = <TIMING_INDEX>;
+            bindings = <&kp LS(CA_EGRV)>, // 'È'
                        <&mac_capecirconflex>, // 'Ê'
                        <&mac_capetrema>; // 'Ë'
+        };
+        
+        // Tap-dance for 'à', 'â', 'ä'
+        td_a_accents: td_a_accents {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <TIMING_INDEX>;
+            bindings = <&kp CA_AGRV>, // 'à'
+                       <&mac_acirconflex>, // 'â'
+                       <&mac_atrema>; // 'ä'
+        };
+        
+        // Tap-dance for 'À', 'Â', 'Ä'
+        td_cap_a_accents: td_cap_a_accents {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <TIMING_INDEX>;
+            bindings = <&kp LS(CA_AGRV)>, // 'À'
+                       <&mac_capacirconflex>, // 'Â'
+                       <&mac_capatrema>; // 'Ä'
         };
         
         my_apos_leftprnt: apostrophe_left_parenthesis {
@@ -147,6 +160,38 @@
             bindings = <&kp LS(LBKT) &kp LS(E)>;
         };
 
+        // Letter 'â'
+        mac_ecirconflex: mac_ecirconflex {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <10>;
+            bindings = <&kp LBKT &kp A>;
+        };
+
+        // Letter 'ä'
+        mac_etrema: mac_etrema {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <10>;
+            bindings = <&kp LS(LBKT) &kp A>;
+        };
+
+        // Letter 'Â'
+        mac_capecirconflex: mac_capecirconflex {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <10>;
+            bindings = <&kp LBKT &kp LS(A)>;
+        };
+
+        // Letter 'Ä'
+        mac_capetrema: mac_capetrema {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <10>;
+            bindings = <&kp LS(LBKT) &kp LS(A)>;
+        };
+
         macro_denis_bisson: macro_1 {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
@@ -191,12 +236,12 @@
 
             display-name = "base";
             bindings = <
-&kp ESC  &none  &none  &none        &none     &none              &none                       &none      &none               &none           &none            &none  &none   &none
-&kp TAB  &kp B  &kp Y  &kp O        &kp U     &my_apos_leftprnt  &none                       &none      &my_dquoterghtprnt  &kp L           &kp D            &kp W  &kp V   &kp Z
-&none    &kp C  &kp I  &td_ltre     &kp A     &my_commasemi      &none                       &none      &my_periodcolon     &kp H           &kp T            &kp S  &kp N   &kp Q
-&none    &kp G  &kp X  &kp J        &kp K     &kp MINUS          &none                       &none      &my_questionexclam  &kp R           &kp M            &kp F  &kp P   &none
-                       &kp LALT     &none     &kp DELETE         &none  &mo 1     &kp ENTER  &tog 2     &tog 3              &none           &none
-                       &kp LCTRL    &kp LWIN  &kp BSPC                                                  &kp SPACE           &kp LEFT_ARROW  &kp RIGHT_ARROW    
+&kp ESC  &none  &none  &none      &none     &none          &none                       &none      &none               &none           &none            &none  &none   &none
+&kp TAB  &kp B  &kp Y  &kp O      &kp U     &kp CA_EACU    &none                       &none      &my_dquoterghtprnt  &kp L           &kp D            &kp W  &kp V   &kp Z
+&none    &kp C  &kp I  &kp E      &kp A     &td_a_accents  &none                       &none      &my_periodcolon     &kp H           &kp T            &kp S  &kp N   &kp Q
+&none    &kp G  &kp X  &kp J      &kp K     &td_e_accents  &none                       &none      &my_questionexclam  &kp R           &kp M            &kp F  &kp P   &none
+                       &kp LALT   &none     &kp DELETE     &none  &mo 1     &kp ENTER  &tog 2     &tog 3              &none           &none
+                       &kp LCTRL  &kp LWIN  &kp BSPC                                              &kp SPACE           &kp LEFT_ARROW  &kp RIGHT_ARROW    
             >;
 
 //          sensor-bindings = <&inc_dec_kp PG_UP PG_DN>;
@@ -214,12 +259,12 @@
 
             display-name = "shift";
             bindings = <
-&kp ESC  &none      &none      &none        &none      &none              &none                           &none      &none               &none      &none      &none      &none       &none
-&kp TAB  &kp LS(B)  &kp LS(Y)  &kp LS(O)    &kp LS(U)  &my_apos_leftprnt  &none                           &none      &my_dquoterghtprnt  &kp LS(L)  &kp LS(D)  &kp LS(W)  &kp LS(V)   &kp LS(Z)
-&none    &kp LS(C)  &kp LS(I)  &td_ltrcape  &kp LS(A)  &my_commasemi      &none                           &none      &my_periodcolon     &kp LS(H)  &kp LS(T)  &kp LS(S)  &kp LS(N)   &kp LS(Q)
-&none    &kp LS(G)  &kp LS(X)  &kp LS(J)    &kp LS(K)  &kp MINUS          &none                           &none      &my_questionexclam  &kp LS(R)  &kp LS(M)  &kp LS(F)  &kp LS(P)   &none
-                               &kp LALT     &none      &none              &none  &kp LSHFT     &kp ENTER  &tog 2     &tog 3              &none      &none
-                               &kp LCTRL    &kp LWIN   &kp BSPC                                                      &kp SPACE           &none      &none    
+&kp ESC  &none      &none      &none      &none      &none              &none                           &none      &none               &none      &none      &none      &none       &none
+&kp TAB  &kp LS(B)  &kp LS(Y)  &kp LS(O)  &kp LS(U)  &kp LS(CA_EACU)    &none                           &none      &my_dquoterghtprnt  &kp LS(L)  &kp LS(D)  &kp LS(W)  &kp LS(V)   &kp LS(Z)
+&none    &kp LS(C)  &kp LS(I)  &kp LS(E)  &kp LS(A)  &td_cap_a_accents  &none                           &none      &my_periodcolon     &kp LS(H)  &kp LS(T)  &kp LS(S)  &kp LS(N)   &kp LS(Q)
+&none    &kp LS(G)  &kp LS(X)  &kp LS(J)  &kp LS(K)  &td_cap_e_accents  &none                           &none      &my_questionexclam  &kp LS(R)  &kp LS(M)  &kp LS(F)  &kp LS(P)   &none
+                               &kp LALT   &none      &none              &none  &kp LSHFT     &kp ENTER  &tog 2     &tog 3              &none      &none
+                               &kp LCTRL  &kp LWIN   &kp BSPC                                                      &kp SPACE           &none      &none    
             >;
 
 //          sensor-bindings = <&inc_dec_kp PG_UP PG_DN>;
