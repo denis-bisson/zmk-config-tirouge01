@@ -9,12 +9,16 @@
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/outputs.h>
 
-#define CA_SINGLE_QUOTE (LS(ZMK_HID_USAGE(HID_USAGE_KEY, HID_USAGE_KEY_KEYBOARD_COMMA_AND_LESS_THAN))) // '
+#define TIMING_PINKY 250
 
+
+#define CA_EGRV (ZMK_HID_USAGE(HID_USAGE_KEY, HID_USAGE_KEY_KEYBOARD_APOSTROPHE_AND_QUOTE)) // è
+
+
+#define CA_SINGLE_QUOTE (LS(ZMK_HID_USAGE(HID_USAGE_KEY, HID_USAGE_KEY_KEYBOARD_COMMA_AND_LESS_THAN))) // '
 #define CA_EACU (ZMK_HID_USAGE(HID_USAGE_KEY, HID_USAGE_KEY_KEYBOARD_SLASH_AND_QUESTION_MARK)) // é
 #define CA_AGRV (ZMK_HID_USAGE(HID_USAGE_KEY, HID_USAGE_KEY_KEYBOARD_NON_US_HASH_AND_TILDE)) // à
 #define CA_UGRV (ZMK_HID_USAGE(HID_USAGE_KEY, HID_USAGE_KEY_KEYBOARD_NON_US_BACKSLASH_AND_PIPE)) // ù
-#define CA_EGRV (ZMK_HID_USAGE(HID_USAGE_KEY, HID_USAGE_KEY_KEYBOARD_APOSTROPHE_AND_QUOTE)) // è
 #define CA_CCED (ZMK_HID_USAGE(HID_USAGE_KEY, HID_USAGE_KEY_KEYBOARD_RIGHT_BRACKET_AND_RIGHT_BRACE)) // ç
 
 #define HCTRL(key) &hold_tap LC(key) key
@@ -39,49 +43,28 @@
     };
 
     behaviors {
-        td_test1: td_test1 {
-            compatible = "zmk,behavior-tap-dance";
-            label = "TD_TEST1";
-            #binding-cells = <0>;
-            tapping-term-ms = <200>;
-            bindings = <&kp A>,
-                       <&kp B>,
-                       <&kp C>;
-        };
-        
-        td_test2: td_test2 {
-            compatible = "zmk,behavior-tap-dance";
-            label = "TD_TEST2";
-            #binding-cells = <0>;
-            tapping-term-ms = <200>;
-            bindings = <&kp N1>,
-                       <&kp N2>,
-                       <&kp N3>;
-        };
-        
         // Tap-dance for 'e', 'ê', 'ë'
-        td_e_lower: tap_dance_e_lower {
+        td_ltre: td_ltre {
             compatible = "zmk,behavior-tap-dance";
-            label = "TD_E_LOWER";
+            label = "Tap-Dance e";
             #binding-cells = <0>;
-            tapping-term-ms = <100>;
-            bindings = <&kp E>,        // 1st tap: 'e'
-                       <&mac_ecirconflex>,
-                       <&mac_etrema>;
+            tapping-term-ms = <TIMING_PINKY>;
+            bindings = <&kp e>, // 'e'
+                       <&kp mac_ecirconflex>, // 'ê'
+                       <&kp mac_etrema>; // 'ë'
         };
-
+        
         // Tap-dance for 'E', 'Ê', 'Ë'
-        td_e_upper: tap_dance_e_upper {
+        td_ltrcape: td_ltrcape {
             compatible = "zmk,behavior-tap-dance";
-            label = "TD_E_UPPER";
+            label = "Tap-Dance E";
             #binding-cells = <0>;
-            tapping-term-ms = <100>;
-            bindings = <&kp LS(E)>,    // 1st tap: 'E' (Shift + e)
-                       <&mac_lsecirconflex>,
-                       <&mac_lsetrema>;
+            tapping-term-ms = <200>;
+            bindings = <&kp LS(e)>, // 'E' (Shift + e)
+                       <&kp mac_capecirconflex>, // 'Ê'
+                       <&kp mac_capetrema>; // 'Ë'
         };
-
-
+        
         my_apos_leftprnt: apostrophe_left_parenthesis {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
@@ -128,6 +111,7 @@
     };
 
     macros {
+        // Letter 'ê'
         mac_ecirconflex: mac_ecirconflex {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
@@ -135,6 +119,7 @@
             bindings = <&kp LBKT &kp E>;
         };
 
+        // Letter 'ë'
         mac_etrema: mac_etrema {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
@@ -142,14 +127,16 @@
             bindings = <&kp LS(LBKT) &kp E>;
         };
 
-        mac_lsecirconflex: mac_lsecirconflex {
+        // Letter 'Ê'
+        mac_capecirconflex: mac_capecirconflex {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             wait-ms = <10>;
             bindings = <&kp LBKT &kp LS(E)>;
         };
 
-        mac_lsetrema: mac_lsetrema {
+        // Letter 'Ë'
+        mac_capetrema: mac_capetrema {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             wait-ms = <10>;
@@ -202,7 +189,7 @@
             bindings = <
 &kp ESC    &none  &none  &none        &none     &none              &none                       &none      &none               &none           &none            &none  &none   &none
 &kp TAB    &kp B  &kp Y  &kp O        &kp U     &my_apos_leftprnt  &none                       &none      &my_dquoterghtprnt  &kp L           &kp D            &kp W  &kp V   &kp Z
-&td_test1  &kp C  &kp I  &td_e_lower  &kp A     &my_commasemi      &none                       &none      &my_periodcolon     &kp H           &kp T            &kp S  &kp N   &kp Q
+&td_test1  &kp C  &kp I  &td_ltre     &kp A     &my_commasemi      &none                       &none      &my_periodcolon     &kp H           &kp T            &kp S  &kp N   &kp Q
 &none      &kp G  &kp X  &kp J        &kp K     &kp MINUS          &none                       &none      &my_questionexclam  &kp R           &kp M            &kp F  &kp P   &none
                          &kp LALT     &none     &kp DELETE         &none  &mo 1     &kp ENTER  &tog 2     &tog 3              &none           &none
                          &kp LCTRL    &kp LWIN  &kp BSPC                                                  &kp SPACE           &kp LEFT_ARROW  &kp RIGHT_ARROW    
@@ -225,7 +212,7 @@
             bindings = <
 &kp ESC    &none      &none      &none        &none      &none              &none                           &none      &none               &none      &none      &none      &none       &none
 &kp TAB    &kp LS(B)  &kp LS(Y)  &kp LS(O)    &kp LS(U)  &my_apos_leftprnt  &none                           &none      &my_dquoterghtprnt  &kp LS(L)  &kp LS(D)  &kp LS(W)  &kp LS(V)   &kp LS(Z)
-&td_test2  &kp LS(C)  &kp LS(I)  &td_e_upper  &kp LS(A)  &my_commasemi      &none                           &none      &my_periodcolon     &kp LS(H)  &kp LS(T)  &kp LS(S)  &kp LS(N)   &kp LS(Q)
+&td_test2  &kp LS(C)  &kp LS(I)  &td_ltrcape  &kp LS(A)  &my_commasemi      &none                           &none      &my_periodcolon     &kp LS(H)  &kp LS(T)  &kp LS(S)  &kp LS(N)   &kp LS(Q)
 &none      &kp LS(G)  &kp LS(X)  &kp LS(J)    &kp LS(K)  &kp MINUS          &none                           &none      &my_questionexclam  &kp LS(R)  &kp LS(M)  &kp LS(F)  &kp LS(P)   &none
                                  &kp LALT     &none      &none              &none  &kp LSHFT     &kp ENTER  &tog 2     &tog 3              &none      &none
                                  &kp LCTRL    &kp LWIN   &kp BSPC                                                      &kp SPACE           &none      &none    
