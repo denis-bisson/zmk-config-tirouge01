@@ -9,114 +9,9 @@
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/outputs.h>
 
-#define TIMING_PINKY 250
-#define TIMING_RING 250
-#define TIMING_MIDDLE 175
-#define TIMING_INDEX 250
-#define TIMING_THUMB 250
-
-// 'é'
-#define CA_EACU (ZMK_HID_USAGE(HID_USAGE_KEY, HID_USAGE_KEY_KEYBOARD_SLASH_AND_QUESTION_MARK))
-
-// 'à'
-#define CA_AGRV (ZMK_HID_USAGE(HID_USAGE_KEY, HID_USAGE_KEY_KEYBOARD_NON_US_HASH_AND_TILDE))
-
- // 'è'
-#define CA_EGRV (ZMK_HID_USAGE(HID_USAGE_KEY, HID_USAGE_KEY_KEYBOARD_APOSTROPHE_AND_QUOTE))
-
-
-#define CA_SINGLE_QUOTE (LS(ZMK_HID_USAGE(HID_USAGE_KEY, HID_USAGE_KEY_KEYBOARD_COMMA_AND_LESS_THAN))) // '
-#define CA_UGRV (ZMK_HID_USAGE(HID_USAGE_KEY, HID_USAGE_KEY_KEYBOARD_NON_US_BACKSLASH_AND_PIPE)) // ù
-#define CA_CCED (ZMK_HID_USAGE(HID_USAGE_KEY, HID_USAGE_KEY_KEYBOARD_RIGHT_BRACKET_AND_RIGHT_BRACE)) // ç
-
-#define HCTRL(key) &hold_tap LC(key) key
-
-&soft_off {
-    hold-time-ms = <2000>; // Only turn off if the key is held for 2 seconds or longer.
-};
-
-&sl {
-    release-after-ms = <2000>;
-};
-
 
 / {
     behaviors {
-        // Tap-dance for 'è', 'ê', 'ë'
-        td_e_accents: td_e_accents {
-            compatible = "zmk,behavior-tap-dance";
-            #binding-cells = <0>;
-            tapping-term-ms = <TIMING_INDEX>;
-            bindings = <&kp CA_EGRV>, // 'é'
-                       <&mac_ecirconflex>, // 'ê'
-                       <&mac_etrema>; // 'ë'
-        };
-        
-        // Tap-dance for 'È', 'Ê', 'Ë'
-        td_cap_e_accents: td_cap_e_accents {
-            compatible = "zmk,behavior-tap-dance";
-            #binding-cells = <0>;
-            tapping-term-ms = <TIMING_INDEX>;
-            bindings = <&kp LS(CA_EGRV)>, // 'È'
-                       <&mac_capecirconflex>, // 'Ê'
-                       <&mac_capetrema>; // 'Ë'
-        };
-        
-        // Tap-dance for 'à', 'â', 'ä'
-        td_a_accents: td_a_accents {
-            compatible = "zmk,behavior-tap-dance";
-            #binding-cells = <0>;
-            tapping-term-ms = <TIMING_INDEX>;
-            bindings = <&kp CA_AGRV>, // 'à'
-                       <&mac_acirconflex>, // 'â'
-                       <&mac_atrema>; // 'ä'
-        };
-        
-        // Tap-dance for 'À', 'Â', 'Ä'
-        td_cap_a_accents: td_cap_a_accents {
-            compatible = "zmk,behavior-tap-dance";
-            #binding-cells = <0>;
-            tapping-term-ms = <TIMING_INDEX>;
-            bindings = <&kp LS(CA_AGRV)>, // 'À'
-                       <&mac_capacirconflex>, // 'Â'
-                       <&mac_capatrema>; // 'Ä'
-        };
-        
-        my_apos_leftprnt: apostrophe_left_parenthesis {
-            compatible = "zmk,behavior-mod-morph";
-            #binding-cells = <0>;
-            bindings = <&kp CA_SINGLE_QUOTE>, <&kp LEFT_PARENTHESIS>;
-            mods = <(MOD_LSFT|MOD_RSFT)>;
-        };
-
-        my_commasemi: comma_semicolon {
-            compatible = "zmk,behavior-mod-morph";
-            #binding-cells = <0>;
-            bindings = <&kp COMMA>, <&kp SEMICOLON>;
-            mods = <(MOD_LSFT|MOD_RSFT)>;
-        };
-
-        my_dquoterghtprnt: quote_right_parenthesis {
-            compatible = "zmk,behavior-mod-morph";
-            #binding-cells = <0>;
-            bindings = <&kp LS(PERIOD)>, <&kp LS(N9)>;
-            mods = <(MOD_LSFT|MOD_RSFT)>;
-        };
-
-        my_periodcolon: period_colon {
-            compatible = "zmk,behavior-mod-morph";
-            #binding-cells = <0>;
-            bindings = <&kp PERIOD>, <&kp LS(SEMICOLON)>;
-            mods = <(MOD_LSFT|MOD_RSFT)>;
-        };
-
-        my_questionexclam: question_exclamation {
-            compatible = "zmk,behavior-mod-morph";
-            #binding-cells = <0>;
-            bindings = <&kp LS(N6)>, <&kp LS(N1)>;
-            mods = <(MOD_LSFT|MOD_RSFT)>;
-        };
-
         hold_tap: my_hold_tap {
             compatible = "zmk,behavior-hold-tap";
             label = "Hold-Tap";
@@ -134,76 +29,6 @@
             #binding-cells = <0>;
             wait-ms = <10>;
             bindings = <&kp LBKT &kp E>;
-        };
-
-        // Letter 'ë'
-        mac_etrema: mac_etrema {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            wait-ms = <10>;
-            bindings = <&kp LS(LBKT) &kp E>;
-        };
-
-        // Letter 'Ê'
-        mac_capecirconflex: mac_capecirconflex {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            wait-ms = <10>;
-            bindings = <&kp LBKT &kp LS(E)>;
-        };
-
-        // Letter 'Ë'
-        mac_capetrema: mac_capetrema {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            wait-ms = <10>;
-            bindings = <&kp LS(LBKT) &kp LS(E)>;
-        };
-
-        // Letter 'â'
-        mac_acirconflex: mac_acirconflex {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            wait-ms = <10>;
-            bindings = <&kp LBKT &kp A>;
-        };
-
-        // Letter 'ä'
-        mac_atrema: mac_atrema {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            wait-ms = <10>;
-            bindings = <&kp LS(LBKT) &kp A>;
-        };
-
-        // Letter 'Â'
-        mac_capacirconflex: mac_capacirconflex {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            wait-ms = <10>;
-            bindings = <&kp LBKT &kp LS(A)>;
-        };
-
-        // Letter 'Ä'
-        mac_capatrema: mac_capatrema {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            wait-ms = <10>;
-            bindings = <&kp LS(LBKT) &kp LS(A)>;
-        };
-
-        macro_denis_bisson: macro_1 {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            wait-ms = <10>;
-            bindings = <&kp D &kp E &kp N &kp I &kp S &kp SPACE &kp B &kp I &kp S &kp S &kp O &kp N>;
-        };
-
-        macro_0x: macro_2 {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            wait-ms = <10>;
-            bindings = <&kp N0 &kp X>;
         };
 
         macro_emperso: macro_3 {
@@ -236,76 +61,15 @@
 
             display-name = "base";
             bindings = <
-&kp ESC  &none  &none  &none      &none     &none          &none                       &none      &none               &none           &none            &none  &none   &none
-&kp TAB  &kp B  &kp Y  &kp O      &kp U     &kp CA_EACU    &none                       &none      &my_dquoterghtprnt  &kp L           &kp D            &kp W  &kp V   &kp Z
-&none    &kp C  &kp I  &kp E      &kp A     &td_a_accents  &none                       &none      &my_periodcolon     &kp H           &kp T            &kp S  &kp N   &kp Q
-&none    &kp G  &kp X  &kp J      &kp K     &td_e_accents  &none                       &none      &my_questionexclam  &kp R           &kp M            &kp F  &kp P   &none
-                       &kp LALT   &none     &kp DELETE     &none  &mo 1     &kp ENTER  &tog 2     &tog 3              &none           &none
-                       &kp LCTRL  &kp LWIN  &kp BSPC                                              &kp SPACE           &kp LEFT_ARROW  &kp RIGHT_ARROW    
+&kp N1     &kp N2  &kp N3  &kp N4    &kp N5  &kp N6    &none                     &none    &kp N7      &kp N8  &kp N9  &kp N0  &kp MINUS  &kp EQUAL
+&kp ESC    &kp B   &kp Y   &kp O     &kp U   &kp FSLH  &none                     &none    &kp SEMI    &kp L   &kp D   &kp W   &kp V      &kp Z
+&kp TAB    &kp C   &kp I   &kp E     &kp A   &kp BSLH  &none                     &none    &kp COMMA   &kp H   &kp T   &kp S   &kp N      &kp Q
+&kp GRAVE  &kp G   &kp X   &kp J     &kp K   &kp APOS  &none                     &none    &kp PERIOD  &kp R   &kp M   &kp F   &kp P      &kp LBKT
+                           &kp RBKT  &none   &kp BSPC  &kp DEL  &none     &none  &kp RET  &kp SPACE   &none   &none
+                           &none     &none   &none                                        &none       &none   &none    
             >;
 
-//          sensor-bindings = <&inc_dec_kp PG_UP PG_DN>;
-//          sensor-bindings = <&inc_dec_kp UP_ARROW DOWN_ARROW>;
             sensor-bindings = <&inc_dec_kp LEFT_ARROW RIGHT_ARROW>;
-        };
-
-        layer_1 { // Layer 1
-// | SW6  | SW7  | SW1  | SW2  | SW3  | SW4  | SW5  |                    | SW5  | SW4  | SW3  | SW2  | SW1  | SW7  | SW6  |
-// | SW13 | SW14 | SW8  | SW9  | SW10 | SW11 | SW12 |                    | SW12 | SW11 | SW10 | SW9  | SW8  | SW14 | SW13 |
-// | SW20 | SW21 | SW15 | SW16 | SW17 | SW18 | SW19 |                    | SW19 | SW18 | SW17 | SW16 | SW15 | SW21 | SW20 |
-// | SW28 | SW29 | SW23 | SW24 | SW25 | SW26 | SW27 |                    | SW27 | SW26 | SW25 | SW24 | SW23 | SW29 | SW28 |
-//                      | SW31 | SW32 | SW33 | SW34 | SW38 |      | SW38 | SW34 | SW33 | SW32 | SW31 | 
-//                      | SW35 | SW36 | SW37 |                                  | SW37 | SW36 | SW35 |
-
-            display-name = "shift";
-            bindings = <
-&kp ESC  &none      &none      &none      &none      &none              &none                           &none      &none               &none      &none      &none      &none       &none
-&kp TAB  &kp LS(B)  &kp LS(Y)  &kp LS(O)  &kp LS(U)  &kp LS(CA_EACU)    &none                           &none      &my_dquoterghtprnt  &kp LS(L)  &kp LS(D)  &kp LS(W)  &kp LS(V)   &kp LS(Z)
-&none    &kp LS(C)  &kp LS(I)  &kp LS(E)  &kp LS(A)  &td_cap_a_accents  &none                           &none      &my_periodcolon     &kp LS(H)  &kp LS(T)  &kp LS(S)  &kp LS(N)   &kp LS(Q)
-&none    &kp LS(G)  &kp LS(X)  &kp LS(J)  &kp LS(K)  &td_cap_e_accents  &none                           &none      &my_questionexclam  &kp LS(R)  &kp LS(M)  &kp LS(F)  &kp LS(P)   &none
-                               &kp LALT   &none      &none              &none  &kp LSHFT     &kp ENTER  &tog 2     &tog 3              &none      &none
-                               &kp LCTRL  &kp LWIN   &kp BSPC                                                      &kp SPACE           &none      &none    
-            >;
-
-//          sensor-bindings = <&inc_dec_kp PG_UP PG_DN>;
-//          sensor-bindings = <&inc_dec_kp UP_ARROW DOWN_ARROW>;
-            sensor-bindings = <&inc_dec_kp LEFT_ARROW RIGHT_ARROW>;
-        };
-
-        layer_2 { // Layer 1
-// | SW6  | SW7  | SW1  | SW2  | SW3  | SW4  | SW5  |                    | SW5  | SW4  | SW3  | SW2  | SW1  | SW7  | SW6  |
-// | SW13 | SW14 | SW8  | SW9  | SW10 | SW11 | SW12 |                    | SW12 | SW11 | SW10 | SW9  | SW8  | SW14 | SW13 |
-// | SW20 | SW21 | SW15 | SW16 | SW17 | SW18 | SW19 |                    | SW19 | SW18 | SW17 | SW16 | SW15 | SW21 | SW20 |
-// | SW28 | SW29 | SW23 | SW24 | SW25 | SW26 | SW27 |                    | SW27 | SW26 | SW25 | SW24 | SW23 | SW29 | SW28 |
-//                      | SW31 | SW32 | SW33 | SW34 | SW38 |      | SW38 | SW34 | SW33 | SW32 | SW31 | 
-//                      | SW35 | SW36 | SW37 |                                  | SW37 | SW36 | SW35 |
-            display-name = "config";
-            bindings = <
-&trans  &trans        &trans  &trans  &trans  &trans  &trans                     &trans  &trans  &trans        &trans          &trans        &trans  &trans
-&trans  &macro_emjob  &trans  &trans  &trans  &trans  &trans                     &trans  &trans  &trans        &macro_emperso  &trans        &trans  &trans
-&trans  &trans        &trans  &trans  &trans  &trans  &trans                     &trans  &trans  &trans        &trans          &trans        &trans  &trans
-&trans  &trans        &trans  &trans  &trans  &trans  &trans                     &trans  &trans  &bt BT_SEL 0  &bt BT_SEL 1    &bt BT_SEL 2  &trans  &trans
-                              &trans  &trans  &trans  &trans  &trans     &trans  &trans  &trans  &trans        &trans
-                              &trans  &trans  &trans                                     &trans  &trans        &trans
-            >;
-        };
-
-        layer_3 { // Layer2
-// | SW6  | SW7  | SW1  | SW2  | SW3  | SW4  | SW5  |                    | SW5  | SW4  | SW3  | SW2  | SW1  | SW7  | SW6  |
-// | SW13 | SW14 | SW8  | SW9  | SW10 | SW11 | SW12 |                    | SW12 | SW11 | SW10 | SW9  | SW8  | SW14 | SW13 |
-// | SW20 | SW21 | SW15 | SW16 | SW17 | SW18 | SW19 |                    | SW19 | SW18 | SW17 | SW16 | SW15 | SW21 | SW20 |
-// | SW28 | SW29 | SW23 | SW24 | SW25 | SW26 | SW27 |                    | SW27 | SW26 | SW25 | SW24 | SW23 | SW29 | SW28 |
-//                      | SW31 | SW32 | SW33 | SW34 | SW38 |      | SW38 | SW34 | SW33 | SW32 | SW31 | 
-//                      | SW35 | SW36 | SW37 |                                  | SW37 | SW36 | SW35 |
-            display-name = "numbers";
-            bindings = <
-&trans  &trans  &trans  &trans  &trans  &trans  &trans                     &kp F2        &kp KP_DIVIDE    &kp LS(C)  &kp LS(D)  &kp LS(E)  &kp LS(F)  &trans
-&trans  &trans  &trans  &trans  &trans  &trans  &trans                     &kp EQUAL     &kp KP_MULTIPLY  &kp N8     &kp N9     &kp LS(A)  &kp LS(B)  &kp DOLLAR
-&trans  &trans  &trans  &trans  &trans  &trans  &trans                     &kp KP_DOT    &kp KP_PLUS      &kp N4     &kp N5     &kp N6     &kp N7     &macro_0x
-&trans  &trans  &trans  &trans  &trans  &trans  &trans                     &trans        &kp KP_MINUS     &kp N0     &kp N1     &kp N2     &kp N3     &trans
-                        &trans  &trans  &trans  &trans  &trans     &trans  &trans        &trans           &trans     &trans
-                        &trans  &trans  &trans                                           &trans           &trans     &trans
-            >;
         };
 
         layer_4 { // Layer3
