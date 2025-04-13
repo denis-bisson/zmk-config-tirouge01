@@ -12,13 +12,14 @@
 
 / {
     behaviors {
-        hold_tap: my_hold_tap {
+        hrht: home_row_mod {
             compatible = "zmk,behavior-hold-tap";
-            label = "Hold-Tap";
             #binding-cells = <2>;
-            tapping-term-ms = <200>; // Time in milliseconds to trigger hold behavior
-            flavor = "tap-preferred"; // Use tap-preferred flavor
-            bindings = <&kp &kp>;
+            flavor = "balanced";
+            require-prior-idle-ms = <150>;
+            tapping-term-ms = <280>;
+            quick-tap-ms = <175>;
+            bindings = <&kp>, <&kp>;
         };
     };
 
@@ -61,12 +62,12 @@
 
             display-name = "base";
             bindings = <
-&kp N1     &kp N2       &kp N3      &kp N4      &kp N5       &kp N6    &none                     &none    &kp N7      &kp N8       &kp N9      &kp N0      &kp MINUS    &kp EQUAL
-&kp ESC    &kp B        &kp Y       &kp O       &kp U        &kp FSLH  &none                     &none    &kp SEMI    &kp L        &kp D       &kp W       &kp V        &kp Z
-&kp TAB    &mt LCTRL C  &mt LWIN I  &mt LALT E  &mt LSHFT A  &kp BSLH  &none                     &none    &kp COMMA   &mt LSHFT H  &mt LALT T  &mt LWIN S  &mt LCTRL N  &kp Q
-&kp GRAVE  &mt RCTRL G  &kp X       &mt RALT J  &kp K        &kp APOS  &none                     &none    &kp PERIOD  &kp R        &mt RALT M  &kp F       &mt RCTRL P  &kp LBKT
-                                    &kp RBKT    &none        &kp BSPC  &kp DEL  &none     &none  &kp RET  &kp SPACE   &kp K_APP    &none
-                                    &none       &none        &none                                        &none       &none        &none    
+&kp N1     &kp N2         &kp N3        &kp N4        &kp N5         &kp N6    &none                     &none    &kp N7      &kp N8         &kp N9        &kp N0        &kp MINUS      &kp EQUAL
+&kp ESC    &kp B          &kp Y         &kp O         &kp U          &kp FSLH  &none                     &none    &kp SEMI    &kp L          &kp D         &kp W         &kp V          &kp Z
+&kp TAB    &hrht LCTRL C  &hrht LWIN I  &hrht LALT E  &hrht LSHFT A  &kp BSLH  &none                     &none    &kp COMMA   &hrht LSHFT H  &hrht LALT T  &hrht LWIN S  &hrht LCTRL N  &kp Q
+&kp GRAVE  &hrht RCTRL G  &kp X         &hrht RALT J  &kp K          &kp APOS  &none                     &none    &kp PERIOD  &kp R          &hrht RALT M  &kp F         &hrht RCTRL P  &kp LBKT
+                                        &kp RBKT      &none          &kp BSPC  &kp DEL  &none     &none  &kp RET  &kp SPACE   &kp K_APP      &none
+                                        &none         &none          &none                                        &none       &none          &none    
             >;
 
             sensor-bindings = <&inc_dec_kp LEFT_ARROW RIGHT_ARROW>;
