@@ -65,7 +65,7 @@
 &kp ESC    &kp B        &kp Y       &kp O       &kp U        &kp FSLH  &none                     &none    &kp SEMI    &kp L        &kp D       &kp W       &kp V        &kp Z
 &kp TAB    &mt LCTRL C  &mt LWIN I  &mt LALT E  &mt LSHFT A  &kp BSLH  &none                     &none    &kp COMMA   &mt LSHFT H  &mt LALT T  &mt LWIN S  &mt LCTRL N  &kp Q
 &kp GRAVE  &mt RCTRL G  &kp X       &mt RALT J  &kp K        &kp APOS  &none                     &none    &kp PERIOD  &kp R        &mt RALT M  &kp F       &mt RCTRL P  &kp LBKT
-                                    &kp RBKT    &none        &kp BSPC  &kp DEL  &none     &none  &kp RET  &kp SPACE   &none        &none
+                                    &kp RBKT    &none        &kp BSPC  &kp DEL  &none     &none  &kp RET  &kp SPACE   &kp K_APP    &none
                                     &none       &none        &none                                        &none       &none        &none    
             >;
 
