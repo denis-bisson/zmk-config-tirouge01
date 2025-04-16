@@ -72,7 +72,7 @@
 
             display-name = "base";
             bindings = <
-&kp N1     &kp N2         &kp N3        &kp N4        &kp N5         &kp N6    &none                     &none    &kp N7      &kp N8         &kp N9        &kp N0        &kp MINUS      &kp EQUAL
+&none      &none          &none         &none         &none          &none     &none                     &none    &none       &none          &none         &none         &none          &none
 &kp ESC    &kp B          &kp Y         &kp O         &kp U          &kp FSLH  &none                     &none    &kp SEMI    &kp L          &kp D         &kp W         &kp V          &kp Z
 &kp TAB    &hrht LCTRL C  &hrht LWIN I  &hrht LALT E  &hrht LSHFT A  &kp BSLH  &none                     &none    &kp COMMA   &hrht LSHFT H  &hrht LALT T  &hrht LWIN S  &hrht LCTRL N  &kp Q
 &kp GRAVE  &hrht RCTRL G  &kp X         &hrht RALT J  &lt 1 K        &kp APOS  &none                     &none    &kp PERIOD  &kp R          &hrht RALT M  &kp F         &hrht RCTRL P  &kp LBKT
