@@ -33,7 +33,7 @@ object Form1: TForm1
     Left = 736
     Top = 184
     Width = 257
-    Height = 233
+    Height = 289
     ItemHeight = 18
     Items.Strings = (
       'Base'
@@ -46,6 +46,8 @@ object Form1: TForm1
       'Numbers + Right Ctrl'
       'Numbers + Left Shift + Right Ctrl'
       'Numbers + AltGr'
+      'Function Keys'
+      'Cursors'
       'Modifier and layers'
       'ALL')
     TabOrder = 0
