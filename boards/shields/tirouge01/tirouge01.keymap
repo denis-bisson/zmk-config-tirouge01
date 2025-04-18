@@ -76,8 +76,8 @@
 &kp ESC    &kp B          &kp Y         &kp O         &kp U          &kp FSLH  &none                     &none    &kp SEMI    &kp L          &kp D         &kp W         &kp V          &kp Z
 &kp TAB    &hrht LCTRL C  &hrht LWIN I  &hrht LALT E  &hrht LSHFT A  &kp BSLH  &none                     &none    &kp COMMA   &hrht LSHFT H  &hrht LALT T  &hrht LWIN S  &hrht LCTRL N  &kp Q
 &kp GRAVE  &hrht RCTRL G  &lt 2 X       &hrht RALT J  &lt 1 K        &kp APOS  &none                     &none    &kp PERIOD  &kp R          &hrht RALT M  &kp F         &hrht RCTRL P  &kp LBKT
-                                        &kp RBKT      &none          &kp BSPC  &kp DEL  &none     &none  &kp RET  &kp SPACE   &kp K_APP      &none
-                                        &none         &none          &none                                        &none       &none          &none    
+                                        &kp RBKT      &kp N2         &kp BSPC  &kp N5  &kp N6    &kp N7  &kp RET  &kp SPACE   &kp K_APP      &kp N0
+                                        &kp N1        &kp N3         &kp N4                                       &kp N8      &kp N9         &kp N1    
             >;
 
             sensor-bindings = <&inc_dec_kp LEFT_ARROW RIGHT_ARROW>;
