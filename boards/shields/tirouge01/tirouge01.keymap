@@ -92,7 +92,7 @@
 &kp TAB    &hrht LWIN C  &hrht LALT I  &hrht LCTRL E      &hrht LSHFT A     &lt LY_SHIFTED_N FSLH   &none                             &none      &kp COMMA   &hrht LSHFT H  &hrht LCTRL T      &hrht LALT S  &hrht LWIN N  &kp Q
 &kp LBKT   &kp G         &hrht RALT X  &hrht RCTRL J      &lt LY_NUMBERS K  &gltog LY_CURSORS BSLH  &none                             &none      &kp PERIOD  &kp R          &hrht RCTRL M      &hrht RALT F  &kp P         &kp GRAVE
                                        &none              &none             &none                   &none  &kp K_CMENU     &kp ENTER  &none      &none       &none          &none
-                                       &kp RBKT           &kp DEL           &kp BSPC                                                             &kp SPACE   &kp MINUS      &kp EQUAL    
+                                       &kp RBKT            &kp DEL           &kp BSPC                                                             &kp SPACE   &kp MINUS      &kp EQUAL    
             >;
 
             sensor-bindings = <&inc_dec_kp LEFT_ARROW RIGHT_ARROW>;
@@ -107,12 +107,12 @@
 //                      | SW35 | SW36 | SW37 |                                  | SW37 | SW36 | SW35 |
             display-name = "Numbers";
             bindings = <
-&trans &trans &trans &trans &trans &trans           &trans                   &trans &trans &trans &trans &trans &trans    &trans
-&trans &trans &trans &trans &trans &trans           &trans                   &trans &trans &kp N7 &kp N8 &kp N9 &kp N0    &trans
-&trans &trans &trans &trans &trans &trans           &trans                   &trans &trans &kp N4 &kp N5 &kp N6 &kp MINUS &trans
-&trans &trans &trans &trans &trans &hrht LY_CURSORS &trans                   &trans &trans &kp N1 &kp N2 &kp N3 &kp EQUAL &trans
-                     &trans &trans &trans           &trans &trans     &trans &trans &trans &trans &trans
-                     &trans &trans &trans                                           &trans &trans &trans
+&trans &trans &trans &trans &trans &trans         &trans                   &trans &trans &trans &trans &trans &trans    &trans
+&trans &trans &trans &trans &trans &trans         &trans                   &trans &trans &kp N7 &kp N8 &kp N9 &kp N0    &trans
+&trans &trans &trans &trans &trans &trans         &trans                   &trans &trans &kp N4 &kp N5 &kp N6 &kp MINUS &trans
+&trans &trans &trans &trans &trans &mo LY_CURSORS &trans                   &trans &trans &kp N1 &kp N2 &kp N3 &kp EQUAL &trans
+                     &trans &trans &trans         &trans &trans     &trans &trans &trans &trans &trans
+                     &trans &trans &trans                                         &trans &trans &trans
             >;
         };
 
