@@ -83,9 +83,9 @@
             display-name = "Home";
             bindings = <
 &none      &none         &none         &none              &none          &none          &none                             &none      &none       &none          &none              &none         &none         &none
-&kp ESC    &kp B         &kp Y         &hrht LS(RCTRL) O  &kp U          &lt 3 APOS     &none                             &none      &kp SEMI    &kp L          &hrht LS(RCTRL) D  &kp W         &kp V         &kp Z
-&kp TAB    &hrht LWIN C  &hrht LALT I  &hrht LCTRL E      &hrht LSHFT A  &kp FSLH       &none                             &none      &kp COMMA   &hrht LSHFT H  &hrht LCTRL T      &hrht LALT S  &hrht LWIN N  &kp Q
-&kp LBKT   &kp G         &hrht RALT X  &hrht RCTRL J      &lt 1 K        &gltog 2 BSLH  &none                             &none      &kp PERIOD  &kp R          &hrht RCTRL M      &hrht RALT F  &kp P         &kp GRAVE
+&kp ESC    &kp B         &kp Y         &hrht LS(RCTRL) O  &kp U          &lt 4 APOS     &none                             &none      &kp SEMI    &kp L          &hrht LS(RCTRL) D  &kp W         &kp V         &kp Z
+&kp TAB    &hrht LWIN C  &hrht LALT I  &hrht LCTRL E      &hrht LSHFT A  &lt 2 FSLH     &none                             &none      &kp COMMA   &hrht LSHFT H  &hrht LCTRL T      &hrht LALT S  &hrht LWIN N  &kp Q
+&kp LBKT   &kp G         &hrht RALT X  &hrht RCTRL J      &lt 1 K        &gltog 3 BSLH  &none                             &none      &kp PERIOD  &kp R          &hrht RCTRL M      &hrht RALT F  &kp P         &kp GRAVE
                                        &none              &none          &none          &none  &kp K_CMENU     &kp ENTER  &none      &none       &none          &none
                                        &kp RBKT           &kp DEL        &kp BSPC                                         &kp SPACE  &kp MINUS   &kp EQUAL    
             >;
@@ -111,7 +111,25 @@
             >;
         };
 
-        layer_2 { // Cursor
+        layer_2 { // Shifted N
+// | SW6  | SW7  | SW1  | SW2  | SW3  | SW4  | SW5  |                    | SW5  | SW4  | SW3  | SW2  | SW1  | SW7  | SW6  |
+// | SW13 | SW14 | SW8  | SW9  | SW10 | SW11 | SW12 |                    | SW12 | SW11 | SW10 | SW9  | SW8  | SW14 | SW13 |
+// | SW20 | SW21 | SW15 | SW16 | SW17 | SW18 | SW19 |                    | SW19 | SW18 | SW17 | SW16 | SW15 | SW21 | SW20 |
+// | SW28 | SW29 | SW23 | SW24 | SW25 | SW26 | SW27 |                    | SW27 | SW26 | SW25 | SW24 | SW23 | SW29 | SW28 |
+//                      | SW31 | SW32 | SW33 | SW34 | SW38 |      | SW38 | SW34 | SW33 | SW32 | SW31 | 
+//                      | SW35 | SW36 | SW37 |                                  | SW37 | SW36 | SW35 |
+            display-name = "Shifted N";
+            bindings = <
+&trans &trans &trans &trans &trans &trans &trans                   &trans &trans &trans     &trans     &trans     &trans        &trans
+&trans &trans &trans &trans &trans &trans &trans                   &trans &trans &kp LS(N7) &kp LS(N8) &kp LS(N9) &kp LS(N0)    &trans
+&trans &trans &trans &trans &trans &trans &trans                   &trans &trans &kp LS(N4) &kp LS(N5) &kp LS(N6) &kp LS(MINUS) &trans
+&trans &trans &trans &trans &trans &trans &trans                   &trans &trans &kp LS(N1) &kp LS(N2) &kp LS(N3) &kp LS(EQUAL) &trans
+                     &trans &trans &trans &trans &trans     &trans &trans &trans &trans     &trans
+                     &trans &trans &trans                                 &trans &trans     &trans
+            >;
+        };
+
+        layer_3 { // Cursor
 // | SW6  | SW7  | SW1  | SW2  | SW3  | SW4  | SW5  |                    | SW5  | SW4  | SW3  | SW2  | SW1  | SW7  | SW6  |
 // | SW13 | SW14 | SW8  | SW9  | SW10 | SW11 | SW12 |                    | SW12 | SW11 | SW10 | SW9  | SW8  | SW14 | SW13 |
 // | SW20 | SW21 | SW15 | SW16 | SW17 | SW18 | SW19 |                    | SW19 | SW18 | SW17 | SW16 | SW15 | SW21 | SW20 |
@@ -129,7 +147,7 @@
             >;
         };
 
-        layer_3 { // Functions
+        layer_4 { // Functions
 // | SW6  | SW7  | SW1  | SW2  | SW3  | SW4  | SW5  |                    | SW5  | SW4  | SW3  | SW2  | SW1  | SW7  | SW6  |
 // | SW13 | SW14 | SW8  | SW9  | SW10 | SW11 | SW12 |                    | SW12 | SW11 | SW10 | SW9  | SW8  | SW14 | SW13 |
 // | SW20 | SW21 | SW15 | SW16 | SW17 | SW18 | SW19 |                    | SW19 | SW18 | SW17 | SW16 | SW15 | SW21 | SW20 |
@@ -147,7 +165,7 @@
             >;
         };
 
-        layer_4 { // template
+        layer_5 { // template
 // | SW6  | SW7  | SW1  | SW2  | SW3  | SW4  | SW5  |                    | SW5  | SW4  | SW3  | SW2  | SW1  | SW7  | SW6  |
 // | SW13 | SW14 | SW8  | SW9  | SW10 | SW11 | SW12 |                    | SW12 | SW11 | SW10 | SW9  | SW8  | SW14 | SW13 |
 // | SW20 | SW21 | SW15 | SW16 | SW17 | SW18 | SW19 |                    | SW19 | SW18 | SW17 | SW16 | SW15 | SW21 | SW20 |
