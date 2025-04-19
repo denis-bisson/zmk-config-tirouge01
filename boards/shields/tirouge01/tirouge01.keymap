@@ -72,7 +72,7 @@
 
             display-name = "Home";
             bindings = <
-&kp ESC    &kp B         &kp Y         &hrht LS(RCTRL) O  &kp U          &lt 3 FSLH  &none                  &none  &kp SEMI    &kp L          &hrht LS(RCTRL) D  &kp W         &kp V         &kp Z
+&kp ESC    &kp B         &kp Y         &hrht RCTRL O      &kp U          &lt 3 FSLH  &none                  &none  &kp SEMI    &kp L          &hrht RCTRL D      &kp W         &kp V         &kp Z
 &kp TAB    &hrht LWIN C  &hrht LALT I  &hrht LCTRL E      &hrht LSHFT A  &kp BSLH    &none                  &none  &kp COMMA   &hrht LSHFT H  &hrht LCTRL T      &hrht LALT S  &hrht LWIN N  &kp Q
 &kp GRAVE  &kp G         &hrht RALT X  &hrht RCTRL J      &lt 1 K        &sl 2 APOS  &none                  &none  &kp PERIOD  &kp R          &hrht RCTRL M      &hrht RALT F  &kp P         &kp LBKT
                                        &none              &none          &none       &none  &kp K_CMENU     &none  &none       &none          &none              &none
