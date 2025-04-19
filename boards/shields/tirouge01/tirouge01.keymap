@@ -9,6 +9,11 @@
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/outputs.h>
 
+#define LY_DEFAULT   0
+#define LY_NUMBERS   1
+#define LY_SHIFTED_N 2
+#define LY_CURSORS   3
+#define LY_FUNCTIONS 4 
 
 / {
     behaviors {
@@ -82,12 +87,12 @@
 
             display-name = "Home";
             bindings = <
-&none      &none         &none         &none              &none          &none          &none                             &none      &none       &none          &none              &none         &none         &none
-&kp ESC    &kp B         &kp Y         &hrht LS(RCTRL) O  &kp U          &lt 4 APOS     &none                             &none      &kp SEMI    &kp L          &hrht LS(RCTRL) D  &kp W         &kp V         &kp Z
-&kp TAB    &hrht LWIN C  &hrht LALT I  &hrht LCTRL E      &hrht LSHFT A  &lt 2 FSLH     &none                             &none      &kp COMMA   &hrht LSHFT H  &hrht LCTRL T      &hrht LALT S  &hrht LWIN N  &kp Q
-&kp LBKT   &kp G         &hrht RALT X  &hrht RCTRL J      &lt 1 K        &gltog 3 BSLH  &none                             &none      &kp PERIOD  &kp R          &hrht RCTRL M      &hrht RALT F  &kp P         &kp GRAVE
-                                       &none              &none          &none          &none  &kp K_CMENU     &kp ENTER  &none      &none       &none          &none
-                                       &kp RBKT           &kp DEL        &kp BSPC                                         &kp SPACE  &kp MINUS   &kp EQUAL    
+&none      &none         &none         &none              &none             &none                   &none                             &none      &none       &none          &none              &none         &none         &none
+&kp ESC    &kp B         &kp Y         &hrht LS(RCTRL) O  &kp U             &lt LY_FUNCTIONS APOS   &none                             &none      &kp SEMI    &kp L          &hrht LS(RCTRL) D  &kp W         &kp V         &kp Z
+&kp TAB    &hrht LWIN C  &hrht LALT I  &hrht LCTRL E      &hrht LSHFT A     &lt LY_SHIFTED_N FSLH   &none                             &none      &kp COMMA   &hrht LSHFT H  &hrht LCTRL T      &hrht LALT S  &hrht LWIN N  &kp Q
+&kp LBKT   &kp G         &hrht RALT X  &hrht RCTRL J      &lt LY_NUMBERS K  &gltog LY_CURSORS BSLH  &none                             &none      &kp PERIOD  &kp R          &hrht RCTRL M      &hrht RALT F  &kp P         &kp GRAVE
+                                       &none              &none             &none                   &none  &kp K_CMENU     &kp ENTER  &none      &none       &none          &none
+                                       &kp RBKT           &kp DEL           &kp BSPC                                                             &kp SPACE   &kp MINUS      &kp EQUAL    
             >;
 
             sensor-bindings = <&inc_dec_kp LEFT_ARROW RIGHT_ARROW>;
@@ -138,12 +143,12 @@
 //                      | SW35 | SW36 | SW37 |                                  | SW37 | SW36 | SW35 |
             display-name = "Cursors";
             bindings = <
-&trans  &trans  &trans  &trans  &trans  &trans  &trans                     &trans  &trans  &trans    &trans     &trans     &trans    &trans
-&trans  &trans  &trans  &trans  &trans  &trans  &trans                     &trans  &trans  &kp HOME  &kp UP     &kp PG_UP  &trans    &trans
-&trans  &trans  &trans  &trans  &trans  &trans  &trans                     &trans  &trans  &kp LEFT  &kp DOWN   &kp RIGHT  &trans    &trans
-&trans  &trans  &trans  &trans  &trans  &trans  &trans                     &trans  &trans  &kp END   &kp PG_UP  &kp PG_DN  &trans    &trans
-                        &trans  &trans  &trans  &trans  &trans     &trans  &trans  &trans  &trans    &trans
-                        &trans  &trans  &trans                                     &trans  &trans    &trans
+&trans  &trans  &trans  &trans  &trans  &trans  &trans                     &trans  &trans     &trans    &trans     &trans     &trans    &tog LY_CURSORS
+&trans  &trans  &trans  &trans  &trans  &trans  &trans                     &trans  &kp LG(X)  &kp HOME  &kp UP     &kp PG_UP  &trans    &trans
+&trans  &trans  &trans  &trans  &trans  &trans  &trans                     &trans  &kp LG(V)  &kp LEFT  &trans     &kp RIGHT  &trans    &trans
+&trans  &trans  &trans  &trans  &trans  &trans  &trans                     &trans  &kp LG(C)  &kp END   &kn DOWN   &kp PG_DN  &trans    &trans
+                        &trans  &trans  &trans  &trans  &trans     &trans  &trans  &trans     &trans    &trans
+                        &trans  &trans  &trans                                     &trans     &trans    &trans
             >;
         };
 
