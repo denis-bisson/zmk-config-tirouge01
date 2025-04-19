@@ -146,7 +146,7 @@
 &trans  &trans  &trans  &trans  &trans  &trans  &trans                     &trans  &trans     &trans    &trans     &trans     &trans    &tog LY_CURSORS
 &trans  &trans  &trans  &trans  &trans  &trans  &trans                     &trans  &kp LG(X)  &kp HOME  &kp UP     &kp PG_UP  &trans    &trans
 &trans  &trans  &trans  &trans  &trans  &trans  &trans                     &trans  &kp LG(V)  &kp LEFT  &trans     &kp RIGHT  &trans    &trans
-&trans  &trans  &trans  &trans  &trans  &trans  &trans                     &trans  &kp LG(C)  &kp END   &kn DOWN   &kp PG_DN  &trans    &trans
+&trans  &trans  &trans  &trans  &trans  &trans  &trans                     &trans  &kp LG(C)  &kp END   &kp DOWN   &kp PG_DN  &trans    &trans
                         &trans  &trans  &trans  &trans  &trans     &trans  &trans  &trans     &trans    &trans
                         &trans  &trans  &trans                                     &trans     &trans    &trans
             >;
