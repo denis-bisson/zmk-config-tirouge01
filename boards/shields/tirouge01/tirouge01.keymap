@@ -12,7 +12,7 @@
 
 / {
     behaviors {
-        hrht: home_row_mod {
+        hrht: hrht {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             flavor = "balanced";
@@ -72,12 +72,11 @@
 
             display-name = "Home";
             bindings = <
-&none      &none          &none         &none         &none          &none     &none                     &none    &none       &none          &none         &none         &none          &none
-&kp ESC    &kp B          &kp Y         &kp O         &kp U          &kp FSLH  &none                     &none    &kp SEMI    &kp L          &kp D         &kp W         &kp V          &kp Z
-&kp TAB    &hrht LCTRL C  &hrht LWIN I  &hrht LALT E  &hrht LSHFT A  &kp BSLH  &none                     &none    &kp COMMA   &hrht LSHFT H  &hrht LALT T  &hrht LWIN S  &hrht LCTRL N  &kp Q
-&kp GRAVE  &hrht RCTRL G  &lt 2 X       &hrht RALT J  &lt 1 K        &kp APOS  &none                     &none    &kp PERIOD  &kp R          &hrht RALT M  &kp F         &hrht RCTRL P  &kp LBKT
-                                        &kp RBKT      &kp N2         &kp BSPC  &kp N5  &kp N6    &kp N7  &kp RET  &kp SPACE   &kp K_APP      &kp N0
-                                        &kp N1        &kp N3         &kp N4                                       &kp N8      &kp N9         &kp N1    
+&kp ESC    &kp B         &kp Y         &hrht LS(RCTRL) O  &kp U          &lt 3 FSLH  &none                  &none  &kp SEMI    &kp L          &hrht LS(RCTRL) D  &kp W         &kp V         &kp Z
+&kp TAB    &hrht LWIN C  &hrht LALT I  &hrht LCTRL E      &hrht LSHFT A  &kp BSLH    &none                  &none  &kp COMMA   &hrht LSHFT H  &hrht LCTRL T      &hrht LALT S  &hrht LWIN N  &kp Q
+&kp GRAVE  &kp G         &hrht RALT X  &hrht RCTRL J      &lt 1 K        &sl 2 APOS  &none                  &none  &kp PERIOD  &kp R          &hrht RCTRL M      &hrht RALT F  &kp P         &kp LBKT
+                                       &none              &none          &none       &none  &kp K_CMENU     &none  &none       &none          &none              &none
+                                       &kp RBKT           &kp DEL        &kp BSPC                                  &kp SPACE   &kp MINUS      &kp EQUAL    
             >;
 
             sensor-bindings = <&inc_dec_kp LEFT_ARROW RIGHT_ARROW>;
@@ -110,12 +109,30 @@
 //                      | SW35 | SW36 | SW37 |                                  | SW37 | SW36 | SW35 |
             display-name = "Cursors";
             bindings = <
-&trans &trans &trans &trans &trans &trans &trans                   &trans &trans &trans   &trans    &trans    &trans    &trans
-&trans &trans &trans &trans &trans &trans &trans                   &trans &trans &trans   &trans    &trans    &trans    &trans
-&trans &trans &trans &trans &trans &trans &trans                   &trans &trans &kp LEFT &kp UP    &kp DOWN  &kp RIGHT &trans
-&trans &trans &trans &trans &trans &trans &trans                   &trans &trans &kp HOME &kp PG_UP &kp PG_DN &kp END   &trans
-                     &trans &trans &trans &trans &trans     &trans &trans &trans &trans   &trans
-                     &trans &trans &trans                                 &trans &trans   &trans
+&trans  &trans  &trans  &trans  &trans  &trans  &trans                     &trans  &trans  &trans    &trans     &trans     &trans    &trans
+&trans  &trans  &trans  &trans  &trans  &trans  &trans                     &trans  &trans  &kp HOME  &kp UP     &kp PG_UP  &trans    &trans
+&trans  &trans  &trans  &trans  &trans  &trans  &trans                     &trans  &trans  &kp LEFT  &kp DOWN   &kp RIGHT  &trans    &trans
+&trans  &trans  &trans  &trans  &trans  &trans  &trans                     &trans  &trans  &kp END   &kp PG_UP  &kp PG_DN  &trans    &trans
+                        &trans  &trans  &trans  &trans  &trans     &trans  &trans  &trans  &trans    &trans
+                        &trans  &trans  &trans                                     &trans  &trans    &trans
+            >;
+        };
+
+        layer_3 { // Functions
+// | SW6  | SW7  | SW1  | SW2  | SW3  | SW4  | SW5  |                    | SW5  | SW4  | SW3  | SW2  | SW1  | SW7  | SW6  |
+// | SW13 | SW14 | SW8  | SW9  | SW10 | SW11 | SW12 |                    | SW12 | SW11 | SW10 | SW9  | SW8  | SW14 | SW13 |
+// | SW20 | SW21 | SW15 | SW16 | SW17 | SW18 | SW19 |                    | SW19 | SW18 | SW17 | SW16 | SW15 | SW21 | SW20 |
+// | SW28 | SW29 | SW23 | SW24 | SW25 | SW26 | SW27 |                    | SW27 | SW26 | SW25 | SW24 | SW23 | SW29 | SW28 |
+//                      | SW31 | SW32 | SW33 | SW34 | SW38 |      | SW38 | SW34 | SW33 | SW32 | SW31 | 
+//                      | SW35 | SW36 | SW37 |                                  | SW37 | SW36 | SW35 |
+            display-name = "Functions";
+            bindings = <
+&trans &trans &trans &trans &trans &trans &trans                   &trans &trans &trans &trans &trans &trans   &trans
+&trans &trans &trans &trans &trans &trans &trans                   &trans &trans &kp F7 &kp F8 &kp F9 &kp F10  &trans
+&trans &trans &trans &trans &trans &trans &trans                   &trans &trans &kp F4 &kp F5 &kp F6 &kp F11  &trans
+&trans &trans &trans &trans &trans &trans &trans                   &trans &trans &kp F1 &kp F2 &kp F3 &kp F12  &trans
+                     &trans &trans &trans &trans &trans     &trans &trans &trans &trans &trans
+                     &trans &trans &trans                                 &trans &trans &trans
             >;
         };
 
