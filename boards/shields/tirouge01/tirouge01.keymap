@@ -91,6 +91,13 @@
     };
 
     macros {
+        mac_mainmenucursor: mac_mainmenucursor {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <10>;
+            bindings = <&kp LALT &kp DOWN &gltog_on LY_CURSORS>;
+        };
+
         mac_contextcursor: mac_contextcursor {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
@@ -143,12 +150,12 @@
 
             display-name = "Home";
             bindings = <
-&none      &none         &none         &none              &none             &none                      &none                                    &none      &none       &none          &none              &none         &none         &none
-&kp ESC    &kp B         &kp Y         &hrht LS(RCTRL) O  &kp U             &glstk LY_FUNCTIONS APOS   &none                                    &none      &kp SEMI    &kp L          &hrht LS(RCTRL) D  &kp W         &kp V         &kp Z
-&kp TAB    &hrht LWIN C  &hrht LALT I  &hrht LCTRL E      &hrht LSHFT A     &lt LY_SHIFTED_N FSLH      &none                                    &none      &kp COMMA   &hrht LSHFT H  &hrht LCTRL T      &hrht LALT S  &hrht LWIN N  &kp Q
-&kp LBKT   &kp G         &hrht RALT X  &hrht RCTRL J      &lt LY_NUMBERS K  &gltog LY_CURSORS BSLH     &none                                    &none      &kp PERIOD  &kp R          &hrht RCTRL M      &hrht RALT F  &kp P         &kp GRAVE
-                                       &none              &none             &none                      &none  &mac_contextcursor     &kp ENTER  &none      &none       &none          &none
-                                       &kp RBKT           &kp DEL           &kp BSPC                                                                       &kp SPACE   &kp MINUS      &kp EQUAL    
+&none      &none         &none         &none              &none             &none                      &none                                     &none      &none       &none          &none              &none         &none         &none
+&kp ESC    &kp B         &kp Y         &hrht LS(RCTRL) O  &kp U             &glstk LY_FUNCTIONS APOS   &none                                     &none      &kp SEMI    &kp L          &hrht LS(RCTRL) D  &kp W         &kp V         &kp Z
+&kp TAB    &hrht LWIN C  &hrht LALT I  &hrht LCTRL E      &hrht LSHFT A     &lt LY_SHIFTED_N FSLH      &none                                     &none      &kp COMMA   &hrht LSHFT H  &hrht LCTRL T      &hrht LALT S  &hrht LWIN N  &kp Q
+&kp LBKT   &kp G         &hrht RALT X  &hrht RCTRL J      &lt LY_NUMBERS K  &gltog LY_CURSORS BSLH     &none                                     &none      &kp PERIOD  &kp R          &hrht RCTRL M      &hrht RALT F  &kp P         &kp GRAVE
+                                       &none              &none             &none                      &none  &mac_mainmenucursor     &kp ENTER  &none      &none       &none          &none
+                                       &kp RBKT           &kp DEL           &kp BSPC                                                                        &kp SPACE   &kp MINUS      &kp EQUAL    
             >;
 
             sensor-bindings = <&inc_dec_kp LEFT_ARROW RIGHT_ARROW>;
