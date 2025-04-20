@@ -87,7 +87,16 @@
             #binding-cells = <1>;
             display-name = "Toggle Layer Off";
             toggle-mode = "off";
-        };        
+        };
+
+        // A tap-dance key invokes a different behavior (e.g. kp) corresponding to how many times it is pressed.    
+        // https://zmk.dev/docs/keymaps/behaviors/tap-dance
+        td_menus: tap_dance_popup_main_menus {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&mac_contextcursor, &mac_mainmenucursor>;
+        };
     };
 
     macros {
@@ -150,12 +159,12 @@
 
             display-name = "Home";
             bindings = <
-&none      &none         &none         &none              &none             &none                      &none                                     &none      &none       &none          &none              &none         &none         &none
-&kp ESC    &kp B         &kp Y         &hrht LS(RCTRL) O  &kp U             &glstk LY_FUNCTIONS APOS   &none                                     &none      &kp SEMI    &kp L          &hrht LS(RCTRL) D  &kp W         &kp V         &kp Z
-&kp TAB    &hrht LWIN C  &hrht LALT I  &hrht LCTRL E      &hrht LSHFT A     &lt LY_SHIFTED_N FSLH      &none                                     &none      &kp COMMA   &hrht LSHFT H  &hrht LCTRL T      &hrht LALT S  &hrht LWIN N  &kp Q
-&kp LBKT   &kp G         &hrht RALT X  &hrht RCTRL J      &lt LY_NUMBERS K  &gltog LY_CURSORS BSLH     &none                                     &none      &kp PERIOD  &kp R          &hrht RCTRL M      &hrht RALT F  &kp P         &kp GRAVE
-                                       &none              &none             &none                      &none  &mac_mainmenucursor     &kp ENTER  &none      &none       &none          &none
-                                       &kp RBKT           &kp DEL           &kp BSPC                                                                        &kp SPACE   &kp MINUS      &kp EQUAL    
+&none      &none         &none         &none              &none             &none                      &none                           &none  &none       &none          &none              &none         &none         &none
+&kp ESC    &kp B         &kp Y         &hrht LS(RCTRL) O  &kp U             &glstk LY_FUNCTIONS APOS   &none                           &none  &kp SEMI    &kp L          &hrht LS(RCTRL) D  &kp W         &kp V         &kp Z
+&kp TAB    &hrht LWIN C  &hrht LALT I  &hrht LCTRL E      &hrht LSHFT A     &lt LY_SHIFTED_N FSLH      &none                           &none  &kp COMMA   &hrht LSHFT H  &hrht LCTRL T      &hrht LALT S  &hrht LWIN N  &kp Q
+&kp LBKT   &kp G         &hrht RALT X  &hrht RCTRL J      &lt LY_NUMBERS K  &gltog LY_CURSORS BSLH     &none                           &none  &kp PERIOD  &kp R          &hrht RCTRL M      &hrht RALT F  &kp P         &kp GRAVE
+                                       &none              &none             &none                      &none  &td_menus     &kp ENTER  &none  &none       &none          &none
+                                       &kp RBKT           &kp DEL           &kp BSPC                                                          &kp SPACE   &kp MINUS      &kp EQUAL    
             >;
 
             sensor-bindings = <&inc_dec_kp LEFT_ARROW RIGHT_ARROW>;
