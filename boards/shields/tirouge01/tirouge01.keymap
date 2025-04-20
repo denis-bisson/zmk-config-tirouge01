@@ -15,6 +15,17 @@
 #define LY_CURSORS   3
 #define LY_FUNCTIONS 4 
 
+
+// https://zmk.dev/docs/keymaps/behaviors/sticky-layer
+// ...
+// By default, sticky layers stay pressed for a second if you don't press any other key.
+// You can configure this with the release-after-ms setting (see below).
+// ...
+&sl {
+    release-after-ms = <5000>;
+};        
+
+
 / {
     behaviors {
         hrht: hrht {
@@ -46,15 +57,6 @@
             quick-tap-ms = <175>;
             bindings = <&tog>, <&kp>;
         };
-
-        // https://zmk.dev/docs/keymaps/behaviors/sticky-layer
-        // ...
-        // By default, sticky layers stay pressed for a second if you don't press any other key.
-        // You can configure this with the release-after-ms setting (see below).
-        // ...
-        &sl {
-            release-after-ms = <5000>;
-        };        
 
         glstk: generic_layer_stick {
             compatible = "zmk,behavior-hold-tap";
