@@ -100,6 +100,15 @@
     };
 
     macros {
+        // Macro to open the context menu, scroll to the first item and switch to the cursor layer.
+        mac_contextcursor: mac_contextcursor {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <10>;
+            bindings = <&kp K_CONTEXT_MENU &kp DOWN &gltog_on LY_CURSORS>;
+        };
+
+        // Macro to open the main menu, scroll to the first item and switch to the cursor layer.
         mac_mainmenucursor: mac_mainmenucursor {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
@@ -107,42 +116,12 @@
             bindings = <&kp LALT &kp DOWN &gltog_on LY_CURSORS>;
         };
 
-        mac_contextcursor: mac_contextcursor {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            wait-ms = <10>;
-            bindings = <&kp K_CONTEXT_MENU &gltog_on LY_CURSORS>;
-        };
-
+        // Macro to exit the cursor layer and press enter to launch the selected item.
         mac_enterexitpopup: mac_enterexitpopup {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             wait-ms = <10>;
             bindings = <&gltog_off LY_CURSORS &kp KP_ENTER>;
-        };
-
-        // Letter 'ê'
-        mac_ecirconflex: mac_ecirconflex {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            wait-ms = <10>;
-            bindings = <&kp LBKT &kp E>;
-        };
-
-        macro_emperso: macro_3 {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            wait-ms = <10>;
-            bindings = <&kp D &kp E &kp N &kp I &kp S &kp PERIOD &kp B &kp I &kp S &kp S &kp O &kp N &kp AT
-                        &kp D &kp E &kp N &kp I &kp S &kp B &kp I &kp S &kp S &kp O &kp N &kp PERIOD &kp C &kp O &kp M>;
-        };
-
-        macro_emjob: macro_4 {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            wait-ms = <10>;
-            bindings = <&kp D &kp E &kp N &kp I &kp S &kp PERIOD &kp B &kp I &kp S &kp S &kp O &kp N &kp AT
-                        &kp B &kp L &kp U &kp B &kp E &kp R &kp I &kp PERIOD &kp C &kp O &kp M>;
         };
     };
 
