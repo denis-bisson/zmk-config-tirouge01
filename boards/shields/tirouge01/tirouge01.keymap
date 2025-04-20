@@ -95,7 +95,7 @@
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
             tapping-term-ms = <200>;
-            bindings = <&mac_contextcursor, &mac_mainmenucursor>;
+            bindings = <&mac_contextcursor>, <&mac_mainmenucursor>;
         };
     };
 
