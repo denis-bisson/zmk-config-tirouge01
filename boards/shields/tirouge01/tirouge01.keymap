@@ -69,9 +69,42 @@
             quick-tap-ms = <175>;
             bindings = <&sl>, <&kp>;
         };
+
+        // If you wish to ensure that a layer is toggled on or off specifically,
+        // rather than switching between the two states,
+        // then you can do so with the toggle-mode property.
+        // Define a new behavior and assign "on" or "off" to toggle-mode.
+        // https://zmk.dev/docs/keymaps/behaviors/layers#configuration
+        gltog_on: toggle_layer_on_only {
+            compatible = "zmk,behavior-toggle-layer";
+            #binding-cells = <1>;
+            display-name = "Toggle Layer On";
+            toggle-mode = "on";
+        };        
+
+        gltog_off: toggle_layer_off_only {
+            compatible = "zmk,behavior-toggle-layer";
+            #binding-cells = <1>;
+            display-name = "Toggle Layer Off";
+            toggle-mode = "off";
+        };        
     };
 
     macros {
+        mac_contextcursor: mac_contextcursor {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <10>;
+            bindings = <&kp K_CONTEXT_MENU &gltog_on LY_CURSORS>;
+        };
+
+        mac_enterexitpopup: mac_enterexitpopup {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <10>;
+            bindings = <&gltog_off LY_CURSORS &kp KP_ENTER>;
+        };
+
         // Letter 'ê'
         mac_ecirconflex: mac_ecirconflex {
             compatible = "zmk,behavior-macro";
@@ -110,12 +143,12 @@
 
             display-name = "Home";
             bindings = <
-&none      &none         &none         &none              &none             &none                      &none                             &none      &none       &none          &none              &none         &none         &none
-&kp ESC    &kp B         &kp Y         &hrht LS(RCTRL) O  &kp U             &glstk LY_FUNCTIONS APOS   &none                             &none      &kp SEMI    &kp L          &hrht LS(RCTRL) D  &kp W         &kp V         &kp Z
-&kp TAB    &hrht LWIN C  &hrht LALT I  &hrht LCTRL E      &hrht LSHFT A     &lt LY_SHIFTED_N FSLH      &none                             &none      &kp COMMA   &hrht LSHFT H  &hrht LCTRL T      &hrht LALT S  &hrht LWIN N  &kp Q
-&kp LBKT   &kp G         &hrht RALT X  &hrht RCTRL J      &lt LY_NUMBERS K  &gltog LY_CURSORS BSLH     &none                             &none      &kp PERIOD  &kp R          &hrht RCTRL M      &hrht RALT F  &kp P         &kp GRAVE
-                                       &none              &none             &none                      &none  &kp K_CMENU     &kp ENTER  &none      &none       &none          &none
-                                       &kp RBKT           &kp DEL           &kp BSPC                                                             &kp SPACE   &kp MINUS      &kp EQUAL    
+&none      &none         &none         &none              &none             &none                      &none                                    &none      &none       &none          &none              &none         &none         &none
+&kp ESC    &kp B         &kp Y         &hrht LS(RCTRL) O  &kp U             &glstk LY_FUNCTIONS APOS   &none                                    &none      &kp SEMI    &kp L          &hrht LS(RCTRL) D  &kp W         &kp V         &kp Z
+&kp TAB    &hrht LWIN C  &hrht LALT I  &hrht LCTRL E      &hrht LSHFT A     &lt LY_SHIFTED_N FSLH      &none                                    &none      &kp COMMA   &hrht LSHFT H  &hrht LCTRL T      &hrht LALT S  &hrht LWIN N  &kp Q
+&kp LBKT   &kp G         &hrht RALT X  &hrht RCTRL J      &lt LY_NUMBERS K  &gltog LY_CURSORS BSLH     &none                                    &none      &kp PERIOD  &kp R          &hrht RCTRL M      &hrht RALT F  &kp P         &kp GRAVE
+                                       &none              &none             &none                      &none  &mac_contextcursor     &kp ENTER  &none      &none       &none          &none
+                                       &kp RBKT           &kp DEL           &kp BSPC                                                                       &kp SPACE   &kp MINUS      &kp EQUAL    
             >;
 
             sensor-bindings = <&inc_dec_kp LEFT_ARROW RIGHT_ARROW>;
@@ -167,9 +200,9 @@
             display-name = "Cursors";
             bindings = <
 &trans  &trans  &trans  &trans  &trans  &trans  &trans                     &trans  &trans     &trans    &trans     &trans     &trans    &trans
-&trans  &trans  &trans  &trans  &trans  &trans  &trans                     &trans  &kp LC(X)  &kp HOME  &kp UP     &kp PG_UP  &trans    &trans
+&trans  &trans  &trans  &trans  &trans  &trans  &trans                     &trans  &kp LC(X)  &kp HOME  &kp UP     &kp PG_UP  &trans    &gltog_off LY_CURSORS
 &trans  &trans  &trans  &trans  &trans  &trans  &trans                     &trans  &kp LC(V)  &kp LEFT  &trans     &kp RIGHT  &trans    &trans
-&trans  &trans  &trans  &trans  &trans  &trans  &trans                     &trans  &kp LC(C)  &kp END   &kp DOWN   &kp PG_DN  &trans    &tog LY_CURSORS
+&trans  &trans  &trans  &trans  &trans  &trans  &trans                     &trans  &kp LC(C)  &kp END   &kp DOWN   &kp PG_DN  &trans    &ac_enterexitpopup
                         &trans  &trans  &trans  &trans  &trans     &trans  &trans  &trans     &trans    &trans
                         &trans  &trans  &trans                                     &trans     &trans    &trans
             >;
