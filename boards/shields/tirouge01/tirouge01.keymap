@@ -249,10 +249,10 @@
         layer_0 { // Home
             display-name = "Home 111";
             bindings = <
-&none  &none         &none         &none              &none             &none                       &none                         &none  &none      &none          &none          &none         &none         &none
-&none  &kp B         &kp Y         &lt LY_SHFT_ACC O  &lt LY_CURSORS U  &kp Z                       &none                         &none  &kp Q      &kp L          &kp D          &kp W         &kp V         &none
-&none  &hrht LWIN C  &hrht LALT I  &hrht LCTRL E      &hrht LSHFT A     &kp COMMA                   &none                         &none  &kp SEMI   &hrht LSHFT H  &hrht LCTRL T  &hrht LALT S  &hrht LWIN N  &none
-&none  &kp G         &hrht RALT X  &lt LY_ACC_SYMB J  &lt LY_NUMBERS K  &glstk LY_FUNCTIONS PERIOD  &none                         &none  &kp GRAVE  &kp R          &hrht RCTRL M  &hrht RALT F  &kp P         &none
+&none  &none         &none         &none              &none             &none                       &none                         &none  &none      &none          &none              &none         &none         &none
+&none  &kp B         &kp Y         &lt LY_SHFT_ACC O  &lt LY_CURSORS U  &kp Z                       &none                         &none  &kp Q      &kp L          &lt LY_SHFT_ACC D  &kp W         &kp V         &none
+&none  &hrht LWIN C  &hrht LALT I  &hrht LCTRL E      &hrht LSHFT A     &kp COMMA                   &none                         &none  &kp SEMI   &hrht LSHFT H  &hrht LCTRL T      &hrht LALT S  &hrht LWIN N  &none
+&none  &kp G         &hrht RALT X  &lt LY_ACC_SYMB J  &lt LY_NUMBERS K  &glstk LY_FUNCTIONS PERIOD  &none                         &none  &kp GRAVE  &kp R          &lt LY_ACC_SYMB M  &hrht RALT F  &kp P         &none
                                    &none              &none             &none                       &none  &kp TAB     &kp ENTER  &none  &none      &none          &none
                                    &none              &kp ESC           &kp BSPC                                                         &kp SPACE  &none          &none
             >;
@@ -262,7 +262,7 @@
 
 
 // **************************************
-// * 1 : LY_ACC_SYMB - ACCENT & SYMBOLS *
+// * 1 : LY_ACC_SYMB - ACCENT & SYMBOLS * 
 // **************************************
 //                 ╔═══════╗                                                          ╔═══════╗
 //         ╔═══════╣   ê   ╠═══════╦═══════╗                          ╔═══════╦═══════╣   *   ╠═══════╗
