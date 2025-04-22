@@ -269,7 +269,7 @@
 //                                           ║       ║      ║       ║
 //                                           ╚═══════╝      ╚═══════╝
 //
-        layer_1 {
+        layer_3 {
             display-name = "Numbers";
             bindings = <
 &trans &trans &trans &trans &trans &trans &trans                   &trans &trans         &trans &trans &trans &trans     &trans
