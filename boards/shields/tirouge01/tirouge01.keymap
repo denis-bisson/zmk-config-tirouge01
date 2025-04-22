@@ -166,11 +166,11 @@
         };        
 
         // í
-        mac_i_avute: mac_i_avute {
+        mac_i_acute: mac_i_acute {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             wait-ms = <10>;
-            bindings = <&kp LC(LBKT) &kp I>;
+            bindings = <&kp RC(SEMI) &kp I>;
         };                
 
         // ô
@@ -262,7 +262,7 @@
 
 
 // **************************************
-// * 1 : LY_ACC_SYMB - ACCENT & SYMBOLS * 
+// * 1 : LY_ACC_SYMB - ACCENT & SYMBOLS *
 // **************************************
 //                 ╔═══════╗                                                          ╔═══════╗
 //         ╔═══════╣   ê   ╠═══════╦═══════╗                          ╔═══════╦═══════╣   *   ╠═══════╗
@@ -284,7 +284,7 @@
             display-name = "AccSymb";
             bindings = <
 &trans  &trans        &trans             &trans             &trans             &trans             &trans                    &trans &trans &trans     &trans     &trans     &trans        &trans
-&trans  &mac_i_avute  &mac_i_trema       &mac_e_circumflex  &mac_u_grave       &mac_u_circumflex  &trans                    &trans &trans &kp LS(N7) &kp LS(N8) &kp LS(N9) &kp LS(N0)    &trans
+&trans  &mac_i_acute  &mac_i_trema       &mac_e_circumflex  &mac_u_grave       &mac_u_circumflex  &trans                    &trans &trans &kp LS(N7) &kp LS(N8) &kp LS(N9) &kp LS(N0)    &trans
 &trans  &kp RBKT      &mac_i_circumflex  &kp FSLH           &kp BSLH           &mac_a_circumflex  &trans                    &trans &trans &kp LS(N4) &kp LS(N5) &kp LS(N6) &kp LS(MINUS) &trans
 &trans  &trans        &mac_e_trema       &kp APOS           &mac_o_circumflex  &trans             &trans                    &trans &trans &kp LS(N1) &kp LS(N2) &kp LS(N3) &kp LS(EQUAL) &trans
                                          &trans             &trans             &trans             &trans  &trans     &trans &trans &trans &trans     &trans
