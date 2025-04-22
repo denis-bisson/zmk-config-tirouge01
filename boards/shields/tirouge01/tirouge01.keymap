@@ -124,6 +124,79 @@
             wait-ms = <10>;
             bindings = <&gltog_off LY_CURSORS &kp KP_ENTER>;
         };
+
+        // â
+        mac_a_circumflex: mac_a_circumflex {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <10>;
+            bindings = <&kp LBKT &kp A>;
+        };
+
+        // ê
+        mac_e_circumflex: mac_e_circumflex {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <10>;
+            bindings = <&kp LBKT &kp E>;
+        };
+
+        // ë
+        mac_e_trema: mac_e_trema {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <10>;
+            bindings = <&kp LBKT &kp E>;
+        };
+
+        // î
+        mac_i_circumflex: mac_i_circumflex {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <10>;
+            bindings = <&kp LBKT &kp I>;
+        };        
+
+        // ï
+        mac_i_trema: mac_i_trema {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <10>;
+            bindings = <&kp LS(LBKT) &kp I>;
+        };        
+
+        // í
+        mac_i_avute: mac_i_avute {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <10>;
+            bindings = <&kp LC(LBKT) &kp I>;
+        };                
+
+        // ô
+        mac_o_circumflex: mac_o_circumflex {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <10>;
+            bindings = <&kp LBKT &kp O>;
+        };
+
+        // ù
+        mac_u_grave: mac_u_grave {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <10>;
+            bindings = <&kp RA(LBKT) &kp U>;
+        };
+
+        // û
+        mac_u_circumflex: mac_u_circumflex {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <10>;
+            bindings = <&kp LBKT &kp U>;
+        };
+
     };
 
     keymap {
@@ -193,12 +266,12 @@
 // **************************************
 //                 ╔═══════╗                                                          ╔═══════╗
 //         ╔═══════╣   ê   ╠═══════╦═══════╗                          ╔═══════╦═══════╣   *   ╠═══════╗
-// ╔═══════╣   ô   ╠═══════╣   â   ║       ║                          ║       ║   &   ╠═══════╣   (   ╠═══════╗
-// ║   ï   ╠═══════╣   é   ╠═══════╬═══════╣                          ╠═══════╬═══════╣   %   ╠═══════║   )   ║
-// ╠═══════╣   î   ╠═══════╣   à   ║       ║                          ║       ║   $   ╠═══════╣   ?   ╠═══════╣
+// ╔═══════╣   ï   ╠═══════╣   ù   ║   û   ║                          ║       ║   &   ╠═══════╣   (   ╠═══════╗
+// ║   í   ╠═══════╣   é   ╠═══════╬═══════╣                          ╠═══════╬═══════╣   %   ╠═══════║   )   ║
+// ╠═══════╣   î   ╠═══════╣   à   ║   â   ║                          ║       ║   $   ╠═══════╣   ?   ╠═══════╣
 // ║   ç   ╠═══════╣   è   ╠═══════╬═══════╣                          ╠═══════╬═══════╣   @   ╠═══════║       ║
-// ╠═══════╣       ╠═══════╣   ù   ║       ║                          ║       ║   !   ╠═══════╣   #   ╠═══════╣
-// ║   ë   ╠═══════╝       ╚═══════╩═══════╝                          ╚═══════╩═══════╝       ╚═══════║       ║
+// ╠═══════╣   ë   ╠═══════╣   ô   ║       ║                          ║       ║   !   ╠═══════╣   #   ╠═══════╣
+// ║       ╠═══════╝       ╚═══════╩═══════╝                          ╚═══════╩═══════╝       ╚═══════║       ║
 // ╚═══════╝                                                                                          ╚═══════╝
 //                       ╔═══════╗                                              ╔═══════╗
 //                       ║       ║ ╔═══════╗                          ╔═══════╗ ║       ║
@@ -210,12 +283,12 @@
         layer_1 {
             display-name = "AccSymb";
             bindings = <
-&trans &trans &trans &trans &trans &trans &trans                   &trans &trans &trans     &trans     &trans     &trans        &trans
-&trans &trans &trans &trans &trans &trans &trans                   &trans &trans &kp LS(N7) &kp LS(N8) &kp LS(N9) &kp LS(N0)    &trans
-&trans &trans &trans &trans &trans &trans &trans                   &trans &trans &kp LS(N4) &kp LS(N5) &kp LS(N6) &kp LS(MINUS) &trans
-&trans &trans &trans &trans &trans &trans &trans                   &trans &trans &kp LS(N1) &kp LS(N2) &kp LS(N3) &kp LS(EQUAL) &trans
-                     &trans &trans &trans &trans &trans     &trans &trans &trans &trans     &trans
-                     &trans &trans &trans                                 &trans &trans     &trans
+&trans  &trans        &trans             &trans             &trans             &trans             &trans                    &trans &trans &trans     &trans     &trans     &trans        &trans
+&trans  &mac_i_avute  &mac_i_trema       &mac_e_circumflex  &mac_u_grave       &mac_u_circumflex  &trans                    &trans &trans &kp LS(N7) &kp LS(N8) &kp LS(N9) &kp LS(N0)    &trans
+&trans  &kp RBKT      &mac_i_circumflex  &kp FSLH           &kp BSLH           &mac_a_circumflex  &trans                    &trans &trans &kp LS(N4) &kp LS(N5) &kp LS(N6) &kp LS(MINUS) &trans
+&trans  &trans        &mac_e_trema       &kp APOS           &mac_o_circumflex  &trans             &trans                    &trans &trans &kp LS(N1) &kp LS(N2) &kp LS(N3) &kp LS(EQUAL) &trans
+                                         &trans             &trans             &trans             &trans  &trans     &trans &trans &trans &trans     &trans
+                                         &trans             &trans             &trans                                              &trans &trans     &trans
             >;
         };
 
