@@ -76,7 +76,7 @@
             bindings = <&kp>, <&kp>;
         };
 
-        lt_r: layer_tap_pinky_finger {
+        lt_p: layer_tap_pinky_finger {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             flavor = "balanced";
