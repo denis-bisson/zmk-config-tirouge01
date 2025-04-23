@@ -390,8 +390,8 @@
             bindings = <
 &trans  &trans         &trans              &trans              &trans              &trans              &trans                    &trans &trans &trans     &trans     &trans     &trans        &trans
 &trans  &mac_ui_acute  &mac_ui_trema       &mac_ue_circumflex  &mac_uu_grave       &mac_uu_circumflex  &trans                    &trans &trans &kp LS(N7) &kp LS(N8) &kp LS(N9) &kp LS(N0)    &trans
-&trans  &kp LS(RBKT)   &mac_ui_circumflex  &kp (FSLH)          &kp (BSLH)          &mac_ua_circumflex  &trans                    &trans &trans &kp LS(N4) &kp LS(N5) &kp LS(N6) &kp LS(MINUS) &trans
-&trans  &trans         &mac_ue_trema       &kp (APOS)          &mac_uo_circumflex  &trans              &trans                    &trans &trans &kp LS(N1) &kp LS(N2) &kp LS(N3) &kp LS(EQUAL) &trans
+&trans  &kp LS(RBKT)   &mac_ui_circumflex  &kp LS(FSLH)        &kp LS(BSLH)        &mac_ua_circumflex  &trans                    &trans &trans &kp LS(N4) &kp LS(N5) &kp LS(N6) &kp LS(MINUS) &trans
+&trans  &trans         &mac_ue_trema       &kp LS(APOS)        &mac_uo_circumflex  &trans              &trans                    &trans &trans &kp LS(N1) &kp LS(N2) &kp LS(N3) &kp LS(EQUAL) &trans
                                            &trans              &trans              &trans              &trans  &trans     &trans &trans &trans &trans     &trans
                                            &trans              &trans              &trans                                               &trans &trans     &trans
             >;
