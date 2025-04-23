@@ -197,6 +197,80 @@
             bindings = <&kp LBKT &kp U>;
         };
 
+        // Â
+        mac_ua_circumflex: mac_ua_circumflex {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <10>;
+            bindings = <&kp LBKT &kp LS(A)>;
+        };
+
+        // Ê
+        mac_ue_circumflex: mac_ue_circumflex {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <10>;
+            bindings = <&kp LBKT &kp LS(E)>;
+        };
+
+        // Ë
+        mac_ue_trema: mac_ue_trema {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <10>;
+            bindings = <&kp LBKT &kp LS(E)>;
+        };
+
+        // Î
+        mac_ui_circumflex: mac_ui_circumflex {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <10>;
+            bindings = <&kp LBKT &kp LS(I)>;
+        };        
+
+        // Ï
+        mac_ui_trema: mac_ui_trema {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <10>;
+            bindings = <&kp LS(LBKT) &kp LS(I)>;
+        };        
+
+        // Í
+        mac_ui_acute: mac_ui_acute {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <10>;
+            bindings = <&kp RC(SEMI) &kp LS(I)>;
+        };                
+
+        // Ô
+        mac_uo_circumflex: mac_uo_circumflex {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <10>;
+            bindings = <&kp LBKT &kp LS(O)>;
+        };
+
+        // Ù
+        mac_uu_grave: mac_uu_grave {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <10>;
+            bindings = <&kp RA(LBKT) &kp LS(U)>;
+        };
+
+        // Û
+        mac_uu_circumflex: mac_uu_circumflex {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <10>;
+            bindings = <&kp LBKT &kp LS(U)>;
+        };
+
+
+
     };
 
     keymap {
@@ -314,12 +388,12 @@
         layer_2 {
             display-name = "ACCSYMB";
             bindings = <
-&trans &trans &trans &trans &trans &trans &trans                   &trans &trans &trans &trans &trans &trans &trans
-&trans &trans &trans &trans &trans &trans &trans                   &trans &trans &trans &trans &trans &trans &trans
-&trans &trans &trans &trans &trans &trans &trans                   &trans &trans &trans &trans &trans &trans &trans
-&trans &trans &trans &trans &trans &trans &trans                   &trans &trans &trans &trans &trans &trans &trans
-                     &trans &trans &trans &trans &trans     &trans &trans &trans &trans &trans
-                     &trans &trans &trans                                 &trans &trans &trans
+&trans  &trans         &trans              &trans              &trans              &trans              &trans                    &trans &trans &trans     &trans     &trans     &trans        &trans
+&trans  &mac_ui_acute  &mac_ui_trema       &mac_ue_circumflex  &mac_uu_grave       &mac_uu_circumflex  &trans                    &trans &trans &kp LS(N7) &kp LS(N8) &kp LS(N9) &kp LS(N0)    &trans
+&trans  &kp LS(RBKT)   &mac_ui_circumflex  &kp (FSLH)          &kp (BSLH)          &mac_ua_circumflex  &trans                    &trans &trans &kp LS(N4) &kp LS(N5) &kp LS(N6) &kp LS(MINUS) &trans
+&trans  &trans         &mac_ue_trema       &kp (APOS)          &mac_uo_circumflex  &trans              &trans                    &trans &trans &kp LS(N1) &kp LS(N2) &kp LS(N3) &kp LS(EQUAL) &trans
+                                           &trans              &trans              &trans              &trans  &trans     &trans &trans &trans &trans     &trans
+                                           &trans              &trans              &trans                                               &trans &trans     &trans
             >;
         };
 
