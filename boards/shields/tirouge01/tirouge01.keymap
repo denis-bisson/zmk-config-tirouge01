@@ -465,12 +465,12 @@
 // **************************************
 //                 ╔═══════╗                                                          ╔═══════╗
 //         ╔═══════╣   ê   ╠═══════╦═══════╗                          ╔═══════╦═══════╣   *   ╠═══════╗
-// ╔═══════╣   ï   ╠═══════╣   ô   ║   ü   ║                          ║       ║   &   ╠═══════╣   (   ╠═══════╗
+// ╔═══════╣   í   ╠═══════╣   ô   ║   ë   ║                          ║       ║   &   ╠═══════╣   (   ╠═══════╗
 // ║   ú   ╠═══════╣   é   ╠═══════╬═══════╣                          ╠═══════╬═══════╣   %   ╠═══════║   )   ║
 // ╠═══════╣   î   ╠═══════╣   à   ║   â   ║                          ║       ║   $   ╠═══════╣   ?   ╠═══════╣
 // ║   ç   ╠═══════╣   è   ╠═══════╬═══════╣                          ╠═══════╬═══════╣   @   ╠═══════║       ║
-// ╠═══════╣   ë   ╠═══════╣   ù   ║   û   ║                          ║       ║   !   ╠═══════╣   #   ╠═══════╣
-// ║   í   ╠═══════╝       ╚═══════╩═══════╝                          ╚═══════╩═══════╝       ╚═══════║       ║
+// ╠═══════╣   ï   ╠═══════╣   ù   ║   û   ║                          ║       ║   !   ╠═══════╣   #   ╠═══════╣
+// ║   ü   ╠═══════╝       ╚═══════╩═══════╝                          ╚═══════╩═══════╝       ╚═══════║       ║
 // ╚═══════╝                                                                                          ╚═══════╝
 //                       ╔═══════╗                                              ╔═══════╗
 //                       ║       ║ ╔═══════╗                          ╔═══════╗ ║       ║
@@ -483,9 +483,9 @@
             display-name = "AccSymb";
             bindings = <
 &trans  &trans    &trans  &trans    &trans    &trans  &trans                     &trans  &trans  &trans      &trans      &trans      &trans         &trans
-&trans  &mc_ua    &mc_it  &mc_ec    &mc_oc    &mc_ut  &trans                     &trans  &trans  &kp LS(N7)  &kp LS(N8)  &kp LS(N9)  &kp LS(N0)     &trans
+&trans  &mc_ua    &mc_ia  &mc_ec    &mc_oc    &mc_et  &trans                     &trans  &trans  &kp LS(N7)  &kp LS(N8)  &kp LS(N9)  &kp LS(N0)     &trans
 &trans  &kp RBKT  &mc_ic  &kp FSLH  &kp BSLH  &mc_ac  &trans                     &trans  &trans  &kp LS(N4)  &kp LS(N5)  &kp LS(N6)  &kp LS(MINUS)  &trans
-&trans  &mc_ia    &mc_et  &kp APOS  &mc_ug    &mc_uc  &trans                     &trans  &trans  &kp LS(N1)  &kp LS(N2)  &kp LS(N3)  &kp LS(EQUAL)  &trans
+&trans  &mc_ut    &mc_it  &kp APOS  &mc_ug    &mc_uc  &trans                     &trans  &trans  &kp LS(N1)  &kp LS(N2)  &kp LS(N3)  &kp LS(EQUAL)  &trans
                           &trans    &trans    &trans  &trans  &trans     &trans  &trans  &trans  &trans      &trans
                           &trans    &trans    &trans                                     &trans  &trans      &trans
             >;
@@ -496,12 +496,12 @@
 // **********************************************
 //                 ╔═══════╗                                                          ╔═══════╗
 //         ╔═══════╣   Ê   ╠═══════╦═══════╗                          ╔═══════╦═══════╣       ╠═══════╗
-// ╔═══════╣   Ï   ╠═══════╣   Ô   ║   Ü   ║                          ║       ║       ╠═══════╣       ╠═══════╗
+// ╔═══════╣   Í   ╠═══════╣   Ô   ║   Ë   ║                          ║       ║       ╠═══════╣       ╠═══════╗
 // ║   Ú   ╠═══════╣   É   ╠═══════╬═══════╣                          ╠═══════╬═══════╣       ╠═══════║       ║
 // ╠═══════╣   Î   ╠═══════╣   À   ║   Â   ║                          ║       ║       ╠═══════╣       ╠═══════╣
 // ║   Ç   ╠═══════╣   È   ╠═══════╬═══════╣                          ╠═══════╬═══════╣       ╠═══════║       ║
-// ╠═══════╣   Ë   ╠═══════╣   Ù   ║   Û   ║                          ║       ║       ╠═══════╣       ╠═══════╣
-// ║   Í   ╠═══════╝       ╚═══════╩═══════╝                          ╚═══════╩═══════╝       ╚═══════║       ║
+// ╠═══════╣   Ï   ╠═══════╣   Ù   ║   Û   ║                          ║       ║       ╠═══════╣       ╠═══════╣
+// ║   Ü   ╠═══════╝       ╚═══════╩═══════╝                          ╚═══════╩═══════╝       ╚═══════║       ║
 // ╚═══════╝                                                                                          ╚═══════╝
 //                       ╔═══════╗                                              ╔═══════╗
 //                       ║       ║ ╔═══════╗                          ╔═══════╗ ║       ║
@@ -514,9 +514,9 @@
             display-name = "ACCSYMB";
             bindings = <
 &trans  &trans        &trans   &trans        &trans        &trans   &trans                     &trans  &trans  &trans      &trans      &trans      &trans         &trans
-&trans  &mc_uua       &mc_uit  &mc_uec       &mc_uoc       &mc_uut  &trans                     &trans  &trans  &kp LS(N7)  &kp LS(N8)  &kp LS(N9)  &kp LS(N0)     &trans
+&trans  &mc_uua       &mc_uia  &mc_uec       &mc_uoc       &mc_uet  &trans                     &trans  &trans  &kp LS(N7)  &kp LS(N8)  &kp LS(N9)  &kp LS(N0)     &trans
 &trans  &kp LS(RBKT)  &mc_uic  &kp LS(FSLH)  &kp LS(BSLH)  &mc_uac  &trans                     &trans  &trans  &kp LS(N4)  &kp LS(N5)  &kp LS(N6)  &kp LS(MINUS)  &trans
-&trans  &mc_uia       &mc_uet  &kp LS(APOS)  &mc_uug       &mc_uuc  &trans                     &trans  &trans  &kp LS(N1)  &kp LS(N2)  &kp LS(N3)  &kp LS(EQUAL)  &trans
+&trans  &mc_uut       &mc_uit  &kp LS(APOS)  &mc_uug       &mc_uuc  &trans                     &trans  &trans  &kp LS(N1)  &kp LS(N2)  &kp LS(N3)  &kp LS(EQUAL)  &trans
                                &trans        &trans        &trans   &trans  &trans     &trans  &trans  &trans  &trans      &trans
                                &trans        &trans        &trans                                      &trans  &trans      &trans
             >;
