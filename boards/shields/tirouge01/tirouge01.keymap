@@ -15,8 +15,10 @@
 #define LY_NUMB 3 // Numbers layer.
 #define LY_CRSR 4 // Cursor layer.
 #define LY_FUNC 5 // Function layer.
-#define LY_TMPL 6 // Template layer.
+#define LY_CONF 6 // Configuration layer.
+#define LY_TMPL 7 // Template layer.
 
+#define TIMING_CONFIG 990 // Timing for configuration layer for the "hold/layer" related actions.
 #define TIMING_PINKY  220 // Timing for pinky finger for the "hold/layer" related actions.
 #define TIMING_RING   220 // Timing for ring finger for the "hold/layer" related actions.
 #define TIMING_MIDDLE 200 // Timing for middle finger for the "hold/layer" related actions.
@@ -76,6 +78,16 @@
             bindings = <&kp>, <&kp>;
         };
 
+        lt_c: layer_tap_config_long_timing {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "balanced";
+            tapping-term-ms = <TIMING_CONFIG>;
+            quick-tap-ms = <175>;
+            require-prior-idle-ms = <150>;
+            bindings = <&mo>, <&kp>;
+        };
+
         lt_p: layer_tap_pinky_finger {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
@@ -85,7 +97,6 @@
             require-prior-idle-ms = <150>;
             bindings = <&mo>, <&kp>;
         };
-
 
         lt_r: layer_tap_ring_finger {
             compatible = "zmk,behavior-hold-tap";
@@ -448,12 +459,12 @@
         layer_0 { // Home
             display-name = "Home 113";
             bindings = <
-&none  &none         &none         &none            &none            &none                 &none                         &none  &none      &none          &none            &none         &none         &none
-&none  &kp B         &kp Y         &lt_m LY_ACSH O  &lt_i LY_CRSR U  &kp Z                 &none                         &none  &kp Q      &kp L          &lt_m LY_ACSH D  &kp W         &kp V         &none
-&none  &ht_p LWIN C  &ht_r LALT I  &ht_m LCTRL E    &ht_i LSHFT A    &kp COMMA             &none                         &none  &kp SEMI   &ht_i LSHFT H  &ht_m LCTRL T    &ht_r LALT S  &ht_r LWIN N  &none
-&none  &kp G         &ht_r RALT X  &lt_m LY_ACSY J  &lt_i LY_NUMB K  &tg_i LY_FUNC PERIOD  &none                         &none  &kp GRAVE  &kp R          &lt_m LY_ACSY M  &ht_r RALT F  &kp P         &none
-                                   &none            &none            &none                 &none  &kp TAB     &kp ENTER  &none  &none      &none          &none
-                                   &none            &kp ESC          &kp BSPC                                                   &kp SPACE  &none          &none
+&none  &none            &none         &none            &none            &none                 &none                         &none  &none      &none          &none            &none         &none         &none
+&none  &lt_c LY_CONF B  &kp Y         &lt_m LY_ACSH O  &lt_i LY_CRSR U  &kp Z                 &none                         &none  &kp Q      &kp L          &lt_m LY_ACSH D  &kp W         &kp V         &none
+&none  &ht_p LWIN C     &ht_r LALT I  &ht_m LCTRL E    &ht_i LSHFT A    &kp COMMA             &none                         &none  &kp SEMI   &ht_i LSHFT H  &ht_m LCTRL T    &ht_r LALT S  &ht_r LWIN N  &none
+&none  &kp G            &ht_r RALT X  &lt_m LY_ACSY J  &lt_i LY_NUMB K  &tg_i LY_FUNC PERIOD  &none                         &none  &kp GRAVE  &kp R          &lt_m LY_ACSY M  &ht_r RALT F  &kp P         &none
+                                      &none            &none            &none                 &none  &kp TAB     &kp ENTER  &none  &none      &none          &none
+                                      &none            &kp ESC          &kp BSPC                                                   &kp SPACE  &none          &none
             >;
 
             sensor-bindings = <&inc_dec_kp LEFT_ARROW RIGHT_ARROW>;
@@ -615,8 +626,43 @@
             >;
         };
 
+// *******************************
+// * 6 : LY_CONF - CONFIGURATION *
+// *******************************
+//                 ╔═══════╗                                                          ╔═══════╗
+//         ╔═══════╣       ╠═══════╦═══════╗                          ╔═══════╦═══════╣       ╠═══════╗
+// ╔═══════╣       ╠═══════╣       ║       ║                          ║       ║       ╠═══════╣       ╠═══════╗
+// ║       ╠═══════╣       ╠═══════╬═══════╣                          ╠═══════╬═══════╣  BT5  ╠═══════║ BTCLR ║
+// ╠═══════╣       ╠═══════╣       ║       ║                          ║       ║  BT0  ╠═══════╣       ╠═══════╣
+// ║       ╠═══════╣       ╠═══════╬═══════╣                          ╠═══════╬═══════╣  BT2  ╠═══════║       ║
+// ╠═══════╣       ╠═══════╣       ║       ║                          ║       ║  BT1  ╠═══════╣  BT3  ╠═══════╣
+// ║       ╠═══════╝       ╚═══════╩═══════╝                          ╚═══════╩═══════╝       ╚═══════║       ║
+// ╚═══════╝                                                                                          ╚═══════╝
+//                       ╔═══════╗                                              ╔═══════╗
+//                       ║       ║ ╔═══════╗                          ╔═══════╗ ║       ║
+//                       ╚═══════╝ ║       ║                          ║       ║ ╚═══════╝
+//                                 ╚═══════╝ ╔═══════╗      ╔═══════╗ ╚═══════╝
+//                                           ║       ║      ║       ║
+//                                           ╚═══════╝      ╚═══════╝
+//
+        layer_6 {
+            display-name = "config";
+            bindings = <
+&trans &trans &trans &trans &trans &trans &trans                   &trans &trans &trans        &trans        &trans        &trans          &trans
+&trans &trans &trans &trans &trans &trans &trans                   &trans &trans &trans        &trans        &trans        &bt BT_CLR_ALL  &trans
+&trans &trans &trans &trans &trans &trans &trans                   &trans &trans &bt BT_SEL 3  &bt BT_SEL 4  &trans        &trans          &trans
+&trans &trans &trans &trans &trans &trans &trans                   &trans &trans &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &trans          &trans
+                     &trans &trans &trans &trans &trans     &trans &trans &trans &trans        &trans
+                     &trans &trans &trans                                 &trans &trans        &trans
+            >;
+        };
+
+    }; // keymap
+};
+
+
 // ******************************
-// * 6 : LY_TMPL - TEMPLATE *
+// * 7 : LY_TMPL - TEMPLATE *
 // ******************************
 //                 ╔═══════╗                                                          ╔═══════╗
 //         ╔═══════╣       ╠═══════╦═══════╗                          ╔═══════╦═══════╣       ╠═══════╗
