@@ -457,7 +457,7 @@
 //                                           ║  TAB  ║      ║ ENTER ║
 //                                           ╚═══════╝      ╚═══════╝
         layer_0 { // Home
-            display-name = "Home 113";
+            display-name = "Home 114";
             bindings = <
 &lt_c LY_CONF B  &kp Y         &lt_m LY_ACSH O  &lt_i LY_CRSR U  &kp Z                                        &kp Q      &kp L          &lt_m LY_ACSH D  &kp W         &kp V
 &ht_p LWIN C     &ht_r LALT I  &ht_m LCTRL E    &ht_i LSHFT A    &kp COMMA                                    &kp SEMI   &ht_i LSHFT H  &ht_m LCTRL T    &ht_r LALT S  &ht_r LWIN N
@@ -560,9 +560,9 @@
 // * 4 : LY_CRSR - CURSORS *
 // ****************************
 //                 ╔═══════╗                                                          ╔═══════╗
-//         ╔═══════╣       ╠═══════╦═══════╗                          ╔═══════╦═══════╣  up   ╠═══════╗
+//         ╔═══════╣       ╠═══════╦═══════╗                          ╔═══════╦═══════╣       ╠═══════╗
 // ╔═══════╣       ╠═══════╣       ║       ║                          ║       ║ home  ╠═══════╣ pagup ╠═══════╗
-// ║       ╠═══════╣       ╠═══════╬═══════╣                          ╠═══════╬═══════╣       ╠═══════║  ins  ║
+// ║       ╠═══════╣       ╠═══════╬═══════╣                          ╠═══════╬═══════╣  up   ╠═══════║  ins  ║
 // ╠═══════╣       ╠═══════╣       ║       ║                          ║       ║ left  ╠═══════╣ right ╠═══════╣
 // ║       ╠═══════╣       ╠═══════╬═══════╣                          ╠═══════╬═══════╣ down  ╠═══════║       ║
 // ╠═══════╣       ╠═══════╣       ║       ║                          ║       ║  end  ╠═══════╣ pgdwn ╠═══════╣
@@ -579,8 +579,8 @@
             display-name = "Cursors";
             bindings = <
 &trans  &trans  &trans  &trans  &trans                     &trans  &kp HOME  &kp UP    &kp PG_UP  &kp INS
-&trans  &trans  &trans  &trans  &trans                     &trans  &kp LEFT  &trans    &kp RIGHT  &trans
-&trans  &trans  &trans  &trans  &trans                     &trans  &kp END   &kp DOWN  &kp PG_DN  &trans
+&trans  &trans  &trans  &trans  &trans                     &trans  &kp LEFT  &kp DOWN  &kp RIGHT  &trans
+&trans  &trans  &trans  &trans  &trans                     &trans  &kp END   &trans    &kp PG_DN  &trans
                         &trans  &trans  &trans     &trans  &trans  &trans
             >;
         };
