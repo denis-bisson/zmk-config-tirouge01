@@ -470,7 +470,7 @@
         layer_0 { // Home
             display-name = "Home 114";
             bindings = <
-&lt_c LY_CONF B  &kp Y         &lt_m LY_ACSH O  &lt_i LY_CRSR U  &kp Z                                        &kp Q      &kp L          &lt_m LY_ACSH D  &kp W         &kp V
+&lt_c LY_CONF B  &kp Y         &lt_m LY_ACSH O  &lt_i LY_CRSR U  &kp Z                                        &kp Q      &kp L          &lt_m LY_ACSH D  &kp W         &lt_c LY_CONF V
 &ht_p LWIN C     &ht_r LALT I  &ht_m LCTRL E    &ht_i LSHFT A    &kp COMMA                                    &kp SEMI   &ht_i LSHFT H  &ht_m LCTRL T    &ht_r LALT S  &ht_r LWIN N
 &kp G            &ht_r RALT X  &lt_m LY_ACSY J  &lt_i LY_NUMB K  &st_i LY_FUNC PERIOD                         &kp GRAVE  &kp R          &lt_m LY_ACSY M  &ht_r RALT F  &kp P
                                                 &ht_t ESC &none  &kp BSPC              &kp TAB     &kp ENTER  &kp SPACE  &none
@@ -631,11 +631,11 @@
 //                 ╔═══════╗                                                          ╔═══════╗
 //         ╔═══════╣       ╠═══════╦═══════╗                          ╔═══════╦═══════╣       ╠═══════╗
 // ╔═══════╣       ╠═══════╣       ║       ║                          ║       ║       ╠═══════╣       ╠═══════╗
-// ║       ╠═══════╣       ╠═══════╬═══════╣                          ╠═══════╬═══════╣  BT5  ╠═══════║ BTCLR ║
+// ║ BTLDR ╠═══════╣       ╠═══════╬═══════╣                          ╠═══════╬═══════╣  BT5  ╠═══════║ BTLDR ║
 // ╠═══════╣       ╠═══════╣       ║       ║                          ║       ║  BT0  ╠═══════╣       ╠═══════╣
 // ║       ╠═══════╣       ╠═══════╬═══════╣                          ╠═══════╬═══════╣  BT2  ╠═══════║       ║
 // ╠═══════╣       ╠═══════╣       ║       ║                          ║       ║  BT1  ╠═══════╣  BT3  ╠═══════╣
-// ║       ╠═══════╝       ╚═══════╩═══════╝                          ╚═══════╩═══════╝       ╚═══════║       ║
+// ║       ╠═══════╝       ╚═══════╩═══════╝                          ╚═══════╩═══════╝       ╚═══════║ BTCLR ║
 // ╚═══════╝                                                                                          ╚═══════╝
 //                       ╔═══════╗                                              ╔═══════╗
 //                       ║       ║ ╔═══════╗                          ╔═══════╗ ║       ║
@@ -647,10 +647,10 @@
         layer_6 {
             display-name = "config";
             bindings = <
-&trans &trans &trans &trans &trans                   &trans &trans        &trans        &trans        &bt BT_CLR_ALL
-&trans &trans &trans &trans &trans                   &trans &bt BT_SEL 3  &bt BT_SEL 4  &trans        &trans
-&trans &trans &trans &trans &trans                   &trans &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &trans
-                     &trans &trans &trans     &trans &trans &trans        &trans
+&bootloader &trans &trans &trans &trans                   &trans &trans        &trans        &trans        &bootloader
+&trans      &trans &trans &trans &trans                   &trans &bt BT_SEL 3  &bt BT_SEL 4  &trans        &trans
+&trans      &trans &trans &trans &trans                   &trans &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_CLR_ALL
+                          &trans &trans &trans     &trans &trans &trans        &trans
             >;
         };
 
