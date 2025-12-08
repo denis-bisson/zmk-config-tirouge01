@@ -23,6 +23,7 @@
 #define TIMING_RING   220 // Timing for ring finger for the "hold/layer" related actions.
 #define TIMING_MIDDLE 200 // Timing for middle finger for the "hold/layer" related actions.
 #define TIMING_INDEX  200 // Timing for index finger for the "hold/layer" related actions.
+#define TIMING_THUMB  400 // Timing for thumb finger on which I am accidentally pressing too often.
 
 // https://zmk.dev/docs/keymaps/behaviors/sticky-layer
 //
@@ -73,6 +74,16 @@
             #binding-cells = <2>;
             flavor = "balanced";
             tapping-term-ms = <TIMING_INDEX>;
+            quick-tap-ms = <175>;
+            require-prior-idle-ms = <150>;
+            bindings = <&kp>, <&kp>;
+        };
+
+        ht_t: hold_tap_thumb_finger {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "balanced";
+            tapping-term-ms =  <TIMING_THUMB>;
             quick-tap-ms = <175>;
             require-prior-idle-ms = <150>;
             bindings = <&kp>, <&kp>;
@@ -462,7 +473,7 @@
 &lt_c LY_CONF B  &kp Y         &lt_m LY_ACSH O  &lt_i LY_CRSR U  &kp Z                                        &kp Q      &kp L          &lt_m LY_ACSH D  &kp W         &kp V
 &ht_p LWIN C     &ht_r LALT I  &ht_m LCTRL E    &ht_i LSHFT A    &kp COMMA                                    &kp SEMI   &ht_i LSHFT H  &ht_m LCTRL T    &ht_r LALT S  &ht_r LWIN N
 &kp G            &ht_r RALT X  &lt_m LY_ACSY J  &lt_i LY_NUMB K  &st_i LY_FUNC PERIOD                         &kp GRAVE  &kp R          &lt_m LY_ACSY M  &ht_r RALT F  &kp P
-                                                &esc_hold        &kp BSPC              &kp TAB     &kp ENTER  &kp SPACE  &none
+                                                &ht_t ESC &none  &kp BSPC              &kp TAB     &kp ENTER  &kp SPACE  &none
             >;
 
             sensor-bindings = <&inc_dec_kp LEFT_ARROW RIGHT_ARROW>;
