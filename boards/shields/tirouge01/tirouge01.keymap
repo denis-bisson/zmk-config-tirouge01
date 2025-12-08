@@ -86,7 +86,7 @@
             tapping-term-ms =  <TIMING_THUMB>;
             quick-tap-ms = <175>;
             require-prior-idle-ms = <150>;
-            bindings = <&kp>, <&kp>;
+            bindings = <&none>, <&kp>;
         };
 
         lt_c: layer_tap_config_long_timing {
