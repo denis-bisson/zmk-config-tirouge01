@@ -476,8 +476,7 @@
                                                 &ht_t ESC 0      &kp BSPC              &kp TAB     &kp ENTER  &kp SPACE  &none
             >;
 
-            sensor-bindings = <&inc_dec_kp LEFT_ARROW RIGHT_ARROW>;
-//          sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
+            sensor-bindings = <&inc_dec_kp LEFT_ARROW RIGHT_ARROW &inc_dec_kp UP_ARROW DOWN_ARROW>;
         };
 
 
