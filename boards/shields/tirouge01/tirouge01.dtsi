@@ -74,14 +74,14 @@ RC(2,0)  RC(2,1)  RC(2,2)  RC(2,3)  RC(2,4)     RC(2,5)  RC(2,6)  RC(2,7)  RC(2,
         >;
     };
 
-    left_encoder: encoder_left {
+    left_encoder: left_encoder {
         compatible = "alps,ec11";
         a-gpios = <&pro_micro 4 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
         b-gpios = <&pro_micro 20 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
         steps = <30>;
     };
 
-    right_encoder: encoder_right {
+    right_encoder: right_encoder {
         compatible = "alps,ec11";
         a-gpios = <&pro_micro 4 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
         b-gpios = <&pro_micro 20 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
