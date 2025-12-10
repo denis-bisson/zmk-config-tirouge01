@@ -473,7 +473,7 @@
 &lt_c LY_CONF B  &kp Y         &lt_m LY_ACSH O  &lt_i LY_CRSR U  &kp Z                                        &kp Q      &kp L          &lt_m LY_ACSH D  &kp W         &lt_c LY_CONF V
 &ht_p LWIN C     &ht_r LALT I  &ht_m LCTRL E    &ht_i LSHFT A    &kp COMMA                                    &kp SEMI   &ht_i LSHFT H  &ht_m LCTRL T    &ht_r LALT S  &ht_r LWIN N
 &kp G            &ht_r RALT X  &lt_m LY_ACSY J  &lt_i LY_NUMB K  &st_i LY_FUNC PERIOD                         &kp GRAVE  &kp R          &lt_m LY_ACSY M  &ht_r RALT F  &kp P
-                                                &ht_t ESC 0      &kp BSPC              &kp TAB     &kp ENTER  &kp SPACE  &none
+                               &kp A            &ht_t ESC 0      &kp BSPC              &kp TAB     &kp ENTER  &kp SPACE  &none          &kp Z
             >;
 
             sensor-bindings = <&inc_dec_kp LEFT_ARROW RIGHT_ARROW &inc_dec_kp UP_ARROW DOWN_ARROW>;
@@ -505,7 +505,7 @@
 &mc_ua    &mc_ia  &mc_ec    &mc_oc    &mc_et                     &trans  &kp LS(N7)  &kp LS(N8)  &kp LS(N9)  &kp LS(N0)
 &kp RBKT  &mc_ic  &kp FSLH  &kp BSLH  &mc_ac                     &trans  &kp LS(N4)  &kp LS(N5)  &kp LS(N6)  &kp LS(MINUS)
 &mc_ut    &mc_it  &kp APOS  &mc_ug    &mc_uc                     &trans  &kp LS(N1)  &kp LS(N2)  &kp LS(N3)  &kp LS(EQUAL)
-                            &trans    &trans  &trans     &trans  &trans  &trans
+                  &trans    &trans    &trans  &trans     &trans  &trans  &trans      &trans
             >;
         };
 
@@ -534,7 +534,7 @@
 &mc_uua       &mc_uia  &mc_uec       &mc_uoc       &mc_uet                     &trans  &kp LS(N7)  &kp LS(N8)  &kp LS(N9)  &kp LS(N0)
 &kp LS(RBKT)  &mc_uic  &kp LS(FSLH)  &kp LS(BSLH)  &mc_uac                     &trans  &kp LS(N4)  &kp LS(N5)  &kp LS(N6)  &kp LS(MINUS)
 &mc_uut       &mc_uit  &kp LS(APOS)  &mc_uug       &mc_uuc                     &trans  &kp LS(N1)  &kp LS(N2)  &kp LS(N3)  &kp LS(EQUAL)
-                                     &trans        &trans   &trans     &trans  &trans  &trans
+                       &trans        &trans        &trans   &trans     &trans  &trans   &trans     &trans
             >;
         };
 
@@ -563,7 +563,7 @@
 &trans &trans &trans &trans &trans                   &kp EQUAL      &kp N7 &kp N8 &kp N9 &kp N0
 &trans &trans &trans &trans &trans                   &kp MINUS      &kp N4 &kp N5 &kp N6 &kp LS(N8)
 &trans &trans &trans &trans &trans                   &kp LS(EQUAL)  &kp N1 &kp N2 &kp N3 &kp GRAVE
-                     &trans &trans &trans     &trans &trans         &trans
+              &trans &trans &trans &trans     &trans &trans         &trans &trans
             >;
         };
 
@@ -592,7 +592,7 @@
 &trans  &trans  &trans  &trans  &trans                     &trans  &kp HOME  &kp UP    &kp PG_UP  &kp INS
 &trans  &trans  &trans  &trans  &trans                     &trans  &kp LEFT  &kp DOWN  &kp RIGHT  &trans
 &trans  &trans  &trans  &trans  &trans                     &trans  &kp END   &trans    &kp PG_DN  &trans
-                        &trans  &trans  &trans     &trans  &trans  &trans
+                &trans  &trans  &trans  &trans     &trans  &trans  &trans    &trans
             >;
         };
 
@@ -621,7 +621,7 @@
 &trans &trans &trans &trans &trans                   &trans &kp F7 &kp F8 &kp F9 &kp F10
 &trans &trans &trans &trans &trans                   &trans &kp F4 &kp F5 &kp F6 &kp F11
 &trans &trans &trans &trans &trans                   &trans &kp F1 &kp F2 &kp F3 &kp F12
-                     &trans &trans &trans     &trans &trans &trans
+              &trans &trans &trans &trans     &trans &trans &trans &trans
             >;
         };
 
@@ -650,7 +650,7 @@
 &bootloader &trans &trans &trans &trans                   &trans &trans        &trans        &trans        &bootloader
 &trans      &trans &trans &trans &trans                   &trans &bt BT_SEL 3  &bt BT_SEL 4  &trans        &trans
 &trans      &trans &trans &trans &trans                   &trans &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_CLR_ALL
-                          &trans &trans &trans     &trans &trans &trans        &trans
+                   &trans &trans &trans &trans     &trans &trans &trans        &trans        &trans
             >;
         };
 
