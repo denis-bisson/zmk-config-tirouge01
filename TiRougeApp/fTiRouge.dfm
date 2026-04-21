@@ -11,10 +11,8 @@ object Form1: TForm1
   Font.Name = 'Arial'
   Font.Style = []
   Menu = mmTiRouge
-  OldCreateOrder = False
   Position = poScreenCenter
   OnCreate = FormCreate
-  PixelsPerInch = 96
   TextHeight = 18
   object imgTiRouge: TImage
     Left = 8
@@ -23,27 +21,27 @@ object Form1: TForm1
     Height = 765
   end
   object lblLayerModifier: TLabel
-    Left = 736
-    Top = 160
+    Left = 760
+    Top = 56
     Width = 146
     Height = 18
     Caption = 'Layers and Modifiers'
   end
-  object clbLayerModifier: TCheckListGlobal6
-    Left = 736
-    Top = 184
+  object clbLayerModifier: TCheckListBox
+    Left = 760
+    Top = 80
     Width = 257
     Height = 289
     ItemHeight = 18
     Items.Strings = (
-      'Base'
-      'Base + Left Shift'
-      'Base + Right Ctrl'
-      'Base + Left Shift + Right Ctrl'
-      'Base + AltGr'
-      'Numbers'
-      'Numbers + Left Shift'
-      'Numbers + Right Ctrl'
+      'LY_DEFT'
+      'LY_ACSY'
+      'LY_ACSH'
+      'LY_NUMB'
+      'LY_CRSR'
+      'LY_FUNC'
+      'LY_CONF'
+      'LY_TMPL'
       'Numbers + Left Shift + Right Ctrl'
       'Numbers + AltGr'
       'Function Keys'
@@ -52,7 +50,6 @@ object Form1: TForm1
       'ALL')
     TabOrder = 0
     OnClick = actTestExecute
-    CheckWhenMove = True
   end
   object amTiRouge: TActionManager
     Left = 784

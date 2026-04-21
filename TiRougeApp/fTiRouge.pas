@@ -6,7 +6,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, System.Actions, Vcl.ActnList,
   Vcl.ActnMan, Vcl.ExtCtrls, Vcl.PlatformDefaultStyleActnCtrls, Vcl.Menus,
-  Vcl.StdCtrls, Vcl.AppEvnts, Vcl.CheckLst, uEnhancedCheckList;
+  Vcl.StdCtrls, Vcl.AppEvnts, Vcl.CheckLst;
 
 type
   TForm1 = class(TForm)
@@ -17,7 +17,7 @@ type
     est1: TMenuItem;
     lblLayerModifier: TLabel;
     mainApplicationEvents: TApplicationEvents;
-    clbLayerModifier: TCheckListGlobal6;
+    clbLayerModifier: TCheckListBox;
     procedure actTestExecute(Sender: TObject);
     procedure cbLayersModifiersChange(Sender: TObject);
     procedure mainApplicationEventsActivate(Sender: TObject);
@@ -40,7 +40,7 @@ uses
 {$R *.dfm}
 
 const
-  NB_KEYS = 44;
+  NB_KEYS = 36;
   NB_LAYERS = 12;
 
   {(*}
@@ -102,60 +102,50 @@ const
 {(*}
   MyKeys : array[0..pred(NB_KEYS)] of TKeyboardKey =
   (
-    (X:0	  ; Y:140 ; W:94     ; H:94      ; A:0       ; Mp:'1,0'  ; Ly:('esc'    , ''        , ''   , ''  , ''    , ''   , ''  , '' , '' , '' , ''    ,''  ) ; Hr: hrkmNone    ), // 00 - R1  L0
-    (X:100	; Y:140 ; W:94     ; H:94      ; A:0       ; Mp:'1,1'  ; Ly:('b'      , 'B'       , '”'  , '’' , ''    , ''   , ''  , '' , '' , '' , ''    ,''  ) ; Hr: hrkmNone    ), // 01 - R1  L1
-    (X:200	; Y:114 ; W:94     ; H:94      ; A:0       ; Mp:'1,2'  ; Ly:('y'      , 'Y'       , '←'  , '¥' , ''    , ''   , ''  , '' , '' , '' , ''    ,''  ) ; Hr: hrkmNone    ), // 02 - R1  L2
-    (X:300	; Y:100 ; W:94     ; H:94      ; A:0       ; Mp:'1,3'  ; Ly:('o'      , 'O'       , 'ø'  , 'Ø' , ''    , ''   , ''  , '' , '' , '' , ''    ,''  ) ; Hr: hrkmSftRCtrl), // 03 - R1  L3
-    (X:400	; Y:114 ; W:94     ; H:94      ; A:0       ; Mp:'1,4'  ; Ly:('u'      , 'U'       , '↓'  , '↑' , ''    , ''   , ''  , '' , '' , '' , ''    ,''  ) ; Hr: hrkmNone    ), // 04 - R1  L4
-    (X:500	; Y:114 ; W:94     ; H:94      ; A:0       ; Mp:'1,5'  ; Ly:('è'      , 'È'       , ''   , 'ˇ' , ''    , ''   , ''  , '' , '' , '' , ''    ,''  ) ; Hr: hrkmFctn    ), // 05 - R1  L5
-    (X:1200	; Y:114 ; W:94     ; H:94      ; A:0       ; Mp:'1,11' ; Ly:(';'      , ':'       , '´'  , '˝' , '°'   , ''   , ''  , '' , '' , '' , ''    ,''  ) ; Hr: hrkmNone    ), // 06 - R1  R1
-    (X:1300	; Y:114 ; W:94     ; H:94      ; A:0       ; Mp:'1,10' ; Ly:('l'      , 'L'       , 'ŀ'  , 'Ŀ' , ''    , '7'  , '&' , '' , '⅞', '{', 'F7'  ,'α' ) ; Hr: hrkmNone    ), // 07 - R1  R2
-    (X:1400	; Y:100 ; W:94     ; H:94      ; A:0       ; Mp:'1,9'  ; Ly:('d'      , 'D'       , 'ð'  , 'Ð' , ''    , '8'  , '*' , '' , '™', '}', 'F8'  ,'↑' ) ; Hr: hrkmSftRCtrl), // 08 - R1  R3
-    (X:1500	; Y:114 ; W:94     ; H:94      ; A:0       ; Mp:'1,8'  ; Ly:('w'      , 'W'       , 'ł'  , 'Ł' , ''    , '9'  , '(' , '' , '±', '[', 'F9'  ,'↑↑') ; Hr: hrkmNone    ), // 09 - R1  R4
-    (X:1600	; Y:140 ; W:94     ; H:94      ; A:0       ; Mp:'1,7'  ; Ly:('v'      , 'V'       , '“'  , '‘' , ''    , '0'  , ')' , '' , '' , ']', 'F10' ,''  ) ; Hr: hrkmNone    ), // 10 - R1  R5
-    (X:1700	; Y:140 ; W:94     ; H:94      ; A:0       ; Mp:'1,6'  ; Ly:('z'      , 'Z'       , ''   , ''  , '«'   , ''   , ''  , '' , '' , '' , ''    ,''  ) ; Hr: hrkmNone    ), // 11 - R1  R6
-    (X:0	  ; Y:240 ; W:94     ; H:94      ; A:0       ; Mp:'2,0'  ; Ly:('tab'    , ''        , ''   , ''  , ''    , ''   , ''  , '' , '' , '' , ''    ,''  ) ; Hr: hrkmNone    ), // 12 - R2  L0
-    (X:100	; Y:240 ; W:94     ; H:94      ; A:0       ; Mp:'2,1'  ; Ly:('c'      , 'C'       , '¢'  , '©' , ''    , ''   , ''  , '' , '' , '' , ''    ,''  ) ; Hr: hrkmGui     ), // 13 - R2  L1
-    (X:200	; Y:214 ; W:94     ; H:94      ; A:0       ; Mp:'2,2'  ; Ly:('i'      , 'I'       , '→'  , 'ı' , ''    , ''   , ''  , '' , '' , '' , ''    ,''  ) ; Hr: hrkmAlt     ), // 14 - R2  L2
-    (X:300	; Y:200 ; W:94     ; H:94      ; A:0       ; Mp:'2,3'  ; Ly:('e'      , 'E'       , 'œ'  , 'Œ' , '€'   , ''   , ''  , '' , '' , '' , ''    ,''  ) ; Hr: hrkmLCtrl   ), // 15 - R2  L3
-    (X:400	; Y:214 ; W:94     ; H:94      ; A:0       ; Mp:'2,4'  ; Ly:('a'      , 'A'       , 'æ'  , 'Æ' , ''    , ''   , ''  , '' , '' , '' , ''    ,''  ) ; Hr: hrkmShift   ), // 16 - R2  L4
-    (X:500	; Y:214 ; W:94     ; H:94      ; A:0       ; Mp:'2,5'  ; Ly:('é'      , 'É'       , ''   , '·' , ''    , ''   , ''  , '' , '' , '' , ''    ,''  ) ; Hr: hrkmSNbr    ), // 17 - R2  L5
-    (X:1200	; Y:214 ; W:94     ; H:94      ; A:0       ; Mp:'2,11' ; Ly:(','      , ''''      , '―'  , '×' , '<'   , ''   , ''  , '' , '' , '' , ''    ,''  ) ; Hr: hrkmNone    ), // 18 - R2  R1
-    (X:1300	; Y:214 ; W:94     ; H:94      ; A:0       ; Mp:'2,10' ; Ly:('h'      , 'H'       , 'ħ'  , 'Ħ' , ''    , '4'  , '$' , '¼', '€', '' , 'F4'  ,'←' ) ; Hr: hrkmShift   ), // 19 - R2  R2
-    (X:1400	; Y:200 ; W:94     ; H:94      ; A:0       ; Mp:'2,9'  ; Ly:('t'      , 'T'       , 'ŧ'  , 'Ŧ' , ''    , '5'  , '%' , '½', '⅜', '' , 'F5'  ,'↓' ) ; Hr: hrkmLCtrl   ), // 20 - R2  R3
-    (X:1500	; Y:214 ; W:94     ; H:94      ; A:0       ; Mp:'2,8'  ; Ly:('s'      , 'S'       , 'ß'  , '§' , ''    , '6'  , '?' , '¾', '⅝', '' , 'F6'  ,'→' ) ; Hr: hrkmAlt     ), // 21 - R2  R4
-    (X:1600	; Y:240 ; W:94     ; H:94      ; A:0       ; Mp:'2,7'  ; Ly:('n'      , 'N'       , 'ŉ'  , '♪' , ''    , '-'  , '_' , '' , '' , '' , 'F11' ,''  ) ; Hr: hrkmGui     ), // 22 - R2  R5
-    (X:1700	; Y:240 ; W:94     ; H:94      ; A:0       ; Mp:'2,6'  ; Ly:('q'      , 'Q'       , ''   , 'Ω' , ''    , ''   , ''  , '' , '' , '' , ''    ,''  ) ; Hr: hrkmNone    ), // 23 - R2  R6
-    (X:0	  ; Y:340 ; W:94     ; H:94      ; A:0       ; Mp:'3,0'  ; Ly:('^'      , '¨'       , ''   , '˚' , '`'   , ''   , ''  , '' , '' , '' , ''    ,''  ) ; Hr: hrkmNone    ), // 24 - R3  L0
-    (X:100	; Y:340 ; W:94     ; H:94      ; A:0       ; Mp:'3,1'  ; Ly:('g'      , 'G'       , 'ŋ'  , 'Ŋ' , ''    , ''   , ''  , '' , '' , '' , ''    ,''  ) ; Hr: hrkmNone    ), // 25 - R3  L1
-    (X:200	; Y:314 ; W:94     ; H:94      ; A:0       ; Mp:'3,2'  ; Ly:('x'      , 'X'       , ''   , ''  , '»'   , ''   , ''  , '' , '' , '' , ''    ,''  ) ; Hr: hrkmAltGr   ), // 26 - R3  L2
-    (X:300	; Y:300 ; W:94     ; H:94      ; A:0       ; Mp:'3,3'  ; Ly:('j'      , 'J'       , 'ĳ'  , 'Ĳ' , ''    , ''   , ''  , '' , '' , '' , ''    ,''  ) ; Hr: hrkmRCtrl   ), // 27 - R3  L3
-    (X:400	; Y:314 ; W:94     ; H:94      ; A:0       ; Mp:'3,4'  ; Ly:('k'      , 'K'       , 'ĸ'  , ''  , ''    , ''   , ''  , '' , '' , '' , ''    ,''  ) ; Hr: hrkmNbr     ), // 28 - R3  L4
-    (X:500	; Y:314 ; W:94     ; H:94      ; A:0       ; Mp:'3,5'  ; Ly:('à'      , 'À'       , ''   , '˘' , ''    , ''   , ''  , '' , '' , '' , ''    ,''  ) ; Hr: hrkmCrsr    ), // 29 - R3  L5
-    (X:1200	; Y:314 ; W:94     ; H:94      ; A:0       ; Mp:'3,11' ; Ly:('.'      , '"'       , '/'  , '÷' , '>'   , ''   , ''  , '' , '' , '' , ''    ,''  ) ; Hr: hrkmNone    ), // 30-  R3  R1
-    (X:1300	; Y:314 ; W:94     ; H:94      ; A:0       ; Mp:'3,10' ; Ly:('r'      , 'R'       , '¶'  , '®' , ''    , '1'  , '!' , '¹', '¡', '' , 'F1'  ,'Ω' ) ; Hr: hrkmNone    ), // 31-  R3  R2
-    (X:1400	; Y:300 ; W:94     ; H:94      ; A:0       ; Mp:'3,9'  ; Ly:('m'      , 'M'       , 'µ'  , 'º' , ''    , '2'  , '@' , '²', '' , '' , 'F2'  ,'q' ) ; Hr: hrkmRCtrl   ), // 32 - R3  R3
-    (X:1500	; Y:314 ; W:94     ; H:94      ; A:0       ; Mp:'3,8'  ; Ly:('f'      , 'F'       , ''   , 'ª' , ''    , '3'  , '#' , '³', '£', '' , 'F3'  ,'↓↓') ; Hr: hrkmAltGr   ), // 33 - R3  R4
-    (X:1600	; Y:340 ; W:94     ; H:94      ; A:0       ; Mp:'3,7'  ; Ly:('p'      , 'P'       , 'þ'  , 'Þ' , ''    , '='  , '+' , '' , '' , '' , 'F12' ,''  ) ; Hr: hrkmNone    ), // 34 - R3  R5
-    (X:1700	; Y:340 ; W:94     ; H:94      ; A:0       ; Mp:'3,6'  ; Ly:('/'      , '\'       , ''   , ''  , '|'   , ''   , ''  , '' , '' , '' , ''    ,''  ) ; Hr: hrkmNone    ), // 35 - R3  R6
-    (X:703	; Y:585 ; W:94     ; H:194     ; A:45.00   ; Mp:'5,2'  ; Ly:('<?>'    , ''        , ''   , ''  , ''    ,''    , ''  , '' , '' , '' , ''    ,''  ) ; Hr: hrkmNone    ), // 36 - R4  L4
-    (X:996	; Y:585 ; W:94     ; H:194     ; A:315.00  ; Mp:'5,8'  ; Ly:('enter'  , ''        , ''   , ''  , ''    , ''   , ''  , '' , '' , '' , ''    ,''  ) ; Hr: hrkmNone    ), // 37 - R4  R0
-    (X:340	; Y:526 ; W:94     ; H:94      ; A:0       ; Mp:'5,3'  ; Ly:('ç'      , 'Ç'       , '~'  , '¯' , '~'   , ''   , ''  , '' , '' , '' , ''    ,''  ) ; Hr: hrkmNone    ), // 38 - R5  L0
-    (X:440	; Y:526 ; W:94     ; H:94      ; A:0       ; Mp:'5,4'  ; Ly:('del'    , ''        , ''   , ''  , ''    , ''   , ''  , '' , '' , '' , ''    ,''  ) ; Hr: hrkmNone    ), // 39 - R5  L1
-    (X:562	; Y:554 ; W:119    ; H:94      ; A:22.5    ; Mp:'5,5'  ; Ly:('back'   , ''        , ''   , ''  , ''    , ''   , ''  , '' , '' , '' , ''    ,''  ) ; Hr: hrkmNone    ), // 40 - R5  L2
-    (X:1138	; Y:554 ; W:119    ; H:94      ; A:337.50  ; Mp:'5,11' ; Ly:('space'  , ''        , ''   , ''  , ''    , ''   , ''  , '' , '' , '' , ''    ,''  ) ; Hr: hrkmNone    ), // 41 - R5  R0
-    (X:1260	; Y:526 ; W:94     ; H:94      ; A:0       ; Mp:'5,10' ; Ly:('-'      , '_'       , ''   , '¿' , ''    , ''   , ''  , '' , '' , '' , ''    ,''  ) ; Hr: hrkmNone    ), // 42 - R5  R1
-    (X:1360	; Y:526 ; W:94     ; H:94      ; A:0       ; Mp:'5,9'  ; Ly:('='      , '+'       , '¸'  , '˛' , '¬'   , ''   , ''  , '' , '' , '' , ''    ,''  ) ; Hr: hrkmNone    )  // 43 - R5  R2
-
+    (X:	   0; Y: 40 ; W:94     ; H:94      ; A:0       ; Mp:'1,0'  ; Ly:('b'      , 'ú'       , 'Ú'  , ' ' , ''    , ''   , ''  , '' , '' , '' , ''    ,''  ) ; Hr: hrkmNone    ), // 00 - R1  L0
+    (X:	 100; Y: 13 ; W:94     ; H:94      ; A:0       ; Mp:'1,1'  ; Ly:('y'      , 'í'       , 'Í'  , ' ' , ''    , ''   , ''  , '' , '' , '' , ''    ,''  ) ; Hr: hrkmNone    ), // 01 - R1  L1
+    (X:	 200; Y:  0 ; W:94     ; H:94      ; A:0       ; Mp:'1,2'  ; Ly:('o'      , 'ê'       , 'Ê'  , ' ' , ''    , ''   , ''  , '' , '' , '' , ''    ,''  ) ; Hr: hrkmNone    ), // 02 - R1  L2
+    (X:	 300; Y: 13 ; W:94     ; H:94      ; A:0       ; Mp:'1,3'  ; Ly:('u'      , 'ù'       , 'Ù'  , ' ' , ''    , ''   , ''  , '' , '' , '' , ''    ,''  ) ; Hr: hrkmSftRCtrl), // 03 - R1  L3
+    (X:	 400; Y: 13 ; W:94     ; H:94      ; A:0       ; Mp:'1,4'  ; Ly:('z'      , 'û'       , 'Û'  , ' ' , ''    , ''   , ''  , '' , '' , '' , ''    ,''  ) ; Hr: hrkmNone    ), // 04 - R1  L4
+    (X:	 673; Y: 13 ; W:94     ; H:94      ; A:0       ; Mp:'1,5'  ; Ly:('q'      , ' '       , ' '  , '=' , ''    , ''   , ''  , '' , '' , '' , ''    ,''  ) ; Hr: hrkmFctn    ), // 05 - R1  L5
+    (X:	 773; Y: 13 ; W:94     ; H:94      ; A:0       ; Mp:'1,11' ; Ly:('l'      , '&'       , ' '  , '7' , '°'   , ''   , ''  , '' , '' , '' , ''    ,''  ) ; Hr: hrkmNone    ), // 06 - R1  R1
+    (X:	 873; Y:  0 ; W:94     ; H:94      ; A:0       ; Mp:'1,10' ; Ly:('d'      , '*'       , ' '  , '8' , ''    , '7'  , '&' , '' , '⅞', '{', 'F7'  ,'α' ) ; Hr: hrkmNone    ), // 07 - R1  R2
+    (X:	0973; Y: 13 ; W:94     ; H:94      ; A:0       ; Mp:'1,9'  ; Ly:('w'      , '('       , ' '  , '9' , ''    , '8'  , '*' , '' , '™', '}', 'F8'  ,'↑' ) ; Hr: hrkmSftRCtrl), // 08 - R1  R3
+    (X:	1073; Y: 40 ; W:94     ; H:94      ; A:0       ; Mp:'1,8'  ; Ly:('v'      , ')'       , ' '  , '0' , ''    , '9'  , '(' , '' , '±', '[', 'F9'  ,'↑↑') ; Hr: hrkmNone    ), // 09 - R1  R4
+    (X:	   0; Y:140 ; W:94     ; H:94      ; A:0       ; Mp:'1,7'  ; Ly:('c'      , 'ç'       , 'Ç'  , ' ' , ''    , '0'  , ')' , '' , '' , ']', 'F10' ,''  ) ; Hr: hrkmNone    ), // 10 - R1  R5
+    (X:	 100; Y:113 ; W:94     ; H:94      ; A:0       ; Mp:'1,6'  ; Ly:('i'      , 'î'       , 'Î'  , ' ' , '«'   , ''   , ''  , '' , '' , '' , ''    ,''  ) ; Hr: hrkmNone    ), // 11 - R1  R6
+    (X:	 200; Y:100 ; W:94     ; H:94      ; A:0       ; Mp:'2,0'  ; Ly:('e'      , 'é'       , 'É'  , ' ' , ''    , ''   , ''  , '' , '' , '' , ''    ,''  ) ; Hr: hrkmNone    ), // 12 - R2  L0
+    (X:	 300; Y:113 ; W:94     ; H:94      ; A:0       ; Mp:'2,1'  ; Ly:('a'      , 'à'       , 'À'  , ' ' , ''    , ''   , ''  , '' , '' , '' , ''    ,''  ) ; Hr: hrkmGui     ), // 13 - R2  L1
+    (X:	 400; Y:113 ; W:94     ; H:94      ; A:0       ; Mp:'2,2'  ; Ly:(','      , 'â'       , 'Â'  , ' ' , ''    , ''   , ''  , '' , '' , '' , ''    ,''  ) ; Hr: hrkmAlt     ), // 14 - R2  L2
+    (X:	 673; Y:113 ; W:94     ; H:94      ; A:0       ; Mp:'2,3'  ; Ly:(';'      , ' '       , ' '  , '-' , '€'   , ''   , ''  , '' , '' , '' , ''    ,''  ) ; Hr: hrkmLCtrl   ), // 15 - R2  L3
+    (X:	 773; Y:113 ; W:94     ; H:94      ; A:0       ; Mp:'2,4'  ; Ly:('h'      , '$'       , ' '  , '4' , ''    , ''   , ''  , '' , '' , '' , ''    ,''  ) ; Hr: hrkmShift   ), // 16 - R2  L4
+    (X:	 873; Y:100 ; W:94     ; H:94      ; A:0       ; Mp:'2,5'  ; Ly:('t'      , '%'       , ' '  , '5' , ''    , ''   , ''  , '' , '' , '' , ''    ,''  ) ; Hr: hrkmSNbr    ), // 17 - R2  L5
+    (X:	 973; Y:113 ; W:94     ; H:94      ; A:0       ; Mp:'2,11' ; Ly:('s'      , '?'       , ' '  , '6' , '<'   , ''   , ''  , '' , '' , '' , ''    ,''  ) ; Hr: hrkmNone    ), // 18 - R2  R1
+    (X:	1073; Y:140 ; W:94     ; H:94      ; A:0       ; Mp:'2,10' ; Ly:('n'      , '_'       , ' '  , '*' , ''    , '4'  , '$' , '¼', '€', '' , 'F4'  ,'←' ) ; Hr: hrkmShift   ), // 19 - R2  R2
+    (X:	   0; Y:240 ; W:94     ; H:94      ; A:0       ; Mp:'2,9'  ; Ly:('g'      , 'ü'       , 'Ü'  , ' ' , ''    , '5'  , '%' , '½', '⅜', '' , 'F5'  ,'↓' ) ; Hr: hrkmLCtrl   ), // 20 - R2  R3
+    (X:	 100; Y:213 ; W:94     ; H:94      ; A:0       ; Mp:'2,8'  ; Ly:('x'      , 'ï'       , 'Ï'  , ' ' , ''    , '6'  , '?' , '¾', '⅝', '' , 'F6'  ,'→' ) ; Hr: hrkmAlt     ), // 21 - R2  R4
+    (X:	 200; Y:200 ; W:94     ; H:94      ; A:0       ; Mp:'2,7'  ; Ly:('j'      , 'è'       , 'È'  , ' ' , ''    , '-'  , '_' , '' , '' , '' , 'F11' ,''  ) ; Hr: hrkmGui     ), // 22 - R2  R5
+    (X:	 300; Y:213 ; W:94     ; H:94      ; A:0       ; Mp:'2,6'  ; Ly:('k'      , 'ë'       , 'Ë'  , ' ' , ''    , ''   , ''  , '' , '' , '' , ''    ,''  ) ; Hr: hrkmNone    ), // 23 - R2  R6
+    (X:	 400; Y:213 ; W:94     ; H:94      ; A:0       ; Mp:'3,0'  ; Ly:('.'      , 'ô'       , 'Ô'  , ' ' , '`'   , ''   , ''  , '' , '' , '' , ''    ,''  ) ; Hr: hrkmNone    ), // 24 - R3  L0
+    (X:	 673; Y:213 ; W:94     ; H:94      ; A:0       ; Mp:'3,1'  ; Ly:('/'      , ' '       , ' '  , '+' , ''    , ''   , ''  , '' , '' , '' , ''    ,''  ) ; Hr: hrkmNone    ), // 25 - R3  L1
+    (X:	 773; Y:213 ; W:94     ; H:94      ; A:0       ; Mp:'3,2'  ; Ly:('r'      , '!'       , ' '  , '1' , '»'   , ''   , ''  , '' , '' , '' , ''    ,''  ) ; Hr: hrkmAltGr   ), // 26 - R3  L2
+    (X:	 873; Y:200 ; W:94     ; H:94      ; A:0       ; Mp:'3,3'  ; Ly:('m'      , '@'       , ' '  , '2' , ''    , ''   , ''  , '' , '' , '' , ''    ,''  ) ; Hr: hrkmRCtrl   ), // 27 - R3  L3
+    (X:	 973; Y:213 ; W:94     ; H:94      ; A:0       ; Mp:'3,4'  ; Ly:('f'      , '#'       , ' '  , '3' , ''    , ''   , ''  , '' , '' , '' , ''    ,''  ) ; Hr: hrkmNbr     ), // 28 - R3  L4
+    (X:	1073; Y:240 ; W:94     ; H:94      ; A:0       ; Mp:'3,5'  ; Ly:('p'      , '+'       , ' '   ,'/' , ''    , ''   , ''  , '' , '' , '' , ''    ,''  ) ; Hr: hrkmCrsr    ), // 29 - R3  L5
+    (X:	 240; Y:325 ; W:94     ; H:94      ; A:0       ; Mp:'3,11' ; Ly:('⎋'      , ' '       , ' '  , ' ' , '>'   , ''   , ''  , '' , '' , '' , ''    ,''  ) ; Hr: hrkmNone    ), // 30-  R3  R1
+    (X:	 340; Y:325 ; W:94     ; H:94      ; A:0       ; Mp:'3,10' ; Ly:('⌫'      , ' '       , ' '  , ' ' , ''    , '1'  , '!' , '¹', '¡', '' , 'F1'  ,'Ω' ) ; Hr: hrkmNone    ), // 31-  R3  R2
+    (X:	 450; Y:339 ; W:94     ; H:94      ; A:15      ; Mp:'3,9'  ; Ly:('⇥'      , ' '       , ' '  , ' ' , ''    , '2'  , '@' , '²', '' , '' , 'F2'  ,'q' ) ; Hr: hrkmRCtrl   ), // 32 - R3  R3
+    (X:	 624; Y:339 ; W:94     ; H:94      ; A:345     ; Mp:'3,8'  ; Ly:('↵'      , ' '       , ' '  , ' ' , ''    , '3'  , '#' , '³', '£', '' , 'F3'  ,'↓↓') ; Hr: hrkmAltGr   ), // 33 - R3  R4
+    (X:	 733; Y:325 ; W:94     ; H:94      ; A:0       ; Mp:'3,7'  ; Ly:('␣'      , ' '       , ' '  , ' ' , ''    , '='  , '+' , '' , '' , '' , 'F12' ,''  ) ; Hr: hrkmNone    ), // 34 - R3  R5
+    (X:	 833; Y:325 ; W:94     ; H:94      ; A:0       ; Mp:'3,6'  ; Ly:(' '      , ' '       , ' '  , ' ' , '|'   , ''   , ''  , '' , '' , '' , ''    ,''  ) ; Hr: hrkmNone    ) // 35 - R3  R6
   );
 {*)}
 
 procedure TForm1.actTestExecute(Sender: TObject);
-const
-  OFFSET_X = 50;
-  OFFSET_Y = 50;
-
 var
+  OFFSET_X: real;
+  OFFSET_Y: real;
+  ResizedFactor: Real;
   iIndexKey: integer;
   CenterX, CenterY: Real;
   Angle: Real;
@@ -183,27 +173,32 @@ begin
     imgTiRouge.Picture.Bitmap.Canvas.Pen.Style := psSolid;
     imgTiRouge.Picture.Bitmap.Canvas.Brush.Style := bsSolid;
     imgTiRouge.Picture.Bitmap.Canvas.Brush.Color := $E0E0E0;
-    imgTiRouge.Picture.Bitmap.Canvas.Font.Name := 'Segoe UI Variable';
+    // imgTiRouge.Picture.Bitmap.Canvas.Font.Name := 'Segoe UI Variable';
+    imgTiRouge.Picture.Bitmap.Canvas.Font.Name := 'Segoe UI Symbol';
+
+    ResizedFactor := 1.5;
+    OFFSET_X := 50 * ResizedFactor;
+    OFFSET_Y := 50 * ResizedFactor;
 
     iIndexKey := 0;
     while iIndexKey < NB_KEYS do
     begin
       if MyKeys[iIndexKey].Ly[0] <> '' then
       begin
-        CenterX := OFFSET_X + MyKeys[iIndexKey].X;
-        CenterY := OFFSET_Y + MyKeys[iIndexKey].Y;
+        CenterX := OFFSET_X + MyKeys[iIndexKey].X * ResizedFactor;
+        CenterY := OFFSET_Y + MyKeys[iIndexKey].Y * ResizedFactor;
 
-        Corner1.X := CenterX - (MyKeys[iIndexKey].W / 2);
-        Corner1.Y := CenterY - (MyKeys[iIndexKey].H / 2);
+        Corner1.X := CenterX - (MyKeys[iIndexKey].W / 2) * ResizedFactor;
+        Corner1.Y := CenterY - (MyKeys[iIndexKey].H / 2) * ResizedFactor;
 
-        Corner2.X := CenterX + (MyKeys[iIndexKey].W / 2);
-        Corner2.Y := CenterY - (MyKeys[iIndexKey].H / 2);
+        Corner2.X := CenterX + (MyKeys[iIndexKey].W / 2) * ResizedFactor;
+        Corner2.Y := CenterY - (MyKeys[iIndexKey].H / 2) * ResizedFactor;
 
-        Corner3.X := CenterX + (MyKeys[iIndexKey].W / 2);
-        Corner3.Y := CenterY + (MyKeys[iIndexKey].H / 2);
+        Corner3.X := CenterX + (MyKeys[iIndexKey].W / 2) * ResizedFactor;
+        Corner3.Y := CenterY + (MyKeys[iIndexKey].H / 2) * ResizedFactor;
 
-        Corner4.X := CenterX - (MyKeys[iIndexKey].W / 2);
-        Corner4.Y := CenterY + (MyKeys[iIndexKey].H / 2);
+        Corner4.X := CenterX - (MyKeys[iIndexKey].W / 2) * ResizedFactor;
+        Corner4.Y := CenterY + (MyKeys[iIndexKey].H / 2) * ResizedFactor;
 
         Angle := DegToRad(MyKeys[iIndexKey].A);
 
@@ -341,16 +336,18 @@ begin
             case paramLayerIndex of
               LAYER_MODIFIER_BASE:
                 begin
-                  if not SameText(MyKeys[iIndexKey].Ly[1], '') then
-                  begin
-                    StartX := CenterX - TextWidth - 3;
-                    StartY := CenterY - 9;
-                  end
-                  else
-                  begin
-                    StartX := CenterX - (TextWidth / 2);
-                    StartY := CenterY - (TextHeight / 2);
-                  end;
+                  StartX := CenterX - (TextWidth / 2);
+                  StartY := CenterY - (TextHeight / 2);
+                  //                  if not SameText(MyKeys[iIndexKey].Ly[1], '') then
+                  //                  begin
+                  //                    StartX := CenterX - TextWidth - 3;
+                  //                    StartY := CenterY - 9;
+                  //                  end
+                  //                  else
+                  //                  begin
+                  //                    StartX := CenterX - (TextWidth / 2);
+                  //                    StartY := CenterY - (TextHeight / 2);
+                  //                  end;
                 end;
 
               LAYER_MODIFIER_BASE_LSHIFT:
