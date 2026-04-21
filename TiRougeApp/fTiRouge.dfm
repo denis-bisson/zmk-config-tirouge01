@@ -11,8 +11,10 @@ object Form1: TForm1
   Font.Name = 'Arial'
   Font.Style = []
   Menu = mmTiRouge
+  OldCreateOrder = True
   Position = poScreenCenter
   OnCreate = FormCreate
+  PixelsPerInch = 96
   TextHeight = 18
   object imgTiRouge: TImage
     Left = 8

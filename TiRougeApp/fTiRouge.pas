@@ -8,7 +8,23 @@ uses
   Vcl.ActnMan, Vcl.ExtCtrls, Vcl.PlatformDefaultStyleActnCtrls, Vcl.Menus,
   Vcl.StdCtrls, Vcl.AppEvnts, Vcl.CheckLst;
 
+const
+  NB_LAYERS = 12;
+
 type
+  THomeRowKeyMod = (hrkmNone, hrkmShift, hrkmLCtrl, hrkmRCtrl, hrkmSftRCtrl, hrkmAlt, hrkmAltGr, hrkmGui, hrkmNbr, hrkmSNbr, hrkmFctn, hrkmCrsr);
+
+  TKeyboardKey = record
+    X: Real;
+    Y: Real;
+    W: Real;
+    H: Real;
+    A: Real;
+    Mp: string;
+    Ly: array[0..pred(NB_LAYERS)] of string;
+    Hr: THomeRowKeyMod;
+  end;
+
   TForm1 = class(TForm)
     imgTiRouge: TImage;
     amTiRouge: TActionManager;
@@ -25,6 +41,10 @@ type
   private
     { Private declarations }
     FisFirstAction: boolean;
+    FResizedFactor: Real;
+
+    procedure SetFontBasedOnLayer(const paramLayer: integer; Font: TFont);
+    procedure SetTextStartPosition(const paramLayer: integer; const paramKey: TKeyboardKey; const CenterX, CenterY: Real; const TextWidth, TextHeight: Integer; var StartX, StartY: Real);
   public
     { Public declarations }
   end;
@@ -41,15 +61,14 @@ uses
 
 const
   NB_KEYS = 36;
-  NB_LAYERS = 12;
 
   {(*}
   LAYER_MODIFIER_BASE                  =  0;
-  LAYER_MODIFIER_BASE_LSHIFT           =  1;
-  LAYER_MODIFIER_BASE_RCTRL            =  2;
-  LAYER_MODIFIER_BASE_LSHIFT_RCTRL     =  3;
+  LY_ACSY                              =  1;
+  LY_ACSH                              =  2;
+  LY_NUMB                              =  3;
   LAYER_MODIFIER_BASE_ALTGR            =  4;
-  LAYER_MODIFIER_NUMBERS               =  5;
+  LAYER_FUTURE_5                       =  5;
   LAYER_MODIFIER_NUMBERS_LSHIFT        =  6;
   LAYER_MODIFIER_NUMBERS_RCTRL         =  7;
   LAYER_MODIFIER_NUMBERS_LSHIFT_RCRTRL =  8;
@@ -70,20 +89,6 @@ const
   COLOR_FUNCTION_KEYS         = clFuchsia;
   COLOR_CURSORS               = clNavy;
   {*)}
-
-type
-  THomeRowKeyMod = (hrkmNone, hrkmShift, hrkmLCtrl, hrkmRCtrl, hrkmSftRCtrl, hrkmAlt, hrkmAltGr, hrkmGui, hrkmNbr, hrkmSNbr, hrkmFctn, hrkmCrsr);
-
-  TKeyboardKey = record
-    X: Real;
-    Y: Real;
-    W: Real;
-    H: Real;
-    A: Real;
-    Mp: string;
-    Ly: array[0..pred(NB_LAYERS)] of string;
-    Hr: THomeRowKeyMod;
-  end;
 
   //      OEM 1 = ;
   //      OEM 2 = é
@@ -141,11 +146,204 @@ const
   );
 {*)}
 
+procedure TForm1.SetFontBasedOnLayer(const paramLayer: integer; Font: TFont);
+begin
+  Font.Orientation := 0;
+
+  case paramLayer of
+    LAYER_MODIFIER_BASE:
+      begin
+        Font.Color := COLOR_BASE;
+        Font.Size := 30;
+        Font.Style := [fsBold];
+      end;
+
+    LY_ACSY:
+      begin
+        Font.Color := COLOR_BASE_LSHIFT;
+        Font.Size := 20;
+        Font.Style := [fsBold];
+      end;
+
+    LY_ACSH:
+      begin
+        Font.Color := COLOR_BASE_RCTRL;
+        Font.Size := 20;
+        Font.Style := [fsBold];
+      end;
+
+    LY_NUMB:
+      begin
+        Font.Color := COLOR_BASE_LSHIFT_RCTRL;
+        Font.Size := 20;
+        Font.Style := [fsBold];
+      end;
+
+    LAYER_MODIFIER_BASE_ALTGR:
+      begin
+        Font.Color := COLOR_BASE_ALTGR;
+        Font.Size := 14;
+        Font.Style := [fsBold];
+      end;
+
+    LAYER_FUTURE_5:
+      begin
+        Font.Color := COLOR_NUMBERS;
+        Font.Size := 25;
+        Font.Style := [fsBold];
+      end;
+
+    LAYER_MODIFIER_NUMBERS_LSHIFT:
+      begin
+        Font.Color := COLOR_NUMBERS_LSHIFT;
+        Font.Size := 22;
+        Font.Style := [fsBold];
+      end;
+
+    LAYER_MODIFIER_NUMBERS_RCTRL:
+      begin
+        Font.Color := COLOR_NUMBERS_RCTRL;
+        Font.Size := 14;
+        Font.Style := [fsBold];
+      end;
+
+    LAYER_MODIFIER_NUMBERS_LSHIFT_RCRTRL:
+      begin
+        Font.Color := COLOR_NUMBERS_LSHIFT_RCRTRL;
+        Font.Size := 14;
+        Font.Style := [fsBold];
+      end;
+
+    LAYER_MODIFIER_NUMBERS_ALTGR:
+      begin
+        Font.Color := COLOR_NUMBERS_ALTGR;
+        Font.Size := 14;
+        Font.Style := [fsBold];
+      end;
+
+    LAYER_MODIFIER_FUNCTION_KEYS:
+      begin
+        Font.Color := COLOR_FUNCTION_KEYS;
+        Font.Size := 14;
+        Font.Style := [fsBold];
+      end;
+
+    LAYER_MODIFIER_CURSORS:
+      begin
+        Font.Color := COLOR_CURSORS;
+        Font.Size := 14;
+        Font.Style := [fsBold];
+      end;
+  end;
+end;
+
+procedure TForm1.SetTextStartPosition(const paramLayer: integer; const paramKey: TKeyboardKey; const CenterX, CenterY: Real; const TextWidth, TextHeight: Integer; var StartX, StartY: Real);
+const
+  iBOTTOMBORDER = 5;
+  iTOPBORDER = 5;
+var
+  DeltaX: real;
+  DeltaY: real;
+  Angle: real;
+  iTextOffsetSign: integer;
+  iButtonHeight: reaL;
+  iButtonWidth: reaL;
+begin
+  StartX := 0;
+  StartY := 0;
+
+  iTextOffsetSign := IfThen(paramKey.X > 537, 1, -1);
+  iButtonWidth := paramKey.W * FResizedFactor;
+  iButtonHeight := paramKey.H * FResizedFactor;
+
+  case paramLayer of
+    LAYER_MODIFIER_BASE:
+      begin
+        StartX := CenterX - (TextWidth / 2);
+        StartY := CenterY - (TextHeight / 2);
+      end;
+
+    LY_ACSY:
+      begin
+        StartX := CenterX + (iTextOffsetSign * (0.5 * (iButtonWidth / 4))) - (TextWidth / 2);
+        StartY := (CenterY + ((paramKey.H * FResizedFactor) / 2) - TextHeight) - iBOTTOMBORDER;
+      end;
+
+    LY_ACSH:
+      begin
+        StartX := CenterX + (iTextOffsetSign * (0.5 * (iButtonWidth / 4))) - (TextWidth / 2);
+        StartY := (CenterY - (0.33 * iButtonHeight)) - (TextHeight / 2);
+      end;
+
+    LY_NUMB:
+      begin
+        StartX := CenterX + (iTextOffsetSign * (1.5 * (iButtonWidth / 4))) - (TextWidth / 2);
+        StartY := (CenterY + ((paramKey.H * FResizedFactor) / 2) - TextHeight) - iBOTTOMBORDER;
+      end;
+
+    LAYER_MODIFIER_BASE_ALTGR:
+      begin
+        StartX := CenterX - (paramKey.W / 2) + 4;
+        StartY := CenterY - (paramKey.H / 2) + (2 * TextHeight) + 5;
+      end;
+
+    LAYER_FUTURE_5:
+      begin
+        StartX := CenterX - (TextWidth / 2);
+        StartY := CenterY + ((paramKey.H / 2) * FResizedFactor) - (TextHeight - iBOTTOMBORDER);
+      end;
+
+    LAYER_MODIFIER_NUMBERS_LSHIFT:
+      begin
+        StartX := CenterX;
+        StartY := CenterY - TextHeight - 11;
+      end;
+
+    LAYER_MODIFIER_NUMBERS_RCTRL:
+      begin
+        StartX := CenterX + (paramKey.W / 2) - TextWidth - 3;
+        StartY := CenterY - (paramKey.H / 2) + TextHeight + 4;
+      end;
+
+    LAYER_MODIFIER_NUMBERS_LSHIFT_RCRTRL:
+      begin
+        StartX := CenterX + (paramKey.W / 2) - TextWidth - 3;
+        StartY := CenterY - (paramKey.H / 2) + 3;
+      end;
+
+    LAYER_MODIFIER_NUMBERS_ALTGR:
+      begin
+        StartX := CenterX + (paramKey.W / 2) - TextWidth - 3;
+        StartY := CenterY - (paramKey.H / 2) + (2 * TextHeight) + 5;
+      end;
+
+    LAYER_MODIFIER_FUNCTION_KEYS:
+      begin
+        StartX := CenterX + (paramKey.W / 2) - TextWidth - 3;
+        StartY := CenterY - (paramKey.H / 2) + (3 * TextHeight) + 7;
+      end;
+
+    LAYER_MODIFIER_CURSORS:
+      begin
+        StartX := CenterX - (paramKey.W / 2) + 4;
+        StartY := CenterY - (paramKey.H / 2) + (2 * TextHeight) + 5;
+      end;
+  end;
+
+  // Calculate the difference between the Start point and Center point
+  DeltaX := StartX - CenterX;
+  DeltaY := StartY - CenterY;
+
+  // Apply the rotation formulas
+  Angle := DegToRad(paramKey.A);
+  StartX := CenterX + (DeltaX * Cos(Angle)) - (DeltaY * Sin(Angle));
+  StartY := CenterY + (DeltaX * Sin(Angle)) + (DeltaY * Cos(Angle));
+end;
+
 procedure TForm1.actTestExecute(Sender: TObject);
 var
   OFFSET_X: real;
   OFFSET_Y: real;
-  ResizedFactor: Real;
   iIndexKey: integer;
   CenterX, CenterY: Real;
   Angle: Real;
@@ -154,7 +352,7 @@ var
   TextWidth, TextHeight: integer;
   sTextToWrite: string;
   paramLayerIndex: integer;
-  StartX, StartY, DeltaX, DeltaY: real;
+  StartX, StartY: real;
   sModWord: string;
 begin
   clbLayerModifier.Enabled := False;
@@ -176,29 +374,29 @@ begin
     // imgTiRouge.Picture.Bitmap.Canvas.Font.Name := 'Segoe UI Variable';
     imgTiRouge.Picture.Bitmap.Canvas.Font.Name := 'Segoe UI Symbol';
 
-    ResizedFactor := 1.5;
-    OFFSET_X := 50 * ResizedFactor;
-    OFFSET_Y := 50 * ResizedFactor;
+    FResizedFactor := 1.5;
+    OFFSET_X := 50 * FResizedFactor;
+    OFFSET_Y := 50 * FResizedFactor;
 
     iIndexKey := 0;
     while iIndexKey < NB_KEYS do
     begin
       if MyKeys[iIndexKey].Ly[0] <> '' then
       begin
-        CenterX := OFFSET_X + MyKeys[iIndexKey].X * ResizedFactor;
-        CenterY := OFFSET_Y + MyKeys[iIndexKey].Y * ResizedFactor;
+        CenterX := OFFSET_X + MyKeys[iIndexKey].X * FResizedFactor;
+        CenterY := OFFSET_Y + MyKeys[iIndexKey].Y * FResizedFactor;
 
-        Corner1.X := CenterX - (MyKeys[iIndexKey].W / 2) * ResizedFactor;
-        Corner1.Y := CenterY - (MyKeys[iIndexKey].H / 2) * ResizedFactor;
+        Corner1.X := CenterX - (MyKeys[iIndexKey].W / 2) * FResizedFactor;
+        Corner1.Y := CenterY - (MyKeys[iIndexKey].H / 2) * FResizedFactor;
 
-        Corner2.X := CenterX + (MyKeys[iIndexKey].W / 2) * ResizedFactor;
-        Corner2.Y := CenterY - (MyKeys[iIndexKey].H / 2) * ResizedFactor;
+        Corner2.X := CenterX + (MyKeys[iIndexKey].W / 2) * FResizedFactor;
+        Corner2.Y := CenterY - (MyKeys[iIndexKey].H / 2) * FResizedFactor;
 
-        Corner3.X := CenterX + (MyKeys[iIndexKey].W / 2) * ResizedFactor;
-        Corner3.Y := CenterY + (MyKeys[iIndexKey].H / 2) * ResizedFactor;
+        Corner3.X := CenterX + (MyKeys[iIndexKey].W / 2) * FResizedFactor;
+        Corner3.Y := CenterY + (MyKeys[iIndexKey].H / 2) * FResizedFactor;
 
-        Corner4.X := CenterX - (MyKeys[iIndexKey].W / 2) * ResizedFactor;
-        Corner4.Y := CenterY + (MyKeys[iIndexKey].H / 2) * ResizedFactor;
+        Corner4.X := CenterX - (MyKeys[iIndexKey].W / 2) * FResizedFactor;
+        Corner4.Y := CenterY + (MyKeys[iIndexKey].H / 2) * FResizedFactor;
 
         Angle := DegToRad(MyKeys[iIndexKey].A);
 
@@ -240,192 +438,17 @@ begin
           begin
             sTextToWrite := MyKeys[iIndexKey].Ly[paramLayerIndex];
 
+            // Set font properties based on current layer
+            SetFontBasedOnLayer(paramLayerIndex, imgTiRouge.Picture.Bitmap.Canvas.Font);
+
             // Measure the text dimensions
-            imgTiRouge.Picture.Bitmap.Canvas.Font.Orientation := 0;
-            case paramLayerIndex of
-              LAYER_MODIFIER_BASE:
-                begin
-                  imgTiRouge.Picture.Bitmap.Canvas.Font.Color := COLOR_BASE;
-                  imgTiRouge.Picture.Bitmap.Canvas.Font.Size := 25;
-                  imgTiRouge.Picture.Bitmap.Canvas.Font.Style := [fsBold];
-                end;
-
-              LAYER_MODIFIER_BASE_LSHIFT:
-                begin
-                  imgTiRouge.Picture.Bitmap.Canvas.Font.Color := COLOR_BASE_LSHIFT;
-                  imgTiRouge.Picture.Bitmap.Canvas.Font.Size := 25;
-                  imgTiRouge.Picture.Bitmap.Canvas.Font.Style := [fsBold];
-                end;
-
-              LAYER_MODIFIER_BASE_RCTRL:
-                begin
-                  imgTiRouge.Picture.Bitmap.Canvas.Font.Color := COLOR_BASE_RCTRL;
-                  imgTiRouge.Picture.Bitmap.Canvas.Font.Size := 14;
-                  imgTiRouge.Picture.Bitmap.Canvas.Font.Style := [fsBold];
-                end;
-
-              LAYER_MODIFIER_BASE_LSHIFT_RCTRL:
-                begin
-                  imgTiRouge.Picture.Bitmap.Canvas.Font.Color := COLOR_BASE_LSHIFT_RCTRL;
-                  imgTiRouge.Picture.Bitmap.Canvas.Font.Size := 14;
-                  imgTiRouge.Picture.Bitmap.Canvas.Font.Style := [fsBold];
-                end;
-
-              LAYER_MODIFIER_BASE_ALTGR:
-                begin
-                  imgTiRouge.Picture.Bitmap.Canvas.Font.Color := COLOR_BASE_ALTGR;
-                  imgTiRouge.Picture.Bitmap.Canvas.Font.Size := 14;
-                  imgTiRouge.Picture.Bitmap.Canvas.Font.Style := [fsBold];
-                end;
-
-              LAYER_MODIFIER_NUMBERS:
-                begin
-                  imgTiRouge.Picture.Bitmap.Canvas.Font.Color := COLOR_NUMBERS;
-                  imgTiRouge.Picture.Bitmap.Canvas.Font.Size := 22;
-                  imgTiRouge.Picture.Bitmap.Canvas.Font.Style := [fsBold];
-                end;
-
-              LAYER_MODIFIER_NUMBERS_LSHIFT:
-                begin
-                  imgTiRouge.Picture.Bitmap.Canvas.Font.Color := COLOR_NUMBERS_LSHIFT;
-                  imgTiRouge.Picture.Bitmap.Canvas.Font.Size := 22;
-                  imgTiRouge.Picture.Bitmap.Canvas.Font.Style := [fsBold];
-                end;
-
-              LAYER_MODIFIER_NUMBERS_RCTRL:
-                begin
-                  imgTiRouge.Picture.Bitmap.Canvas.Font.Color := COLOR_NUMBERS_RCTRL;
-                  imgTiRouge.Picture.Bitmap.Canvas.Font.Size := 14;
-                  imgTiRouge.Picture.Bitmap.Canvas.Font.Style := [fsBold];
-                end;
-
-              LAYER_MODIFIER_NUMBERS_LSHIFT_RCRTRL:
-                begin
-                  imgTiRouge.Picture.Bitmap.Canvas.Font.Color := COLOR_NUMBERS_LSHIFT_RCRTRL;
-                  imgTiRouge.Picture.Bitmap.Canvas.Font.Size := 14;
-                  imgTiRouge.Picture.Bitmap.Canvas.Font.Style := [fsBold];
-                end;
-
-              LAYER_MODIFIER_NUMBERS_ALTGR:
-                begin
-                  imgTiRouge.Picture.Bitmap.Canvas.Font.Color := COLOR_NUMBERS_ALTGR;
-                  imgTiRouge.Picture.Bitmap.Canvas.Font.Size := 14;
-                  imgTiRouge.Picture.Bitmap.Canvas.Font.Style := [fsBold];
-                end;
-
-              LAYER_MODIFIER_FUNCTION_KEYS:
-                begin
-                  imgTiRouge.Picture.Bitmap.Canvas.Font.Color := COLOR_FUNCTION_KEYS;
-                  imgTiRouge.Picture.Bitmap.Canvas.Font.Size := 14;
-                  imgTiRouge.Picture.Bitmap.Canvas.Font.Style := [fsBold];
-                end;
-
-              LAYER_MODIFIER_CURSORS:
-                begin
-                  imgTiRouge.Picture.Bitmap.Canvas.Font.Color := COLOR_CURSORS;
-                  imgTiRouge.Picture.Bitmap.Canvas.Font.Size := 14;
-                  imgTiRouge.Picture.Bitmap.Canvas.Font.Style := [fsBold];
-                end;
-            end;
-
             TextWidth := imgTiRouge.Picture.Bitmap.Canvas.TextWidth(sTextToWrite);
             TextHeight := imgTiRouge.Picture.Bitmap.Canvas.TextHeight('Mq');
 
-            StartX := 0;
-            StartY := 0;
-            case paramLayerIndex of
-              LAYER_MODIFIER_BASE:
-                begin
-                  StartX := CenterX - (TextWidth / 2);
-                  StartY := CenterY - (TextHeight / 2);
-                  //                  if not SameText(MyKeys[iIndexKey].Ly[1], '') then
-                  //                  begin
-                  //                    StartX := CenterX - TextWidth - 3;
-                  //                    StartY := CenterY - 9;
-                  //                  end
-                  //                  else
-                  //                  begin
-                  //                    StartX := CenterX - (TextWidth / 2);
-                  //                    StartY := CenterY - (TextHeight / 2);
-                  //                  end;
-                end;
-
-              LAYER_MODIFIER_BASE_LSHIFT:
-                begin
-                  StartX := CenterX;
-                  StartY := CenterY - 9;
-                end;
-
-              LAYER_MODIFIER_BASE_RCTRL:
-                begin
-                  StartX := CenterX - (MyKeys[iIndexKey].W / 2) + 4;
-                  StartY := CenterY - (MyKeys[iIndexKey].H / 2) + TextHeight + 4;
-                end;
-
-              LAYER_MODIFIER_BASE_LSHIFT_RCTRL:
-                begin
-                  StartX := CenterX - (MyKeys[iIndexKey].W / 2) + 4;
-                  StartY := CenterY - (MyKeys[iIndexKey].H / 2) + 3;
-                end;
-
-              LAYER_MODIFIER_BASE_ALTGR:
-                begin
-                  StartX := CenterX - (MyKeys[iIndexKey].W / 2) + 4;
-                  StartY := CenterY - (MyKeys[iIndexKey].H / 2) + (2 * TextHeight) + 5;
-                end;
-
-              LAYER_MODIFIER_NUMBERS:
-                begin
-                  StartX := CenterX - TextWidth - 3;
-                  StartY := CenterY - TextHeight - 11;
-                end;
-
-              LAYER_MODIFIER_NUMBERS_LSHIFT:
-                begin
-                  StartX := CenterX;
-                  StartY := CenterY - TextHeight - 11;
-                end;
-
-              LAYER_MODIFIER_NUMBERS_RCTRL:
-                begin
-                  StartX := CenterX + (MyKeys[iIndexKey].W / 2) - TextWidth - 3;
-                  StartY := CenterY - (MyKeys[iIndexKey].H / 2) + TextHeight + 4;
-                end;
-
-              LAYER_MODIFIER_NUMBERS_LSHIFT_RCRTRL:
-                begin
-                  StartX := CenterX + (MyKeys[iIndexKey].W / 2) - TextWidth - 3;
-                  StartY := CenterY - (MyKeys[iIndexKey].H / 2) + 3;
-                end;
-
-              LAYER_MODIFIER_NUMBERS_ALTGR:
-                begin
-                  StartX := CenterX + (MyKeys[iIndexKey].W / 2) - TextWidth - 3;
-                  StartY := CenterY - (MyKeys[iIndexKey].H / 2) + (2 * TextHeight) + 5;
-                end;
-
-              LAYER_MODIFIER_FUNCTION_KEYS:
-                begin
-                  StartX := CenterX + (MyKeys[iIndexKey].W / 2) - TextWidth - 3;
-                  StartY := CenterY - (MyKeys[iIndexKey].H / 2) + (3 * TextHeight) + 7;
-                end;
-
-              LAYER_MODIFIER_CURSORS:
-                begin
-                  StartX := CenterX - (MyKeys[iIndexKey].W / 2) + 4;
-                  StartY := CenterY - (MyKeys[iIndexKey].H / 2) + (2 * TextHeight) + 5;
-                end;
-            end;
-
-            // Calculate the difference between the Start point and Center point
-            DeltaX := StartX - CenterX;
-            DeltaY := StartY - CenterY;
-
-            // Apply the rotation formulas
-            StartX := CenterX + (DeltaX * Cos(Angle)) - (DeltaY * Sin(Angle));
-            StartY := CenterY + (DeltaX * Sin(Angle)) + (DeltaY * Cos(Angle));
-
             // Calculate the top-left corner of the text
+            SetTextStartPosition(paramLayerIndex, MyKeys[iIndexKey], CenterX, CenterY, TextWidth, TextHeight, StartX, StartY);
+
+            // Actually draw the text
             imgTiRouge.Picture.Bitmap.Canvas.Font.Orientation := Trunc(MyKeys[iIndexKey].A) * -10;
             //            imgTiRouge.Picture.Bitmap.Canvas.Brush.Style := bsSolid;
             //            imgTiRouge.Picture.Bitmap.Canvas.Brush.Color := clYellow;
