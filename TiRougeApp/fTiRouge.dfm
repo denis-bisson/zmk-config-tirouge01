@@ -13,6 +13,7 @@ object Form1: TForm1
   Menu = mmTiRouge
   OldCreateOrder = True
   Position = poScreenCenter
+  OnClose = FormClose
   OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 18
@@ -52,6 +53,14 @@ object Form1: TForm1
       'ALL')
     TabOrder = 0
     OnClick = actTestExecute
+  end
+  object ckbShowKeyZones: TCheckBox
+    Left = 760
+    Top = 375
+    Width = 97
+    Height = 17
+    Caption = 'Key zones'
+    TabOrder = 1
   end
   object amTiRouge: TActionManager
     Left = 784

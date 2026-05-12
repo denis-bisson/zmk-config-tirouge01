@@ -34,10 +34,12 @@ type
     lblLayerModifier: TLabel;
     mainApplicationEvents: TApplicationEvents;
     clbLayerModifier: TCheckListBox;
+    ckbShowKeyZones: TCheckBox;
     procedure actTestExecute(Sender: TObject);
     procedure cbLayersModifiersChange(Sender: TObject);
     procedure mainApplicationEventsActivate(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     { Private declarations }
     FisFirstAction: boolean;
@@ -45,6 +47,8 @@ type
 
     procedure SetFontBasedOnLayer(const paramLayer: integer; Font: TFont);
     procedure SetTextStartPosition(const paramLayer: integer; const paramKey: TKeyboardKey; const CenterX, CenterY: Real; const TextWidth, TextHeight: Integer; var StartX, StartY: Real);
+    procedure LoadConfiguration;
+    procedure SaveConfiguration;
   public
     { Public declarations }
   end;
@@ -55,7 +59,8 @@ var
 implementation
 
 uses
-  Vcl.Imaging.pngimage, System.Types, System.UITypes, System.Math;
+  Vcl.Imaging.pngimage, System.Types, System.UITypes, System.Math,
+  System.IniFiles;
 
 {$R *.dfm}
 
@@ -366,14 +371,6 @@ begin
     imgTiRouge.Picture.Bitmap.Width := imgTiRouge.Width;
     imgTiRouge.Picture.Bitmap.Height := imgTiRouge.Height;
 
-    imgTiRouge.Picture.Bitmap.Canvas.Pen.Color := $A0A0A0;
-    imgTiRouge.Picture.Bitmap.Canvas.Pen.Width := 3;
-    imgTiRouge.Picture.Bitmap.Canvas.Pen.Style := psSolid;
-    imgTiRouge.Picture.Bitmap.Canvas.Brush.Style := bsSolid;
-    imgTiRouge.Picture.Bitmap.Canvas.Brush.Color := $E0E0E0;
-    // imgTiRouge.Picture.Bitmap.Canvas.Font.Name := 'Segoe UI Variable';
-    imgTiRouge.Picture.Bitmap.Canvas.Font.Name := 'Segoe UI Symbol';
-
     FResizedFactor := 1.5;
     OFFSET_X := 50 * FResizedFactor;
     OFFSET_Y := 50 * FResizedFactor;
@@ -381,6 +378,13 @@ begin
     iIndexKey := 0;
     while iIndexKey < NB_KEYS do
     begin
+      imgTiRouge.Picture.Bitmap.Canvas.Pen.Color := $A0A0A0;
+      imgTiRouge.Picture.Bitmap.Canvas.Pen.Width := 3;
+      imgTiRouge.Picture.Bitmap.Canvas.Pen.Style := psSolid;
+      imgTiRouge.Picture.Bitmap.Canvas.Brush.Style := bsSolid;
+      imgTiRouge.Picture.Bitmap.Canvas.Brush.Color := $E0E0E0;
+      imgTiRouge.Picture.Bitmap.Canvas.Font.Name := 'Segoe UI Symbol';
+
       if MyKeys[iIndexKey].Ly[0] <> '' then
       begin
         CenterX := OFFSET_X + MyKeys[iIndexKey].X * FResizedFactor;
@@ -427,6 +431,17 @@ begin
         imgTiRouge.Picture.Bitmap.Canvas.LineTo(Trunc(RotCorner3.X), Trunc(RotCorner3.Y));
         imgTiRouge.Picture.Bitmap.Canvas.LineTo(Trunc(RotCorner4.X), Trunc(RotCorner4.Y));
         imgTiRouge.Picture.Bitmap.Canvas.LineTo(Trunc(RotCorner1.X), Trunc(RotCorner1.Y));
+
+        if ckbShowKeyZones.Checked then
+        begin
+          if MyKeys[iIndexKey].Y <= 240 then
+          begin
+            imgTiRouge.Picture.Bitmap.Canvas.Pen.Color := $A0A0A0;
+            imgTiRouge.Picture.Bitmap.Canvas.Pen.Width := 1;
+            imgTiRouge.Picture.Bitmap.Canvas.MoveTo(Trunc(RotCorner3.X), Trunc(RotCorner3.Y) - 20);
+            imgTiRouge.Picture.Bitmap.Canvas.LineTo(Trunc(RotCorner4.X), Trunc(RotCorner4.Y) - 20);
+          end;
+        end;
 
         // Text will be transparent...
         imgTiRouge.Picture.Bitmap.Canvas.Brush.Style := bsClear;
@@ -507,6 +522,12 @@ end;
 procedure TForm1.FormCreate(Sender: TObject);
 begin
   FisFirstAction := True;
+  LoadConfiguration;
+end;
+
+procedure TForm1.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  SaveConfiguration;
 end;
 
 procedure TForm1.mainApplicationEventsActivate(Sender: TObject);
@@ -518,7 +539,66 @@ begin
     Application.ProcessMessages;
     actTestExecute(actTest);
   end;
+end;
 
+procedure TForm1.LoadConfiguration;
+var
+  IniFile: TIniFile;
+  iIndex: Integer;
+begin
+  // Load windows position from last time.
+  IniFile := TIniFile.Create(ChangeFileExt(Application.ExeName, '.ini'));
+  try
+    WindowState := TWindowState(IniFile.ReadInteger('MainForm', 'WindowState', Integer(wsNormal)));
+    if WindowState = wsNormal then
+    begin
+      Left := IniFile.ReadInteger('MainForm', 'Left', Left);
+      Top := IniFile.ReadInteger('MainForm', 'Top', Top);
+      Width := IniFile.ReadInteger('MainForm', 'Width', Width);
+      Height := IniFile.ReadInteger('MainForm', 'Height', Height);
+    end;
+
+    ckbShowKeyZones.Checked := IniFile.ReadBool('Checkboxes', 'ShowKeyZones', ckbShowKeyZones.Checked);
+    for iIndex := 0 to Pred(clbLayerModifier.Items.Count) do
+    begin
+      clbLayerModifier.Checked[iIndex] := IniFile.ReadBool('Checkboxes', Format('LayerModifier_%d', [iIndex]), clbLayerModifier.Checked[iIndex]);
+    end;
+  finally
+    IniFile.Free;
+  end;
+end;
+
+procedure TForm1.SaveConfiguration;
+var
+  IniFile: TIniFile;
+  iIndex: Integer;
+begin
+  // Save windows position for next time.
+  IniFile := TIniFile.Create(ChangeFileExt(Application.ExeName, '.ini'));
+  try
+    // If form is maximized, save normal-state bounds.
+    if WindowState = wsMaximized then
+    begin
+      IniFile.WriteInteger('MainForm', 'WindowState', Integer(wsNormal));
+    end
+    else
+    begin
+      IniFile.WriteInteger('MainForm', 'WindowState', Integer(WindowState));
+      IniFile.WriteInteger('MainForm', 'Left', Left);
+      IniFile.WriteInteger('MainForm', 'Top', Top);
+      IniFile.WriteInteger('MainForm', 'Width', Width);
+      IniFile.WriteInteger('MainForm', 'Height', Height);
+    end;
+
+    IniFile.WriteBool('Checkboxes', 'ShowKeyZones', ckbShowKeyZones.Checked);
+    for iIndex := 0 to Pred(clbLayerModifier.Items.Count) do
+    begin
+      IniFile.WriteBool('Checkboxes', Format('LayerModifier_%d', [iIndex]), clbLayerModifier.Checked[iIndex]);
+    end;
+
+  finally
+    IniFile.Free;
+  end;
 end;
 
 end.
