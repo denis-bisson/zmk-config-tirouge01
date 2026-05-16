@@ -16,7 +16,8 @@
 #define LY_CRSR 4 // Cursor layer.
 #define LY_FUNC 5 // Function layer.
 #define LY_CONF 6 // Configuration layer.
-#define LY_TMPL 7 // Template layer.
+#define LY_SYMA 7 // Symbols Group A layer
+#define LY_TMPL 8 // Template layer.
 
 #define TIMING_CONFIG 990 // Timing for configuration layer for the "hold/layer" related actions.
 #define TIMING_PINKY  220 // Timing for pinky finger for the "hold/layer" related actions.
@@ -472,7 +473,7 @@
             bindings = <
 &lt_c LY_CONF B  &kp Y         &lt_m LY_ACSH O  &lt_i LY_CRSR U  &kp Z                                        &kp Q      &kp L          &lt_m LY_ACSH D  &kp W         &lt_c LY_CONF V
 &ht_p LWIN C     &ht_r LALT I  &ht_m LCTRL E    &ht_i LSHFT A    &kp COMMA                                    &kp SEMI   &ht_i LSHFT H  &ht_m LCTRL T    &ht_r LALT S  &ht_r LWIN N
-&kp G            &ht_r RALT X  &lt_m LY_ACSY J  &lt_i LY_NUMB K  &st_i LY_FUNC PERIOD                         &kp GRAVE  &kp R          &lt_m LY_ACSY M  &ht_r RALT F  &kp P
+&lt_p LY_SYMA G  &ht_r RALT X  &lt_m LY_ACSY J  &lt_i LY_NUMB K  &st_i LY_FUNC PERIOD                         &kp GRAVE  &kp R          &lt_m LY_ACSY M  &ht_r RALT F  &lt_p LY_SYMA P
                                &kp A            &ht_t ESC 0      &kp BSPC              &kp TAB     &kp ENTER  &kp SPACE  &none          &kp Z
             >;
 
@@ -583,6 +584,13 @@
 // ╠═══════╣       ╠═══════╣       ║       ║                          ║       ║  end  ╠═══════╣ pgdwn ╠═══════╣
 // ║       ╠═══════╝       ╚═══════╩═══════╝                          ╚═══════╩═══════╝       ╚═══════║       ║
 // ╚═══════╝                                                                                          ╚═══════╝
+// ╔═══════╦═══════╦═══════╦═══════╦═══════╗                          ╔═══════╦═══════╦═══════╦═══════╦═══════╗
+// ║       ║       ║       ║       ║       ║                          ║       ║       ║       ║   [   ║   ]   ║
+// ╠═══════╬═══════╬═══════╬═══════╬═══════╣                          ╠═══════╬═══════╬═══════╬═══════╬═══════╣
+// ║       ║       ║       ║       ║       ║                          ║       ║   ↑   ║       ║   {   ║   }   ║
+// ╠═══════╬═══════╬═══════╬═══════╬═══════╣                          ╠═══════╬═══════╬═══════╬═══════╬═══════╣
+// ║       ║       ║       ║       ║       ║                          ║   ←   ║   ↓   ║   →   ║   <   ║   >   ║
+// ╚═══════╩═══════╩═══════╩═══════╩═══════╝                          ╚═══════╩═══════╩═══════╩═══════╩═══════╝
 //                       ╔═══════╗                                              ╔═══════╗
 //                       ║       ║ ╔═══════╗                          ╔═══════╗ ║       ║
 //                       ╚═══════╝ ║       ║                          ║       ║ ╚═══════╝
@@ -658,8 +666,36 @@
             >;
         };
 
+// *********************************
+// * 7 : LY_SYMA - SYMBOLS GROUP A *
+// *********************************
+// ╔═══════╦═══════╦═══════╦═══════╦═══════╗                          ╔═══════╦═══════╦═══════╦═══════╦═══════╗
+// ║   ß   ║   Œ   ║   œ   ║   µ   ║   Ω   ║                          ║   ×   ║   ÷   ║   º   ║   [   ║   ]   ║
+// ╠═══════╬═══════╬═══════╬═══════╬═══════╣                          ╠═══════╬═══════╬═══════╬═══════╬═══════╣
+// ║   ©   ║   ¶   ║   €   ║   æ   ║   Æ   ║                          ║   ®   ║   ↑   ║   ™   ║   {   ║   }   ║
+// ╠═══════╬═══════╬═══════╬═══════╬═══════╣                          ╠═══════╬═══════╬═══════╬═══════╬═══════╣
+// ║   ¢   ║   ¼   ║   ½   ║   ¾   ║   ♪   ║                          ║   ←   ║   ↓   ║   →   ║   <   ║   >   ║
+// ╚═══════╩═══════╩═══════╩═══════╩═══════╝                          ╚═══════╩═══════╩═══════╩═══════╩═══════╝
+//                       ╔═══════╗                                              ╔═══════╗
+//                       ║       ║ ╔═══════╗                          ╔═══════╗ ║       ║
+//                       ╚═══════╝ ║       ║                          ║       ║ ╚═══════╝
+//                                 ╚═══════╝ ╔═══════╗      ╔═══════╗ ╚═══════╝
+//                                           ║       ║      ║       ║
+//                                           ╚═══════╝      ╚═══════╝
+//
+        layer_7 {
+            display-name = "template";
+            bindings = <
+&kp RC(S)     &kp RC(LS(E)) &kp RC(E)     &kp RC(M)  &kp RC(LS(Q))            &kp RC(LS(COMMA)) &kp RC(LS(PERIOD)) &kp RC(LS(M))  &kp RA(N9)    &kp RA(N0)
+&kp RC(LS(C)) &kp RC(R)     &kp RC(LS(E)) &kp RC(A)  &kp RC(LS(A))            &kp RC(LS(R))     &kp RC(LS(U))      &kp RC(LS(N8)) &kp RA(N7)    &kp RA(N8)
+&kp RC(C)     &kp RC(N4)    &kp RC(N5)    &kp RC(N6) &kp RC(LS(N))            &kp RC(Y)         &kp RC(U)          &kp RC(I)      &kp RA(COMMA) &kp RA(PERIOD)
+                            &trans        &trans     &trans        &trans     &trans            &trans             &trans         &trans
+                >;
+        };
+
+
 // ******************************
-// * 7 : LY_TMPL - TEMPLATE *
+// * 8 : LY_TMPL - TEMPLATE *
 // ******************************
 //                 ╔═══════╗                                                          ╔═══════╗
 //         ╔═══════╣       ╠═══════╦═══════╗                          ╔═══════╦═══════╣       ╠═══════╗
@@ -677,7 +713,7 @@
 //                                           ║       ║      ║       ║
 //                                           ╚═══════╝      ╚═══════╝
 //
-        layer_7 {
+        layer_8 {
             display-name = "template";
             bindings = <
 &trans &trans &trans &trans &trans                   &trans &trans &trans &trans &trans
@@ -689,5 +725,3 @@
 
     }; // keymap
 };
-
-

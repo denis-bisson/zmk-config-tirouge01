@@ -16,6 +16,8 @@
 
 é à è ê ç â ô î û ù ï ë ü ö á ñ í ó ú ã õ ä ò ÿ ì ý ŝ ĉ ĝ ĵ ĥ
 é à è ê ç â ô î û ù ï ë ü ö à ñ ì ó ú ã õ ä ò ÿ ì ý ŝ ĉ ĝ ĵ ĥ
+É À È Ê Ç Â Ê Î Û Ù Ï Ë Ü Ö À Ñ Í Ó Ú Ã Õ Ä Ò Ÿ Ì Ý Ŝ Ĉ Ĝ Ĵ Ĥ
+
 
 //                 ╔═══════╗                                                          ╔═══════╗
 //         ╔═══════╣   ê   ╠═══════╦═══════╗                          ╔═══════╦═══════╣   *   ╠═══════╗
@@ -92,6 +94,52 @@
 ŝ = &kp LBKT &kp S         // "Left Bracket" + "S"
 Ŝ = &kp LBKT &kp LS(S)     // "Left Bracket" + "Left Shift" + "S"
 
+ß = &kp RC(S)              // "Right Control" + "S"
+Œ = &kp RC(LS(E))          // "Right Control" + "Left Shift" + "E"
+œ = &kp RC(E)              // "Right Control" + "E"
+µ = &kp RC(M)              // "Right Control" + "M"
+Ω = &kp RC(LS(Q))          // "Right Control" + "Left Shift" + "Q"
+× = &kp RC(LS(COMMA))      // "Right Control" + "Left Shift" + "Comma"
+÷ = &kp RC(LS(PERIOD))     // "Right Control" + "Left Shift" + "Period"
+º = &kp RC(LS(M))          // "Right Control" + "Left Shift" + "M"
+[ = &kp RA(N9)             // "Right Alt" + "9"
+] = &kp RA(N0)             // "Right Alt" + "0")
+© = &kp RC(LS(C))          // "Right Control" + "Left Shift" + "C"
+¶ = &kp RC(R)              // "Right Control" + "R"
+€ = &kp RC(LS(N4))         // "Right Control" + "Left Shift" + "4"
+æ = &kp RC(A)              // "Right Control" + "A"
+Æ = &kp RC(LS(A))          // "Right Control" + "Left Shift" + "A"
+® = &kp RC(LS(R))          // "Right Control" + "Left Shift" + "R"
+↑ = &kp RC(LS(U))          // "Right Control" + "Left Shift" + "U"
+™ = &kp RC(LS(N8))         // "Right Control" + "Left Shift" + "8"
+{ = &kp RA(N7)             // "Right Alt" + "7"
+} = &kp RA(N8)             // "Right Alt" + "8"
+¢ = &kp RC(C)              // "Right Control" + "C"
+¼ = &kp RC(N4)             // "Right Control" + "4"
+½ = &kp RC(N5)             // "Right Control" + "5"
+¾ = &kp RC(N6)             // "Right Control" + "6"
+♪ = &kp RC(LS(N))          // "Right Control" + "Left Shift" + "N"
+← = &kp RC(Y)              // "Right Control" + "Y"
+↓ = &kp RC(U)              // "Right Control" + "U"
+→ = &kp RC(I)              // "Right Control" + "I"
+< = &kp RA(COMMA)          // "Right Alt" + "Comma"
+> = &kp RA(PERIOD)         // "Right Alt" + "Period"
+
+// ╔═══════╦═══════╦═══════╦═══════╦═══════╗                          ╔═══════╦═══════╦═══════╦═══════╦═══════╗
+// ║   ß   ║   Œ   ║   œ   ║   µ   ║   Ω   ║                          ║   ×   ║   ÷   ║   º   ║   [   ║   ]   ║
+// ╠═══════╬═══════╬═══════╬═══════╬═══════╣                          ╠═══════╬═══════╬═══════╬═══════╬═══════╣
+// ║   ©   ║   ¶   ║   €   ║   æ   ║   Æ   ║                          ║   ®   ║   ↑   ║   ™   ║   {   ║   }   ║
+// ╠═══════╬═══════╬═══════╬═══════╬═══════╣                          ╠═══════╬═══════╬═══════╬═══════╬═══════╣
+// ║   ¢   ║   ¼   ║   ½   ║   ¾   ║   ♪   ║                          ║   ←   ║   ↓   ║   →   ║   <   ║   >   ║
+// ╚═══════╩═══════╩═══════╩═══════╩═══════╝                          ╚═══════╩═══════╩═══════╩═══════╩═══════╝
+
+
+ ¹ = &kp RC(N1)             // "Right Control" + "1"
+ ² = &kp RC(N2)             // "Right Control" + "2"
+ ³ = &kp RC(N3)             // "Right Control" + "3"
+
+
+
 | Lettre | French usage (%) | Supported |
 | :----: | :--------------- | :-------- |
 | é      | 1.94             | YES       |
@@ -125,3 +173,4 @@
 | ú      | 0                |           |
 | ý      | 0                |           |
 | ÿ      | 0                |           |
+
