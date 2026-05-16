@@ -518,12 +518,12 @@
 // **********************************************
 //                 ╔═══════╗                                                          ╔═══════╗
 //         ╔═══════╣   Ê   ╠═══════╦═══════╗                          ╔═══════╦═══════╣       ╠═══════╗
-// ╔═══════╣   Í   ╠═══════╣   Ù   ║   Û   ║                          ║       ║       ╠═══════╣       ╠═══════╗
-// ║   Ú   ╠═══════╣   É   ╠═══════╬═══════╣                          ╠═══════╬═══════╣       ╠═══════║       ║
-// ╠═══════╣   Î   ╠═══════╣   À   ║   Â   ║                          ║       ║       ╠═══════╣       ╠═══════╣
+// ╔═══════╣   Ë   ╠═══════╣   Ô   ║   Û   ║                          ║       ║       ╠═══════╣       ╠═══════╗
+// ║   ^   ╠═══════╣   É   ╠═══════╬═══════╣                          ╠═══════╬═══════╣       ╠═══════║       ║
+// ╠═══════╣   Î   ╠═══════╣   À   ║   Ù   ║                          ║   ~   ║       ╠═══════╣       ╠═══════╣
 // ║   Ç   ╠═══════╣   È   ╠═══════╬═══════╣                          ╠═══════╬═══════╣       ╠═══════║       ║
-// ╠═══════╣   Ï   ╠═══════╣   Ë   ║   Ô   ║                          ║       ║       ╠═══════╣       ╠═══════╣
-// ║   Ü   ╠═══════╝       ╚═══════╩═══════╝                          ╚═══════╩═══════╝       ╚═══════║       ║
+// ╠═══════╣   Ï   ╠═══════╣   Â   ║   ´   ║                          ║   ¨   ║       ╠═══════╣       ╠═══════╣
+// ║   `   ╠═══════╝       ╚═══════╩═══════╝                          ╚═══════╩═══════╝       ╚═══════║       ║
 // ╚═══════╝                                                                                          ╚═══════╝
 //                       ╔═══════╗                                              ╔═══════╗
 //                       ║       ║ ╔═══════╗                          ╔═══════╗ ║       ║
@@ -535,10 +535,10 @@
         layer_2 {
             display-name = "ACCSYMB";
             bindings = <
-&mc_uua       &mc_uia  &mc_uec       &mc_uug       &mc_uuc                     &trans  &kp LS(N7)  &kp LS(N8)  &kp LS(N9)  &kp LS(N0)
-&kp LS(RBKT)  &mc_uic  &kp LS(FSLH)  &kp LS(BSLH)  &mc_uac                     &trans  &kp LS(N4)  &kp LS(N5)  &kp LS(N6)  &kp LS(MINUS)
-&mc_uut       &mc_uit  &kp LS(APOS)  &mc_uet       &mc_uoc                     &trans  &kp LS(N1)  &kp LS(N2)  &kp LS(N3)  &kp LS(EQUAL)
-                       &trans        &trans        &trans   &trans     &trans  &trans   &trans     &trans
+&kp LBKT      &mc_uet  &mc_uec       &mc_uoc       &mc_uuc                          &trans        &trans  &trans  &trans  &trans
+&kp LS(RBKT)  &mc_uic  &kp LS(FSLH)  &kp LS(BSLH)  &mc_uug                          &kp RA(RBKT)  &trans  &trans  &trans  &trans
+&kp RA(LBKT)  &mc_uit  &kp LS(APOS)  &mc_uac       &kp RC(SEMI)                     &kp LS(LBKT)  &trans  &trans  &trans  &trans
+                       &trans        &trans        &trans        &trans     &trans  &trans        &trans  &trans
             >;
         };
 
