@@ -42,12 +42,8 @@ object Form1: TForm1
       'LY_CRSR'
       'LY_FUNC'
       'LY_CONF'
-      'LY_TMPL'
-      'Numbers + Left Shift + Right Ctrl'
-      'Numbers + AltGr'
-      'Function Keys'
-      'Cursors'
-      'Modifier and layers'
+      'LY_SYMBA'
+      'Layers'
       'ALL')
     TabOrder = 0
     OnClick = actTestExecute

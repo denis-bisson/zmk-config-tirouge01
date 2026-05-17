@@ -12,7 +12,22 @@ const
   NB_LAYERS = 12;
 
 type
-  THomeRowKeyMod = (hrkmNone, hrkmACSH, hrkmCrsr, hrkmConfig, hrkmLShift, hrkmLCtrl, hrkmRCtrl, hrkmSftRCtrl, hrkmAlt, hrkmACSY, hrkmAltGr, hrkmLWin, hrkmNbr, hrkmSNbr, hrkmFctn);
+  THomeRowKeyMod = (
+    hrkmDEFT,
+    hrkmACSY,
+    hrkmACSH,
+    hrkmNUMB,
+    hrkmCRSR,
+    hrkmFUNC,
+    hrkmCONF,
+    hrkmSYMA,
+    hrkmLWin,
+    hrkmLAlt,
+    hrkmLCtrl,
+    hrkmLShift,
+    hrkmRCtrl,
+    hrkmRAlt,
+    hrkmAltGr);
 
   TKeyZone = record
     X1, X2, X3, X4, X5: integer;
@@ -28,7 +43,7 @@ type
     H: Real;
     A: Real;
     Mp: string;
-    Ly: array[0..pred(NB_LAYERS)] of string;
+    Ly: array[0..7] of string;
     Hr: THomeRowKeyMod;
   end;
 
@@ -80,26 +95,29 @@ const
   LY_ACSY                              =  1;
   LY_ACSH                              =  2;
   LY_NUMB                              =  3;
-  LAYER_CURSOR                         =  4;
-  LAYER_MODIFIER_FUNCTION_KEYS         =  5;
-  LAYER_MODIFIER_CONFIG                =  6;
-  LAYER_MODIFIER_NUMBERS_LSHIFT        =  7;
-  LAYER_MODIFIER_NUMBERS_RCTRL         =  8;
-  LAYER_MODIFIER_NUMBERS_LSHIFT_RCRTRL =  9;
-  LAYER_MODIFIER_NUMBERS_ALTGR         = 10;
-  LAYER_MODIFIER_CURSORS               = 11;
+  LY_CRSR                              =  4;
+  LY_FUNC                              =  5;
+  LY_CONF                              =  6;
+  LY_SYMA                              =  7;
+  LAYER_MODIFIER_NUMBERS_LSHIFT        =  8;
+  LAYER_MODIFIER_NUMBERS_RCTRL         =  9;
+  LAYER_MODIFIER_NUMBERS_LSHIFT_RCRTRL = 10;
+  LAYER_MODIFIER_NUMBERS_ALTGR         = 11;
+  LAYER_MODIFIER_CURSORS               = 12;
 
   COLOR_BASE                  = clBlack;
-  COLOR_BASE_LSHIFT           = clBlue;
-  COLOR_BASE_RCTRL            = clPurple;
-  COLOR_BASE_LSHIFT_RCTRL     = clTeal;
-  COLOR_BASE_ALTGR            = clNavy;
-  COLOR_NUMBERS               = clGreen;
+  COLOR_ACSY                  = clBlue;
+  COLOR_ACSH                  = clPurple;
+  COLOR_NUMB                  = clTeal;
+  COLOR_CRSR                  = clGreen;
+  COLOR_FUNC                  = $0000FF;
+  COLOR_CONF                  = clNavy;
+  COLOR_SYMA                  = clMaroon;
+
   COLOR_NUMBERS_LSHIFT        = clMaroon;
   COLOR_NUMBERS_RCTRL         = clPurple;
   COLOR_NUMBERS_LSHIFT_RCRTRL = clTeal;
   COLOR_NUMBERS_ALTGR         = clNavy;
-  COLOR_FUNCTION_KEYS         = $0000FF;
   COLOR_CURSORS               = clNavy;
   {*)}
 
@@ -120,42 +138,42 @@ const
 {(*}
   MyKeys : array[0..pred(NB_KEYS)] of TKeyboardKey =
   (
-    (X:	   0; Y: 40 ; W:94     ; H:94      ; A:0       ; Mp:'1,0'  ; Ly:('B'      , '^'       , '^'  , ' ' , ''    , ''   , '⟲' , '' , '' , '' , ''    ,''  ) ; Hr: hrkmConfig  ), // 00 - R1  L0
-    (X:	 100; Y: 13 ; W:94     ; H:94      ; A:0       ; Mp:'1,1'  ; Ly:('Y'      , 'ë'       , 'Ë'  , ' ' , ''    , ''   , ''  , '' , '' , '' , ''    ,''  ) ; Hr: hrkmNone    ), // 01 - R1  L1
-    (X:	 200; Y:  0 ; W:94     ; H:94      ; A:0       ; Mp:'1,2'  ; Ly:('O'      , 'ê'       , 'Ê'  , ' ' , ''    , ''   , ''  , '' , '' , '' , ''    ,''  ) ; Hr: hrkmACSH    ), // 02 - R1  L2
-    (X:	 300; Y: 13 ; W:94     ; H:94      ; A:0       ; Mp:'1,3'  ; Ly:('U'      , 'ô'       , 'Ô'  , ' ' , ''    , ''   , ''  , '' , '' , '' , ''    ,''  ) ; Hr: hrkmCrsr    ), // 03 - R1  L3
-    (X:	 400; Y: 13 ; W:94     ; H:94      ; A:0       ; Mp:'1,4'  ; Ly:('Z'      , 'û'       , 'Û'  , ' ' , ''    , ''   , ''  , '' , '' , '' , ''    ,''  ) ; Hr: hrkmNone    ), // 04 - R1  L4
-    (X:	 673; Y: 13 ; W:94     ; H:94      ; A:0       ; Mp:'1,5'  ; Ly:('Q'      , ' '       , ' '  , '=' , ''    , ''   , ''  , '' , '' , '' , ''    ,''  ) ; Hr: hrkmNone    ), // 05 - R1  L5
-    (X:	 773; Y: 13 ; W:94     ; H:94      ; A:0       ; Mp:'1,11' ; Ly:('L'      , '&'       , ' '  , '7' , '↖'   , '⑦' , ''  , '' , '' , '' , ''    ,''  ) ; Hr: hrkmNone    ), // 06 - R1  R1
-    (X:	 873; Y:  0 ; W:94     ; H:94      ; A:0       ; Mp:'1,10' ; Ly:('D'      , '*'       , ' '  , '8' , ''    , '⑧' , ''  , '' , '⅞', '{', ''    ,'α' ) ; Hr: hrkmACSH    ), // 07 - R1  R2
-    (X:	 973; Y: 13 ; W:94     ; H:94      ; A:0       ; Mp:'1,9'  ; Ly:('W'      , '('       , ' '  , '9' , '⇞'   , '⑨' , ''  , '' , '™', '}', ''    ,'↑' ) ; Hr: hrkmNone    ), // 08 - R1  R3
-    (X:	1073; Y: 40 ; W:94     ; H:94      ; A:0       ; Mp:'1,8'  ; Ly:('V'      , ')'       , ' '  , '0' , '⎀'   , '⑩' , '⟲' , '' , '±', '[', ''    ,'↑↑') ; Hr: hrkmConfig  ), // 09 - R1  R4
-    (X:	   0; Y:140 ; W:94     ; H:94      ; A:0       ; Mp:'1,7'  ; Ly:('C'      , 'ç'       , 'Ç'  , ' ' , ''    , ''   , ''  , '' , '' , ']', ''    ,''  ) ; Hr: hrkmLWin    ), // 10 - R1  R5
-    (X:	 100; Y:113 ; W:94     ; H:94      ; A:0       ; Mp:'1,6'  ; Ly:('I'      , 'î'       , 'Î'  , ' ' , ''    , ''   , ''  , '' , '' , '' , ''    ,''  ) ; Hr: hrkmAlt     ), // 11 - R1  R6
-    (X:	 200; Y:100 ; W:94     ; H:94      ; A:0       ; Mp:'2,0'  ; Ly:('E'      , 'é'       , 'É'  , ' ' , ''    , ''   , ''  , '' , '' , '' , ''    ,''  ) ; Hr: hrkmLCtrl   ), // 12 - R2  L0
-    (X:	 300; Y:113 ; W:94     ; H:94      ; A:0       ; Mp:'2,1'  ; Ly:('A'      , 'à'       , 'À'  , ' ' , ''    , ''   , ''  , '' , '' , '' , ''    ,''  ) ; Hr: hrkmLShift  ), // 13 - R2  L1
-    (X:	 400; Y:113 ; W:94     ; H:94      ; A:0       ; Mp:'2,2'  ; Ly:(','      , 'ù'       , 'Ù'  , ' ' , ''    , ''   , ''  , '' , '' , '' , ''    ,''  ) ; Hr: hrkmNone    ), // 14 - R2  L2
-    (X:	 673; Y:113 ; W:94     ; H:94      ; A:0       ; Mp:'2,3'  ; Ly:(';'      , '~'       , '~'  , '-' , ''    , ''   , ''  , '' , '' , '' , ''    ,''  ) ; Hr: hrkmNone    ), // 15 - R2  L3
-    (X:	 773; Y:113 ; W:94     ; H:94      ; A:0       ; Mp:'2,4'  ; Ly:('H'      , '$'       , ' '  , '4' , '←'   , '④' , 'ᛒ0', '' , '' , '' , ''    ,''  ) ; Hr: hrkmLShift  ), // 16 - R2  L4
-    (X:	 873; Y:100 ; W:94     ; H:94      ; A:0       ; Mp:'2,5'  ; Ly:('T'      , '%'       , ' '  , '5' , '↑'   , '⑤' , 'ᛒ4', '' , '' , '' , ''    ,''  ) ; Hr: hrkmLCtrl   ), // 17 - R2  L5
-    (X:	 973; Y:113 ; W:94     ; H:94      ; A:0       ; Mp:'2,11' ; Ly:('S'      , '?'       , ' '  , '6' , '→'   , '⑥' , ''  , '' , '' , '' , ''    ,''  ) ; Hr: hrkmAlt     ), // 18 - R2  R1
-    (X:	1073; Y:140 ; W:94     ; H:94      ; A:0       ; Mp:'2,10' ; Ly:('N'      , '_'       , ' '  , '*' , ''    , '⑪' , ''  , '¼', '€', '' , ''    ,'←' ) ; Hr: hrkmLWin    ), // 19 - R2  R2
-    (X:	   0; Y:240 ; W:94     ; H:94      ; A:0       ; Mp:'2,9'  ; Ly:('G'      , '`'       , '`'  , ' ' , ''    , ''   , ''  , '½', '⅜', '' , ''    ,'↓' ) ; Hr: hrkmNone    ), // 20 - R2  R3
-    (X:	 100; Y:213 ; W:94     ; H:94      ; A:0       ; Mp:'2,8'  ; Ly:('X'      , 'ï'       , 'Ï'  , ' ' , ''    , ''   , ''  , '¾', '⅝', '' , ''    ,'→' ) ; Hr: hrkmNone    ), // 21 - R2  R4
-    (X:	 200; Y:200 ; W:94     ; H:94      ; A:0       ; Mp:'2,7'  ; Ly:('J'      , 'è'       , 'È'  , ' ' , ''    , ''   , ''  , '' , '' , '' , ''    ,''  ) ; Hr: hrkmACSY    ), // 22 - R2  R5
-    (X:	 300; Y:213 ; W:94     ; H:94      ; A:0       ; Mp:'2,6'  ; Ly:('K'      , 'â'       , 'Â'  , ' ' , ''    , ''   , ''  , '' , '' , '' , ''    ,''  ) ; Hr: hrkmNbr     ), // 23 - R2  R6
-    (X:	 400; Y:213 ; W:94     ; H:94      ; A:0       ; Mp:'3,0'  ; Ly:('.'      , '´'       , '´'  , ' ' , ''    , ''   , ''  , '' , '' , '' , ''    ,''  ) ; Hr: hrkmNone    ), // 24 - R3  L0
-    (X:	 673; Y:213 ; W:94     ; H:94      ; A:0       ; Mp:'3,1'  ; Ly:('/'      , '¨'       , '¨'  , '+' , ''    , ''   , ''  , '' , '' , '' , ''    ,''  ) ; Hr: hrkmNone    ), // 25 - R3  L1
-    (X:	 773; Y:213 ; W:94     ; H:94      ; A:0       ; Mp:'3,2'  ; Ly:('R'      , '!'       , ' '  , '1' , '↘'   , '①' , 'ᛒ1', '' , '' , '' , ''    ,''  ) ; Hr: hrkmNone    ), // 26 - R3  L2
-    (X:	 873; Y:200 ; W:94     ; H:94      ; A:0       ; Mp:'3,3'  ; Ly:('M'      , '@'       , ' '  , '2' , '↓'   , '②' , 'ᛒ2', '' , '' , '' , ''    ,''  ) ; Hr: hrkmACSY    ), // 27 - R3  L3
-    (X:	 973; Y:213 ; W:94     ; H:94      ; A:0       ; Mp:'3,4'  ; Ly:('F'      , '#'       , ' '  , '3' , '⇟'   , '③' , 'ᛒ3', '' , '' , '' , ''    ,''  ) ; Hr: hrkmNone    ), // 28 - R3  L4
-    (X:	1073; Y:240 ; W:94     ; H:94      ; A:0       ; Mp:'3,5'  ; Ly:('P'      , '+'       , ' '   ,'/' , ''    , '⑫' , 'ᛒ⟲', '' , '' , '' , ''    ,''  ) ; Hr: hrkmNone    ), // 29 - R3  L5
-    (X:	 240; Y:325 ; W:94     ; H:94      ; A:0       ; Mp:'3,11' ; Ly:('⎋'      , ' '       , ' '  , ' ' , ''    , ''   , ''  , '' , '' , '' , ''    ,''  ) ; Hr: hrkmNone    ), // 30-  R3  R1
-    (X:	 340; Y:325 ; W:94     ; H:94      ; A:0       ; Mp:'3,10' ; Ly:('⌫'      , ' '       , ' '  , ' ' , ''    , ''   , ''  , '¹', '¡', '' , ''    ,'Ω' ) ; Hr: hrkmNone    ), // 31-  R3  R2
-    (X:	 450; Y:339 ; W:94     ; H:94      ; A:15      ; Mp:'3,9'  ; Ly:('⇥'      , ' '       , ' '  , ' ' , ''    , ''   , ''  , '²', '' , '' , ''    ,'q' ) ; Hr: hrkmNone    ), // 32 - R3  R3
-    (X:	 624; Y:339 ; W:94     ; H:94      ; A:345     ; Mp:'3,8'  ; Ly:('↵'      , ' '       , ' '  , ' ' , ''    , ''   , ''  , '³', '£', '' , ''    ,'↓↓') ; Hr: hrkmNone    ), // 33 - R3  R4
-    (X:	 733; Y:325 ; W:94     ; H:94      ; A:0       ; Mp:'3,7'  ; Ly:('␣'      , ' '       , ' '  , ' ' , ''    , ''   , ''  , '' , '' , '' , ''    ,''  ) ; Hr: hrkmNone    ), // 34 - R3  R5
-    (X:	 833; Y:325 ; W:94     ; H:94      ; A:0       ; Mp:'3,6'  ; Ly:(' '      , ' '       , ' '  , ' ' , ''    , ''   , ''  , '' , '' , '' , ''    ,''  ) ; Hr: hrkmNone    ) // 35 - R3  R6
+    (X:	   0; Y: 40 ; W:94     ; H:94      ; A:0       ; Mp:'1,0'  ; Ly:('B'      , '^'       , '^'  , 'ß' , ''    , ''   , ''  , ''   ) ; Hr: hrkmDEFT    ), // 00 - R1  L0
+    (X:	 100; Y: 13 ; W:94     ; H:94      ; A:0       ; Mp:'1,1'  ; Ly:('Y'      , 'ë'       , 'Ë'  , ''  , ''    , ''   , ''  , 'Œ'  ) ; Hr: hrkmDEFT    ), // 01 - R1  L1
+    (X:	 200; Y:  0 ; W:94     ; H:94      ; A:0       ; Mp:'1,2'  ; Ly:('O'      , 'ê'       , 'Ê'  , '¼' , ''    , ''   , ''  , 'œ'  ) ; Hr: hrkmACSH    ), // 02 - R1  L2
+    (X:	 300; Y: 13 ; W:94     ; H:94      ; A:0       ; Mp:'1,3'  ; Ly:('U'      , 'ô'       , 'Ô'  , '½' , ''    , ''   , ''  , 'µ'  ) ; Hr: hrkmCRSR    ), // 03 - R1  L3
+    (X:	 400; Y: 13 ; W:94     ; H:94      ; A:0       ; Mp:'1,4'  ; Ly:('Z'      , 'û'       , 'Û'  , '¾' , ''    , ''   , '⟲' , 'Ω'  ) ; Hr: hrkmCONF    ), // 04 - R1  L4
+    (X:	 673; Y: 13 ; W:94     ; H:94      ; A:0       ; Mp:'1,5'  ; Ly:('Q'      , ' '       , ' '  , '=' , '↖'   , ''   , '⟲' , ''   ) ; Hr: hrkmCONF    ), // 05 - R1  L5
+    (X:	 773; Y: 13 ; W:94     ; H:94      ; A:0       ; Mp:'1,11' ; Ly:('L'      , '&'       , ' '  , '7' , ''    , '⑦' , ''  , '÷'  ) ; Hr: hrkmCRSR    ), // 06 - R1  R1
+    (X:	 873; Y:  0 ; W:94     ; H:94      ; A:0       ; Mp:'1,10' ; Ly:('D'      , '*'       , ' '  , '8' , '⇞'   , '⑧' , ''  , 'º'  ) ; Hr: hrkmACSH    ), // 07 - R1  R2
+    (X:	 973; Y: 13 ; W:94     ; H:94      ; A:0       ; Mp:'1,9'  ; Ly:('W'      , '('       , ' '  , '9' , ''    , '⑨' , ''  , '['  ) ; Hr: hrkmDEFT    ), // 08 - R1  R3
+    (X:	1073; Y: 40 ; W:94     ; H:94      ; A:0       ; Mp:'1,8'  ; Ly:('V'      , ')'       , ' '  , '0' , ''    , '⑩' , 'ᛒ0', ']'  ) ; Hr: hrkmDEFT    ), // 09 - R1  R4
+    (X:	   0; Y:140 ; W:94     ; H:94      ; A:0       ; Mp:'1,7'  ; Ly:('C'      , 'ç'       , 'Ç'  , ''  , ''    , ''   , ''  , '©'  ) ; Hr: hrkmLWin    ), // 10 - R1  R5
+    (X:	 100; Y:113 ; W:94     ; H:94      ; A:0       ; Mp:'1,6'  ; Ly:('I'      , 'î'       , 'Î'  , '¶' , ''    , ''   , ''  , ''   ) ; Hr: hrkmLAlt    ), // 11 - R1  R6
+    (X:	 200; Y:100 ; W:94     ; H:94      ; A:0       ; Mp:'2,0'  ; Ly:('E'      , 'é'       , 'É'  , '¹' , ''    , ''   , ''  , '€'  ) ; Hr: hrkmLCtrl   ), // 12 - R2  L0
+    (X:	 300; Y:113 ; W:94     ; H:94      ; A:0       ; Mp:'2,1'  ; Ly:('A'      , 'à'       , 'À'  , '²' , ''    , ''   , ''  , 'æ'  ) ; Hr: hrkmLShift  ), // 13 - R2  L1
+    (X:	 400; Y:113 ; W:94     ; H:94      ; A:0       ; Mp:'2,2'  ; Ly:(','      , 'ù'       , 'Ù'  , '³ ' , ''    , ''  , '⟲' , 'Æ'  ) ; Hr: hrkmRAlt    ), // 14 - R2  L2
+    (X:	 673; Y:113 ; W:94     ; H:94      ; A:0       ; Mp:'2,3'  ; Ly:(';'      , '~'       , '~'  , '-' , '↘'   , ''   , '⏻' , '®'  ) ; Hr: hrkmRAlt    ), // 15 - R2  L3
+    (X:	 773; Y:113 ; W:94     ; H:94      ; A:0       ; Mp:'2,4'  ; Ly:('H'      , '$'       , ' '  , '4' , '↑'   , '④' , 'ᛒ4', '↑'  ) ; Hr: hrkmLShift  ), // 16 - R2  L4
+    (X:	 873; Y:100 ; W:94     ; H:94      ; A:0       ; Mp:'2,5'  ; Ly:('T'      , '%'       , ' '  , '5' , '⇟'   , '⑤' , ''  , '™'  ) ; Hr: hrkmLCtrl   ), // 17 - R2  L5
+    (X:	 973; Y:113 ; W:94     ; H:94      ; A:0       ; Mp:'2,11' ; Ly:('S'      , '?'       , ' '  , '6' , ''    , '⑥' , ''  , '{'  ) ; Hr: hrkmLAlt    ), // 18 - R2  R1
+    (X:	1073; Y:140 ; W:94     ; H:94      ; A:0       ; Mp:'2,10' ; Ly:('N'      , '_'       , ' '  , '*' , '⎀'   , '⑪' , ''  , '}'  ) ; Hr: hrkmLWin    ), // 19 - R2  R2
+    (X:	   0; Y:240 ; W:94     ; H:94      ; A:0       ; Mp:'2,9'  ; Ly:('G'      , '`'       , '`'  , ''  , ''    , ''   , ''  , '¢'  ) ; Hr: hrkmSYMA    ), // 20 - R2  R3
+    (X:	 100; Y:213 ; W:94     ; H:94      ; A:0       ; Mp:'2,8'  ; Ly:('X'      , 'ï'       , 'Ï'  , '×' , ''    , ''   , ''  , ''   ) ; Hr: hrkmDEFT    ), // 21 - R2  R4
+    (X:	 200; Y:200 ; W:94     ; H:94      ; A:0       ; Mp:'2,7'  ; Ly:('J'      , 'è'       , 'È'  , ' ' , ''    , ''   , ''  , ''   ) ; Hr: hrkmACSY    ), // 22 - R2  R5
+    (X:	 300; Y:213 ; W:94     ; H:94      ; A:0       ; Mp:'2,6'  ; Ly:('K'      , 'â'       , 'Â'  , ' ' , ''    , ''   , ''  , ''   ) ; Hr: hrkmNUMB    ), // 23 - R2  R6
+    (X:	 400; Y:213 ; W:94     ; H:94      ; A:0       ; Mp:'3,0'  ; Ly:('.'      , '´'       , '´'  , ' ' , ''    , ''   , ''  , '♪'  ) ; Hr: hrkmFUNC    ), // 24 - R3  L0
+    (X:	 673; Y:213 ; W:94     ; H:94      ; A:0       ; Mp:'3,1'  ; Ly:('/'      , '¨'       , '¨'  , '+' , '←'   , ''   , 'ᛒ⟲', '←'  ) ; Hr: hrkmFUNC    ), // 25 - R3  L1
+    (X:	 773; Y:213 ; W:94     ; H:94      ; A:0       ; Mp:'3,2'  ; Ly:('R'      , '!'       , ' '  , '1' , '↓'   , '①' , 'ᛒ1', '↓'  ) ; Hr: hrkmNUMB    ), // 26 - R3  L2
+    (X:	 873; Y:200 ; W:94     ; H:94      ; A:0       ; Mp:'3,3'  ; Ly:('M'      , '@'       , ' '  , '2' , '→'   , '②' , 'ᛒ2', '→'  ) ; Hr: hrkmACSY    ), // 27 - R3  L3
+    (X:	 973; Y:213 ; W:94     ; H:94      ; A:0       ; Mp:'3,4'  ; Ly:('F'      , '#'       , ' '  , '3' , ''    , '③' , 'ᛒ3', '<'  ) ; Hr: hrkmDEFT    ), // 28 - R3  L4
+    (X:	1073; Y:240 ; W:94     ; H:94      ; A:0       ; Mp:'3,5'  ; Ly:('P'      , '+'       , ' '   ,'/' , '⌦'   , '⑫' , ''  , '>'  ) ; Hr: hrkmSYMA    ), // 29 - R3  L5
+    (X:	 240; Y:325 ; W:94     ; H:94      ; A:0       ; Mp:'3,11' ; Ly:('⎋'      , ' '       , ' '  , ' ' , ''    , ''   , ''  , ''   ) ; Hr: hrkmDEFT    ), // 30-  R3  R1
+    (X:	 340; Y:325 ; W:94     ; H:94      ; A:0       ; Mp:'3,10' ; Ly:('⌫'      , ' '       , ' '  , ' ' , ''    , ''   , ''  , ''   ) ; Hr: hrkmDEFT    ), // 31-  R3  R2
+    (X:	 450; Y:339 ; W:94     ; H:94      ; A:15      ; Mp:'3,9'  ; Ly:('⇥'      , ' '       , ' '  , ' ' , ''    , ''   , ''  , ''   ) ; Hr: hrkmDEFT    ), // 32 - R3  R3
+    (X:	 624; Y:339 ; W:94     ; H:94      ; A:345     ; Mp:'3,8'  ; Ly:('↵'      , ' '       , ' '  , ' ' , ''    , ''   , ''  , ''   ) ; Hr: hrkmDEFT    ), // 33 - R3  R4
+    (X:	 733; Y:325 ; W:94     ; H:94      ; A:0       ; Mp:'3,7'  ; Ly:('␣'      , ' '       , ' '  , ' ' , ''    , ''   , ''  , ''   ) ; Hr: hrkmDEFT    ), // 34 - R3  R5
+    (X:	 833; Y:325 ; W:94     ; H:94      ; A:0       ; Mp:'3,6'  ; Ly:(' '      , ' '       , ' '  , ' ' , ''    , ''   , ''  , ''   ) ; Hr: hrkmDEFT    ) // 35 - R3  R6
   );
 {*)}
 
@@ -173,44 +191,51 @@ begin
 
     LY_ACSY:
       begin
-        Font.Color := COLOR_BASE_LSHIFT;
+        Font.Color := COLOR_ACSY;
         Font.Size := 25;
         Font.Style := [fsBold];
       end;
 
     LY_ACSH:
       begin
-        Font.Color := COLOR_BASE_RCTRL;
+        Font.Color := COLOR_ACSH;
         Font.Size := 25;
         Font.Style := [fsBold];
       end;
 
     LY_NUMB:
       begin
-        Font.Color := COLOR_BASE_LSHIFT_RCTRL;
+        Font.Color := COLOR_NUMB;
         Font.Size := 25;
         Font.Style := [fsBold];
       end;
 
-    LAYER_MODIFIER_CONFIG:
+    LY_CRSR:
       begin
-        Font.Color := COLOR_BASE_ALTGR;
+        Font.Color := COLOR_CRSR;
+        Font.Size := 25;
+        Font.Style := [fsBold];
+      end;
+
+    LY_FUNC:
+      begin
+        Font.Color := COLOR_FUNC;
+        Font.Size := 25;
+        Font.Style := [];
+      end;
+
+    LY_CONF:
+      begin
+        Font.Color := COLOR_CONF;
         Font.Size := 20;
         Font.Style := [];
       end;
 
-    LAYER_CURSOR:
+    LY_SYMA:
       begin
-        Font.Color := COLOR_NUMBERS;
+        Font.Color := COLOR_SYMA;
         Font.Size := 25;
         Font.Style := [fsBold];
-      end;
-
-    LAYER_MODIFIER_FUNCTION_KEYS:
-      begin
-        Font.Color := COLOR_FUNCTION_KEYS;
-        Font.Size := 25;
-        Font.Style := [];
       end;
 
     LAYER_MODIFIER_NUMBERS_LSHIFT:
@@ -243,9 +268,6 @@ var
   DeltaX: real;
   DeltaY: real;
   Angle: real;
-  iTextOffsetSign: integer;
-  iButtonHeight: reaL;
-  iButtonWidth: reaL;
 begin
   StartX := 0;
   StartY := 0;
@@ -275,22 +297,28 @@ begin
         StartY := zn.r3 - (TextHeight / 2);
       end;
 
-    LAYER_CURSOR:
+    LY_CRSR:
       begin
         StartX := zn.c3 - (TextWidth / 2);
         StartY := zn.r2 - (TextHeight / 2);
       end;
 
-    LAYER_MODIFIER_FUNCTION_KEYS:
+    LY_FUNC:
       begin
         StartX := zn.c3 - (TextWidth / 2);
         StartY := zn.r1 - (TextHeight / 2);
       end;
 
-    LAYER_MODIFIER_CONFIG:
+    LY_CONF:
       begin
         StartX := zn.c1 - (TextWidth / 2);
         StartY := zn.r1 - (TextHeight / 2);
+      end;
+
+    LY_SYMA:
+      begin
+        StartX := zn.c1 - (TextWidth / 2);
+        StartY := zn.r3 - (TextHeight / 2);
       end;
 
     LAYER_MODIFIER_CURSORS:
@@ -361,7 +389,7 @@ begin
     imgTiRouge.Picture.Bitmap.Height := imgTiRouge.Height;
 
     // Fill the background with white color
-    imgTiRouge.Picture.Bitmap.Canvas.Brush.Color := clWhite;
+    imgTiRouge.Picture.Bitmap.Canvas.Brush.Color := clBlack;
     imgTiRouge.Picture.Bitmap.Canvas.FillRect(Rect(0, 0, imgTiRouge.Picture.Bitmap.Width, imgTiRouge.Picture.Bitmap.Height));
 
     FResizedFactor := 1.5;
@@ -465,7 +493,7 @@ begin
         // Text will be transparent...
         imgTiRouge.Picture.Bitmap.Canvas.Brush.Style := bsClear;
 
-        for paramLayerIndex := 0 to pred(NB_LAYERS) do
+        for paramLayerIndex := 0 to 7 do
         begin
           if (clbLayerModifier.Checked[paramLayerIndex]) or
             (clbLayerModifier.Checked[pred(clbLayerModifier.Items.Count)]) then
@@ -496,21 +524,21 @@ begin
           sModWord := '';
           case MyKeys[iIndexKey].Hr of
           {(*}
-            hrkmNone    : ;
-            hrkmACSH    : sModWord := 'AcSh';
-            hrkmLShift  : sModWord := 'LShft';
-            hrkmLCtrl   : sModWord := 'LCtrl';
-            hrkmRCtrl   : sModWord := 'RCtrl';
-            hrkmSftRCtrl: sModWord := 'SftRCtrl';
-            hrkmAlt     : sModWord := 'Alt';
-            hrkmAltGr   : sModWord := 'AltGr';
+            hrkmDEFT    : ;
+            hrkmACSY    : sModWord := 'AccentLow';
+            hrkmACSH    : sModWord := 'AccentUpr';
+            hrkmNUMB    : sModWord := 'Numbers';
+            hrkmCRSR    : sModWord := 'Cursors';
+            hrkmFUNC    : sModWord := 'Functions';
+            hrkmCONF    : sModWord := 'Config';
+            hrkmSYMA    : sModWord := 'Symbols A';
+
             hrkmLWin    : sModWord := 'Win';
-            hrkmConfig  : sModWord := 'Config';
-            hrkmNbr     : sModWord := 'Number';
-            hrkmACSY    : sModWord := 'AcSy';
-            hrkmSNbr    : sModWord := 'SfhtNum';
-            hrkmCrsr    : sModWord := 'Cursor';
-            hrkmFctn    : sModWord := 'Fctn';
+            hrkmLAlt    : sModWord := 'LeftAlt';
+            hrkmLCtrl   : sModWord := 'LeftCtrl';
+            hrkmLShift  : sModWord := 'LeftShft';
+            hrkmRCtrl   : sModWord := 'RightCtrl';
+            hrkmRAlt    : sModWord := 'RightAlt';
           {*)}
           end;
 
@@ -519,7 +547,25 @@ begin
             imgTiRouge.Picture.Bitmap.Canvas.Font.Orientation := 0;
             imgTiRouge.Picture.Bitmap.Canvas.Font.Size := 14;
             imgTiRouge.Picture.Bitmap.Canvas.Font.Style := [fsBold];
-            imgTiRouge.Picture.Bitmap.Canvas.Font.Color := clRed;
+            imgTiRouge.Picture.Bitmap.Canvas.Font.Color := clBlack;
+            case MyKeys[iIndexKey].Hr of
+          {(*}
+            hrkmDEFT    : ;
+            hrkmACSY    : imgTiRouge.Picture.Bitmap.Canvas.Font.Color := COLOR_ACSY;
+            hrkmACSH    : imgTiRouge.Picture.Bitmap.Canvas.Font.Color := COLOR_ACSH;
+            hrkmNUMB    : imgTiRouge.Picture.Bitmap.Canvas.Font.Color := COLOR_NUMB;
+            hrkmCRSR    : imgTiRouge.Picture.Bitmap.Canvas.Font.Color := COLOR_CRSR;
+            hrkmFUNC    : imgTiRouge.Picture.Bitmap.Canvas.Font.Color := COLOR_FUNC;
+            hrkmCONF    : imgTiRouge.Picture.Bitmap.Canvas.Font.Color := COLOR_CONF;
+            hrkmSYMA    : imgTiRouge.Picture.Bitmap.Canvas.Font.Color := COLOR_SYMA;
+            hrkmLWin    : ;
+            hrkmLAlt    : ;
+            hrkmLCtrl   : ;
+            hrkmLShift  : ;
+            hrkmRCtrl   : ;
+            hrkmRAlt    : ;
+          {*)}
+            end;
 
             TextHeight := imgTiRouge.Picture.Bitmap.Canvas.TextHeight(sModWord);
             TextWidth := imgTiRouge.Picture.Bitmap.Canvas.TextWidth(sModWord);
