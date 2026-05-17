@@ -419,6 +419,47 @@
             wait-ms = <10>;
             bindings = <&kp LS(LBKT) &kp LS(U)>;
         };
+
+        mc_emprs: macro_email_perso {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <10>;
+            bindings = <
+                &kp D &kp E &kp N &kp I &kp S
+                &kp DOT
+                &kp B &kp I &kp S &kp S &kp O &kp N
+                &kp AT
+                &kp D &kp E &kp N &kp I &kp S &kp B &kp I &kp S &kp S &kp O &kp N
+                &kp DOT
+                &kp C &kp O &kp M
+            >;
+        };
+        
+        mc_emjob: macro_email_job {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <10>;
+            bindings = <
+                &kp D &kp E &kp N &kp I &kp S
+                &kp DOT
+                &kp B &kp I &kp S &kp S &kp O &kp N
+                &kp AT
+                &kp B &kp L &kp U &kp B &kp E &kp R &kp I
+                &kp DOT
+                &kp C &kp O &kp M
+            >;
+        };
+
+        mc_name: macro_myname {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <10>;
+            bindings = <
+                &kp LS(D) &kp E &kp N &kp I &kp S
+                &kp SPACE
+                &kp LS(B) &kp I &kp S &kp S &kp O &kp N
+            >;
+        };
     };
 
     keymap {
@@ -567,7 +608,7 @@
 // ╔═══════╦═══════╦═══════╦═══════╦═══════╗             ╔═══════╦═══════╦═══════╦═══════╦═══════╗
 // ║       ║       ║       ║       ║       ║             ║       ║   F7  ║   F8  ║   F9  ║  F10  ║
 // ╠═══════╬═══════╬═══════╬═══════╬═══════╣             ╠═══════╬═══════╬═══════╬═══════╬═══════╣
-// ║       ║       ║       ║       ║       ║             ║       ║   F4  ║   F5  ║   F6  ║  F11  ║
+// ║       ║ db@bl ║ db@db ║ Denis ║       ║             ║       ║   F4  ║   F5  ║   F6  ║  F11  ║
 // ╠═══════╬═══════╬═══════╬═══════╬═══════╣             ╠═══════╬═══════╬═══════╬═══════╬═══════╣
 // ║       ║       ║       ║       ║       ║             ║       ║   F1  ║   F2  ║   F3  ║  F12  ║
 // ╚═══════╩═══════╩═══════╩═══════╩═══════╝             ╚═══════╩═══════╩═══════╩═══════╩═══════╝
@@ -578,10 +619,10 @@
         layer_5 {
             display-name = "Functions";
             bindings = <
-&trans  &trans  &trans  &trans  &trans                   &trans  &kp F7  &kp F8  &kp F9  &kp F10
-&trans  &trans  &trans  &trans  &trans                   &trans  &kp F4  &kp F5  &kp F6  &kp F11
-&trans  &trans  &trans  &trans  &trans                   &trans  &kp F1  &kp F2  &kp F3  &kp F12
-                &trans  &trans  &trans  &trans    &trans &trans  &trans  &trans
+&trans  &trans     &trans     &trans    &trans                   &trans  &kp F7  &kp F8  &kp F9  &kp F10
+&trans  &mc_emjob  &mc_emprs  &mc_name  &trans                   &trans  &kp F4  &kp F5  &kp F6  &kp F11
+&trans  &trans     &trans     &trans    &trans                   &trans  &kp F1  &kp F2  &kp F3  &kp F12
+                   &trans     &trans    &trans  &trans    &trans &trans  &trans  &trans
             >;
         };
 
