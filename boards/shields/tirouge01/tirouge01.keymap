@@ -624,7 +624,7 @@
 //                     ╚═══════╩═══════╩═══════╝     ╚═══════╩═══════╩═══════╝
 //
         layer_7 {
-            display-name = "template";
+            display-name = "symbols";
             bindings = <
 &trans        &kp RC(LS(E)) &kp RC(E)     &kp RC(M)  &kp RC(LS(Q))            &trans         &kp RC(LS(PERIOD)) &kp RC(LS(M))  &kp RA(N9)    &kp RA(N0)
 &kp RC(LS(C)) &trans        &kp RC(LS(E)) &kp RC(A)  &kp RC(LS(A))            &kp RC(LS(R))  &kp RC(LS(U))      &kp RC(LS(N8)) &kp RA(N7)    &kp RA(N8)
@@ -648,7 +648,7 @@
 //                     ╔═══════╦═══════╦═══════╗     ╔═══════╦═══════╦═══════╗
 //                     ║       ║       ║       ║     ║       ║       ║       ║
 //                     ╚═══════╩═══════╩═══════╝     ╚═══════╩═══════╩═══════╝
-//        layer_8 {
+        layer_8 {
             display-name = "template";
             bindings = <
 &trans &trans &trans &trans &trans                   &trans &trans &trans &trans &trans
