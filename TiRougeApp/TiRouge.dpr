@@ -2,15 +2,15 @@ program TiRouge;
 
 uses
   Vcl.Forms,
-  fTiRouge in 'fTiRouge.pas' {Form1},
-  fConfigurator in 'fConfigurator.pas' {frmConfigurator};
+  fTiRouge in 'fTiRouge.pas' {frmTiRouge},
+  fTiRougeConfigurator in 'fTiRougeConfigurator.pas' {frmTiRougeConfigurator};
 
 {$R *.res}
 
 begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
-  Application.CreateForm(TForm1, Form1);
-  Application.CreateForm(TfrmConfigurator, frmConfigurator);
+  Application.CreateForm(TfrmTiRouge, frmTiRouge);
+  Application.CreateForm(TfrmTiRougeConfigurator, frmTiRougeConfigurator);
   Application.Run;
 end.

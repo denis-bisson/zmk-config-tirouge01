@@ -1,4 +1,4 @@
-unit fConfigurator;
+unit fTiRougeConfigurator;
 
 interface
 
@@ -7,7 +7,7 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls;
 
 type
-  TfrmConfigurator = class(TForm)
+  TfrmTiRougeConfigurator = class(TForm)
     ckbLY_ACSY: TCheckBox;
     ckbLY_ACSH: TCheckBox;
     ckbLY_NUMB: TCheckBox;
@@ -16,6 +16,7 @@ type
     ckbLY_CONF: TCheckBox;
     ckbLY_SYMA: TCheckBox;
     ckbLY_DFLT: TCheckBox;
+    ckbShowKeyZones: TCheckBox;
   private
     { Private declarations }
   public
@@ -23,7 +24,7 @@ type
   end;
 
 var
-  frmConfigurator: TfrmConfigurator;
+  frmTiRougeConfigurator: TfrmTiRougeConfigurator;
 
 implementation
 
